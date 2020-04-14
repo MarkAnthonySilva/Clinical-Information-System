@@ -29,104 +29,87 @@ public class PatientModel
 	private String education;
 	
 	
-	
-	
-	
-	
-	
 	//List of getters and setters for all the parameters of a patient
-	public int getIdNumber()
-	{
-		return idNumber;
-	}
+	/**
+	 * @param idNumber the idNumber to set
+	 */
 	public void setIdNumber(int idNumber)
 	{
 		this.idNumber = idNumber;
 	}
-	public int getPhoneNumber()
-	{
-		return phoneNumber;
-	}
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
 	public void setPhoneNumber(int phoneNumber)
 	{
 		this.phoneNumber = phoneNumber;
 	}
-	public int getsSN()
-	{
-		return sSN;
-	}
+	/**
+	 * @param sSN the sSN to set
+	 */
 	public void setsSN(int sSN)
 	{
 		this.sSN = sSN;
 	}
-	public int getInsuranceNumber()
-	{
-		return insuranceNumber;
-	}
+	/**
+	 * @param insuranceNumber the insuranceNumber to set
+	 */
 	public void setInsuranceNumber(int insuranceNumber)
 	{
 		this.insuranceNumber = insuranceNumber;
 	}
-	public Date getDateOfRegistration()
-	{
-		return dateOfRegistration;
-	}
+	/**
+	 * @param dateOfRegistration the dateOfRegistration to set
+	 */
 	public void setDateOfRegistration(Date dateOfRegistration)
 	{
 		this.dateOfRegistration = dateOfRegistration;
 	}
-	public Date getDateOfBirth()
-	{
-		return dateOfBirth;
-	}
+	/**
+	 * @param dateOfBirth the dateOfBirth to set
+	 */
 	public void setDateOfBirth(Date dateOfBirth)
 	{
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getPatientName()
-	{
-		return patientName;
-	}
+	/**
+	 * @param patientName the patientName to set
+	 */
 	public void setPatientName(String patientName)
 	{
 		this.patientName = patientName;
 	}
-	public String getGender()
-	{
-		return gender;
-	}
+	/**
+	 * @param gender the gender to set
+	 */
 	public void setGender(String gender)
 	{
 		this.gender = gender;
 	}
-	public String getAddress()
-	{
-		return address;
-	}
+	/**
+	 * @param address the address to set
+	 */
 	public void setAddress(String address)
 	{
 		this.address = address;
 	}
-	public String getOccupation()
-	{
-		return occupation;
-	}
+	/**
+	 * @param occupation the occupation to set
+	 */
 	public void setOccupation(String occupation)
 	{
 		this.occupation = occupation;
 	}
-	public String getWorkStatus()
-	{
-		return workStatus;
-	}
+	/**
+	 * @param workStatus the workStatus to set
+	 */
 	public void setWorkStatus(String workStatus)
 	{
 		this.workStatus = workStatus;
 	}
-	public String getEducation()
-	{
-		return education;
-	}
+	/**
+	 * @param education the education to set
+	 */
 	public void setEducation(String education)
 	{
 		this.education = education;
