@@ -44,8 +44,5 @@ public class SystemFrame extends JFrame
 		
 	}
 	
-	public void draw() 
-	{
-		
-	}
+	
 }
