@@ -9,5 +9,14 @@ package clinicalInformationSystem;
 
 public class PatientVisitList
 {
-
+	private VisitList visits;
+	
+	/**
+	 * Creates a Patient Visit List object to store all visits for a particular client
+	 * @param visits
+	 */
+	public PatientVisitList(VisitList visits)
+	{
+		this.visits = visits;
+	}
 }
