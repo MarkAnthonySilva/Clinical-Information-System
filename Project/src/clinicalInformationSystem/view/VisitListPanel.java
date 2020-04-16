@@ -1,6 +1,8 @@
-package clinicalInformationSystem;
+package clinicalInformationSystem.view;
 
 import javax.swing.JPanel;
+
+import clinicalInformationSystem.model.VisitModel;
 
 public class VisitListPanel extends JPanel
 {

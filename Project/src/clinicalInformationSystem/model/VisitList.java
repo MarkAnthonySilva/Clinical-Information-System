@@ -1,4 +1,4 @@
-package clinicalInformationSystem;
+package clinicalInformationSystem.model;
 import java.util.TreeMap;
 import java.util.Date;
 

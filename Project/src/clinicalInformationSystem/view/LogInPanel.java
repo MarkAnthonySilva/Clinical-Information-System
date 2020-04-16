@@ -1,4 +1,4 @@
-package clinicalInformationSystem;
+package clinicalInformationSystem.view;
 
 import javax.swing.JPanel;
 

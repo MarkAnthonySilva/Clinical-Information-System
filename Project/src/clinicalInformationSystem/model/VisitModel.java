@@ -1,4 +1,4 @@
-package clinicalInformationSystem;
+package clinicalInformationSystem.model;
 import java.util.Date;
 /**
  * The model for visits for a clinical information system.
