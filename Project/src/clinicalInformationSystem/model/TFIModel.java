@@ -23,7 +23,7 @@ public class TFIModel
 	
 	/**
 	 * Answer the question corresponding to the question number with the given response
-	 * @param question the question to answer (1 - 25)
+	 * @param questionNumber question the question to answer (1 - 25)
 	 * @param response the answer to the question (0 - 10)
 	 */
 	public void answerQuestion(int questionNumber, int response)
