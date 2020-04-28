@@ -2,6 +2,7 @@ package clinicalInformationSystem.view;
 
 import javax.swing.JFrame;
 
+//test comment
 public class SystemFrame extends JFrame
 {
 	/**
