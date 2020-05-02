@@ -25,8 +25,9 @@ public class PatientModel
 	
 	//Optional parameters
 	private String occupation;
-	private String workStatus;			//Can be changed to boolean
+	private boolean isWorking;			//Can be changed to boolean
 	private String education;
+	
 	
 	//List of getters and setters for all the parameters of a patient
 	/**
@@ -102,9 +103,9 @@ public class PatientModel
 	/**
 	 * @param workStatus the workStatus to set
 	 */
-	public void setWorkStatus(String workStatus)
+	public void setIsWorking(boolean isWorking)
 	{
-		this.workStatus = workStatus;
+		this.isWorking = isWorking;
 	}
 	/**
 	 * @param education the education to set
