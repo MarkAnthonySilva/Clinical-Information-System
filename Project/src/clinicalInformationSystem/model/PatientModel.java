@@ -28,7 +28,6 @@ public class PatientModel
 	private String workStatus;			//Can be changed to boolean
 	private String education;
 	
-	
 	//List of getters and setters for all the parameters of a patient
 	/**
 	 * @param idNumber the idNumber to set
