@@ -1,42 +1,69 @@
 package clinicalInformationSystem.view;
 
-import javax.swing.JPanel;
+import java.awt.*;
 
-import clinicalInformationSystem.model.PatientModel;
+import javax.swing.*;
+
+import clinicalInformationSystem.controller.*;
+import clinicalInformationSystem.model.*;
 
 public class PatientListPanel extends JPanel
 {
-	/**
-	 * Create a MainMenu panel to be displayed
-	 */
-	public PatientListPanel()
+	private PatientList patientList;
+	private SystemFrame	frame;
+	
+	public PatientListPanel(PatientList patientList, SystemFrame frame)
 	{
+		this.patientList = patientList;
+		this.frame = frame;
 		
-	}
-
-	/**
-	 * Display panel with appropriate formatting for buttons and text fields
-	 */
-	public void displayPanel()
-	{
+		JPanel panel = new JPanel(new BorderLayout());
+		String[] columnNames = {"Name", "Gender", "Address"};		// TODO Add More column names if necessary
 		
+		PatientModel[] patientArray = patientList.getPatientArray();
+		String[][] data = new String[patientArray.length][columnNames.length];
+		
+		for(int row = 0; row < patientArray.length; row++ )
+		{
+			for(int col = 0; col < columnNames.length; col++)
+			{
+				if(col == 0)
+				{
+					data[row][col] = patientArray[row].getPatientName();
+				}
+				else if(col == 1)
+				{
+					data[row][col] = patientArray[row].getGender();
+				}
+				else
+				{
+					data[row][col] = patientArray[row].getAddress();
+				}
+			}
+		}
+		
+		JTable table = new JTable(data, columnNames);
+		table.setBounds(30, 40, this.getWidth() , this.getHeight());
+		
+		JScrollPane sp = new JScrollPane(table);
+		panel.add(sp, BorderLayout.NORTH);
+		
+		//Add button Panel
+		JPanel buttonPanel 	= new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		JButton edit 	 	= new JButton("Edit");		
+		JButton exit	 	= new JButton("Exit");
+		
+		buttonPanel.add(edit);
+		buttonPanel.add(exit);
+		
+		PatientListController controller = new PatientListController(this, frame);
+		edit.addActionListener(controller);
+		exit.addActionListener(controller);
+		
+		panel.add(buttonPanel, BorderLayout.SOUTH);
+		
+		this.add(panel);
 	}
 	
-	/**
-	 * View information for selected patient
-	 * @param patient Patient to be displayed in panel
-	 */
-	public void viewPatient(PatientModel patient)
-	{
-		
-	}
-	
-	/**
-	 * Add patient to patient list
-	 * @param patient Patient to be added in panel
-	 */
-	public void addPatient(PatientModel patient)
-	{
-		
-	}
 }

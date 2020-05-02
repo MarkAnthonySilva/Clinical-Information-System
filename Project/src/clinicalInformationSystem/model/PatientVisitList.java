@@ -15,7 +15,7 @@ public class PatientVisitList
 	
 	/**
 	 * Creates a Patient Visit List object to store all visits for a particular client
-	 * @param visits VisitList to store for patient
+	 * @param visits
 	 */
 	public PatientVisitList(VisitList visits)
 	{

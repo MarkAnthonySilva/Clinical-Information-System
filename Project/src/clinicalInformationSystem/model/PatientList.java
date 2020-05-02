@@ -1,5 +1,5 @@
 package clinicalInformationSystem.model;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * List of patients registered to this clinical information system.
@@ -9,14 +9,14 @@ import java.util.TreeMap;
  */
 public class PatientList
 {
-	private TreeMap<String, PatientModel> listOfPatients;  //Key the name of the Patient, Value the PatientModel
+	private TreeMap<String, PatientModel> patientList;  //Key the name of the Patient, Value the PatientModel
 	
 	/**
 	 * Contructs a PatientList with an empty TreeMap
 	 */
 	public PatientList()
 	{
-		//To be Implemented
+		patientList = new TreeMap<>();
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class PatientList
 	 */
 	public void addPatient(String name, PatientModel p)
 	{
-		//To be Implemented
+		patientList.put(name, p);
 	}
 	
 	/**
@@ -36,7 +36,12 @@ public class PatientList
 	 */
 	public PatientModel getPatient(String name)
 	{
-		//To be implemented
-		return null;
+		return patientList.get(name);
+	}
+	
+	public PatientModel[] getPatientArray()
+	{
+		Collection<PatientModel> values = patientList.values();
+		return values.toArray(new PatientModel[values.size()]);
 	}
 }
