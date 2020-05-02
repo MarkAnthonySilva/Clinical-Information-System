@@ -51,7 +51,7 @@ public class PatientListPanel extends JPanel
 		//Add button Panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		JButton edit 	 	= new JButton("edit");		
+		JButton edit 	 	= new JButton("Edit");		
 		JButton exit	 	= new JButton("Exit");
 		
 		buttonPanel.add(edit);
