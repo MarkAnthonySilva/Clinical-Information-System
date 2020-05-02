@@ -16,7 +16,7 @@ public class SystemTester
 		
 		frame.registerListeners(menuController);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400, 200);
+		frame.setSize(600, 400);
 		frame.setVisible(true);
 	}
 }

@@ -2,7 +2,6 @@ package clinicalInformationSystem.controller;
 
 import java.awt.event.*;
 import java.util.HashMap;
-
 import clinicalInformationSystem.view.*;
 import clinicalInformationSystem.model.*;
 
@@ -32,7 +31,7 @@ public class AddPatientController implements ActionListener
 			// TODO add the rest of the parameters for patient
 			
 			frame.getPatientList().addPatient(patientData.get("Name"), patient);
-			panel.setVisible(false);
+			frame.displayPatientList();
 		}
 		else if(command.equals("Exit"))
 		{

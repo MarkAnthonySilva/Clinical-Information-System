@@ -109,6 +109,7 @@ public class SystemFrame extends JFrame
 		this.remove(currentPanel);
 		currentPanel = patientListPanel;
 		this.add(currentPanel);
+		this.pack();
 		this.setVisible(true);
 	}
 	
@@ -125,6 +126,7 @@ public class SystemFrame extends JFrame
 		this.remove(currentPanel);
 		currentPanel = addPatientPanel;
 		this.add(currentPanel);
+		this.pack();
 		this.setVisible(true);
 	}
 

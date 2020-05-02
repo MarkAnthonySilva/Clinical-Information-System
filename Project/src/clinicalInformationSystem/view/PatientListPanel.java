@@ -1,7 +1,10 @@
 package clinicalInformationSystem.view;
 
+import java.awt.*;
+
 import javax.swing.*;
 
+import clinicalInformationSystem.controller.*;
 import clinicalInformationSystem.model.*;
 
 public class PatientListPanel extends JPanel
@@ -14,6 +17,7 @@ public class PatientListPanel extends JPanel
 		this.patientList = patientList;
 		this.frame = frame;
 		
+		JPanel panel = new JPanel(new BorderLayout());
 		String[] columnNames = {"Name", "Gender", "Address"};		// TODO Add More column names if necessary
 		
 		PatientModel[] patientArray = patientList.getPatientArray();
@@ -42,7 +46,24 @@ public class PatientListPanel extends JPanel
 		table.setBounds(30, 40, this.getWidth() , this.getHeight());
 		
 		JScrollPane sp = new JScrollPane(table);
-		this.add(sp);
+		panel.add(sp, BorderLayout.NORTH);
+		
+		//Add button Panel
+		JPanel buttonPanel 	= new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		JButton edit 	 	= new JButton("edit");		
+		JButton exit	 	= new JButton("Exit");
+		
+		buttonPanel.add(edit);
+		buttonPanel.add(exit);
+		
+		PatientListController controller = new PatientListController(this, frame);
+		edit.addActionListener(controller);
+		exit.addActionListener(controller);
+		
+		panel.add(buttonPanel, BorderLayout.SOUTH);
+		
+		this.add(panel);
 	}
 	
 }
