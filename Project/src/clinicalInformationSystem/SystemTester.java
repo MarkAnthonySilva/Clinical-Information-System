@@ -11,11 +11,12 @@ public class SystemTester
 	{
 		SystemFrame frame = new SystemFrame();
 		
-		MenuController menuController = new MenuController(frame);
+		//Create Controllers
+		MenuController 			menuController 			= new MenuController(frame);
 		
 		frame.registerListeners(menuController);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 400);
+		frame.setSize(400, 200);
 		frame.setVisible(true);
 	}
 }

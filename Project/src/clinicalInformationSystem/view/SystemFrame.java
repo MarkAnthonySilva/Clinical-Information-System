@@ -2,21 +2,27 @@ package clinicalInformationSystem.view;
 
 import javax.swing.*;
 
-import clinicalInformationSystem.controller.MenuController;
+import clinicalInformationSystem.controller.*;
+import clinicalInformationSystem.model.*;
 
 import java.awt.*;
 
 public class SystemFrame extends JFrame
 {
-
+	
 	//Menu Items
 	private JMenu patientMenu;
 	private JMenu visitMenu;
 	
-	//Panel
-	private JPanel currentPanel;
+	//Model 
+	private PatientList patientList;
 	
-	private AddPatientPanel addPatientPanel;
+	//Panel
+	private JPanel 				currentPanel;
+	
+	private AddPatientPanel 	addPatientPanel;
+	private PatientListPanel 	patientListPanel;
+
 	 
 	/**
 	 * Create the main system frame to be shown to user
@@ -25,6 +31,8 @@ public class SystemFrame extends JFrame
 	{
 		super("Clinical Information System");
 		currentPanel = new JPanel();
+		patientList = new PatientList();
+		
 		//Create Menus and Menu Items
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -53,7 +61,6 @@ public class SystemFrame extends JFrame
 	
 	public void registerListeners(MenuController menuController)
 	{
-		
 		//Register all menu items to be buttons with action listener
 		Component[] menuComponetList = patientMenu.getMenuComponents();
 		for(Component c: menuComponetList)
@@ -74,6 +81,7 @@ public class SystemFrame extends JFrame
                 button.addActionListener(menuController);
             }
 		}
+		
 	}
 	
 	/**
@@ -97,7 +105,11 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayPatientList()
 	{
-		
+		this.patientListPanel = new PatientListPanel(patientList, this);
+		this.remove(currentPanel);
+		currentPanel = patientListPanel;
+		this.add(currentPanel);
+		this.setVisible(true);
 	}
 	
 	/**
@@ -112,9 +124,15 @@ public class SystemFrame extends JFrame
 	{
 		this.remove(currentPanel);
 		currentPanel = addPatientPanel;
-		
 		this.add(currentPanel);
-		this.pack();
 		this.setVisible(true);
+	}
+
+	/**
+	 * @return the patientList
+	 */
+	public PatientList getPatientList()
+	{
+		return patientList;
 	}
 }

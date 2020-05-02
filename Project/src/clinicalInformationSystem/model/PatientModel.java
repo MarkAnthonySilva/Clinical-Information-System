@@ -1,6 +1,5 @@
 package clinicalInformationSystem.model;
 import java.util.Date;
-
 /**
  * The Model for a patient undergoing Tinnitus treatment
  * Hold the basic information about the patient with the edition of getters and setters to be 
@@ -29,91 +28,229 @@ public class PatientModel
 	private String education;
 	
 	
-	//List of getters and setters for all the parameters of a patient
-	/**
-	 * @param idNumber the idNumber to set
-	 */
-	public void setIdNumber(int idNumber)
+	public PatientModel(Builder builder)
 	{
-		this.idNumber = idNumber;
-	}
-	/**
-	 * @param phoneNumber the phoneNumber to set
-	 */
-	public void setPhoneNumber(int phoneNumber)
-	{
-		this.phoneNumber = phoneNumber;
-	}
-	/**
-	 * @param sSN the sSN to set
-	 */
-	public void setsSN(int sSN)
-	{
-		this.sSN = sSN;
-	}
-	/**
-	 * @param insuranceNumber the insuranceNumber to set
-	 */
-	public void setInsuranceNumber(int insuranceNumber)
-	{
-		this.insuranceNumber = insuranceNumber;
-	}
-	/**
-	 * @param dateOfRegistration the dateOfRegistration to set
-	 */
-	public void setDateOfRegistration(Date dateOfRegistration)
-	{
-		this.dateOfRegistration = dateOfRegistration;
-	}
-	/**
-	 * @param dateOfBirth the dateOfBirth to set
-	 */
-	public void setDateOfBirth(Date dateOfBirth)
-	{
-		this.dateOfBirth = dateOfBirth;
-	}
-	/**
-	 * @param patientName the patientName to set
-	 */
-	public void setPatientName(String patientName)
-	{
-		this.patientName = patientName;
-	}
-	/**
-	 * @param gender the gender to set
-	 */
-	public void setGender(String gender)
-	{
-		this.gender = gender;
-	}
-	/**
-	 * @param address the address to set
-	 */
-	public void setAddress(String address)
-	{
-		this.address = address;
-	}
-	/**
-	 * @param occupation the occupation to set
-	 */
-	public void setOccupation(String occupation)
-	{
-		this.occupation = occupation;
-	}
-	/**
-	 * @param workStatus the workStatus to set
-	 */
-	public void setIsWorking(boolean isWorking)
-	{
-		this.isWorking = isWorking;
-	}
-	/**
-	 * @param education the education to set
-	 */
-	public void setEducation(String education)
-	{
-		this.education = education;
+		this.idNumber = builder.idNumber;
+		this.phoneNumber = builder.phoneNumber;
+		this.sSN = builder.sSN;
+		this.insuranceNumber = builder.insuranceNumber;
+		this.dateOfRegistration = builder.dateOfRegistration;
+		this.dateOfBirth = builder.dateOfBirth;
+		this.patientName = builder.patientName;
+		this.gender = builder.gender;
+		this.address = builder.address;
+		this.occupation = builder.occupation;
+		this.isWorking = builder.isWorking;
+		this.education = builder.education;
 	}
 	
+	
+	/**
+	 * Builds a Patient using the Builder Context Pattern
+	 * @return created builder
+	 */
+	public static Builder builder()
+	{
+		return new Builder();
+	}
+	
+	/**
+	 * @return the idNumber
+	 */
+	public int getIdNumber()
+	{
+		return idNumber;
+	}
+
+	/**
+	 * @return the phoneNumber
+	 */
+	public int getPhoneNumber()
+	{
+		return phoneNumber;
+	}
+
+	/**
+	 * @return the sSN
+	 */
+	public int getsSN()
+	{
+		return sSN;
+	}
+
+	/**
+	 * @return the insuranceNumber
+	 */
+	public int getInsuranceNumber()
+	{
+		return insuranceNumber;
+	}
+
+	/**
+	 * @return the dateOfRegistration
+	 */
+	public Date getDateOfRegistration()
+	{
+		return dateOfRegistration;
+	}
+
+	/**
+	 * @return the dateOfBirth
+	 */
+	public Date getDateOfBirth()
+	{
+		return dateOfBirth;
+	}
+
+	/**
+	 * @return the patientName
+	 */
+	public String getPatientName()
+	{
+		return patientName;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender()
+	{
+		return gender;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress()
+	{
+		return address;
+	}
+
+	/**
+	 * @return the occupation
+	 */
+	public String getOccupation()
+	{
+		return occupation;
+	}
+
+	/**
+	 * @return the isWorking
+	 */
+	public boolean isWorking()
+	{
+		return isWorking;
+	}
+
+	/**
+	 * @return the education
+	 */
+	public String getEducation()
+	{
+		return education;
+	}
+
+	/**
+	 * Actual Builder class to be used to construct Patient
+	 * @author marksilvajr
+	 *
+	 */
+	public static class Builder
+	{
+		private int idNumber;
+		private int phoneNumber;
+		private int sSN;
+		private int insuranceNumber;
+		private Date dateOfRegistration;
+		private Date dateOfBirth;
+		private String patientName;
+		private String gender;
+		private String address;
+		private String occupation;
+		private boolean isWorking;
+		private String education;
+
+		public Builder()
+		{
+		}
+
+		public Builder withIdNumber(int idNumber)
+		{
+			this.idNumber = idNumber;
+			return this;
+		}
+
+		public Builder withPhoneNumber(int phoneNumber)
+		{
+			this.phoneNumber = phoneNumber;
+			return this;
+		}
+
+		public Builder withSSN(int sSN)
+		{
+			this.sSN = sSN;
+			return this;
+		}
+
+		public Builder withInsuranceNumber(int insuranceNumber)
+		{
+			this.insuranceNumber = insuranceNumber;
+			return this;
+		}
+
+		public Builder withDateOfRegistration(Date dateOfRegistration)
+		{
+			this.dateOfRegistration = dateOfRegistration;
+			return this;
+		}
+
+		public Builder withDateOfBirth(Date dateOfBirth)
+		{
+			this.dateOfBirth = dateOfBirth;
+			return this;
+		}
+
+		public Builder withPatientName(String patientName)
+		{
+			this.patientName = patientName;
+			return this;
+		}
+
+		public Builder withGender(String gender)
+		{
+			this.gender = gender;
+			return this;
+		}
+
+		public Builder withAddress(String address)
+		{
+			this.address = address;
+			return this;
+		}
+
+		public Builder withOccupation(String occupation)
+		{
+			this.occupation = occupation;
+			return this;
+		}
+
+		public Builder withIsWorking(boolean isWorking)
+		{
+			this.isWorking = isWorking;
+			return this;
+		}
+
+		public Builder withEducation(String education)
+		{
+			this.education = education;
+			return this;
+		}
+
+		public PatientModel build()
+		{
+			return new PatientModel(this);
+		}
+	}
+
 	
 }
