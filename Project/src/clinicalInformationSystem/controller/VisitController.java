@@ -13,6 +13,12 @@ import clinicalInformationSystem.view.SystemFrame;
 import clinicalInformationSystem.view.VisitListPanel;
 import clinicalInformationSystem.view.VisitPanel;
 
+/**
+ * Controller to control interaction between visit panels and visit model
+ * @author Team 9
+ *
+ */
+
 public class VisitController
 {
 	private SystemFrame frame;
