@@ -4,6 +4,11 @@ import clinicalInformationSystem.view.SystemFrame;
 
 import java.awt.event.*;
 
+/**
+ * Controller to listen to all interactions on buttons in menu
+ * @author Team 9
+ *
+ */
 public class MenuController implements ActionListener
 {
 	private SystemFrame frame;
