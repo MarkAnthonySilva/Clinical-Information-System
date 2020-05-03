@@ -50,8 +50,8 @@ public class AddPatientPanel extends JPanel
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
 										labelList.length, 2, 	//# of rows, # of columns
-										5, 5,					//Initial x and y coordinates	
-										5, 5);					//Padding between labels and textfield	
+										5, 5,					//Initial x and y coordinates
+										5, 5);					//Padding between labels and textfield
 	
 		this.add(formPanel, BorderLayout.NORTH);
 		

@@ -16,15 +16,21 @@ public class MenuController implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
-		if(command.equals("Add Patient"))
+		switch(command)
 		{
+		case "Add Patient":
 			frame.displayAddPatient();
-		}
-		else if(command.equals("View Patient List"))
-		{
+			break;
+		case "View Patient List":
 			frame.displayPatientList();
+			break;
+		case "Add Visit":
+			frame.displayAddVisit();
+			break;
+		case "View Visit List":
+			frame.displayVisitList();
+			break;
 		}
-		// TODO IMPLEMENT THE REST OF THE MENU METHODS LATER
 	}
 
 }

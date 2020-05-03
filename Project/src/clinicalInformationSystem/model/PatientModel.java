@@ -149,6 +149,11 @@ public class PatientModel
 	{
 		return education;
 	}
+	
+	public String toString()
+	{
+		return patientName;
+	}
 
 	/**
 	 * Actual Builder class to be used to construct Patient
