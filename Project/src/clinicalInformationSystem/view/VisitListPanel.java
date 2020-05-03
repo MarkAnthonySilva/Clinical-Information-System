@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import clinicalInformationSystem.DataTableModel;
 
 public class VisitListPanel extends JPanel
 {
@@ -42,7 +45,10 @@ public class VisitListPanel extends JPanel
 		}
 		
 		JTable table = new JTable(data, columnNames);
+		DataTableModel model = new DataTableModel(data, columnNames);
+		table.setModel(model);
 		table.setBounds(30, 40, this.getWidth() , this.getHeight());
+		
 		
 		JScrollPane sp = new JScrollPane(table);
 		allVisitsPanel.add(sp, BorderLayout.NORTH);

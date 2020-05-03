@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import clinicalInformationSystem.DataTableModel;
 import clinicalInformationSystem.controller.*;
 import clinicalInformationSystem.model.*;
 
@@ -43,6 +44,8 @@ public class PatientListPanel extends JPanel
 		}
 		
 		JTable table = new JTable(data, columnNames);
+		DataTableModel model = new DataTableModel(data, columnNames);
+		table.setModel(model);
 		table.setBounds(30, 40, this.getWidth() , this.getHeight());
 		
 		JScrollPane sp = new JScrollPane(table);
