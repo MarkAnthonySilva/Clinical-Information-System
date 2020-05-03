@@ -20,21 +20,24 @@ public class MenuController implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		String command = e.getActionCommand();
-		switch(command)
+		if(frame.checkAuth())
 		{
-		case "Add Patient":
-			frame.displayAddPatient();
-			break;
-		case "View Patient List":
-			frame.displayPatientList();
-			break;
-		case "Add Visit":
-			frame.displayAddVisit();
-			break;
-		case "View Visit List":
-			frame.displayVisitList();
-			break;
+			String command = e.getActionCommand();
+			switch(command)
+			{
+			case "Add Patient":
+				frame.displayAddPatient();
+				break;
+			case "View Patient List":
+				frame.displayPatientList();
+				break;
+			case "Add Visit":
+				frame.displayAddVisit();
+				break;
+			case "View Visit List":
+				frame.displayVisitList();
+				break;
+			}
 		}
 	}
 

@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class SystemFrame extends JFrame
 {
+	AuthorizedUsers users;
+	boolean userAuthorized;
 	
 	//Menu Items
 	private JMenu patientMenu;
@@ -31,6 +33,10 @@ public class SystemFrame extends JFrame
 	{
 		super("Clinical Information System");
 		currentPanel = new JPanel();
+		
+		users = new AuthorizedUsers();
+		users.addAuthorizedUser("admin", "admin");
+		userAuthorized = false;
 		
 		patientList = new PatientList();
 		visitList = new VisitList();
@@ -56,6 +62,8 @@ public class SystemFrame extends JFrame
 		
 		//Add Panel to Frame
 		this.add(currentPanel);
+		
+		displayLogIn();
 	}
 	
 	public void registerListeners(MenuController menuController)
@@ -88,7 +96,13 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayLogIn()
 	{
-		
+		LogInPanel logInPanel = new LogInPanel(this);
+		LogInController logInController = new LogInController(this, users, logInPanel);
+		this.remove(currentPanel);
+		currentPanel = logInPanel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
 	}
 	
 	/**
@@ -164,5 +178,15 @@ public class SystemFrame extends JFrame
 	public VisitList getVisitList()
 	{
 		return visitList;
+	}
+	
+	public boolean checkAuth()
+	{
+		return userAuthorized;
+	}
+	
+	public void setAuthorized(boolean auth)
+	{
+		userAuthorized = auth;
 	}
 }

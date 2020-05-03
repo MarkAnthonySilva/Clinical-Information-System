@@ -93,5 +93,4 @@ public class AddVisitPanel extends JPanel
 	{
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
-	
 }

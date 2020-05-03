@@ -10,15 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 import clinicalInformationSystem.DataTableModel;
 
 public class VisitListPanel extends JPanel
 {
-	public static final String[] columnNames = {"Patient Name", "Date", "Sequence Number"};
-	JButton edit;		
+	public static final String[] columnNames = {"Patient Name", "Date", "Sequence Number"};	
 	JButton exit;
 	
 	public VisitListPanel(SystemFrame frame)
@@ -58,9 +55,7 @@ public class VisitListPanel extends JPanel
 		//Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		edit = new JButton("Edit");		
 		exit = new JButton("Exit");
-		buttonPanel.add(edit);
 		buttonPanel.add(exit);
 		
 		this.add(allVisitsPanel, BorderLayout.NORTH);
@@ -76,7 +71,6 @@ public class VisitListPanel extends JPanel
 	
 	public void addVisitListListener(ActionListener listener)
 	{
-		edit.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
 }
