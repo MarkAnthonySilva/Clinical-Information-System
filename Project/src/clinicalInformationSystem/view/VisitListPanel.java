@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import clinicalInformationSystem.DataTableModel;
 
@@ -23,7 +24,8 @@ public class VisitListPanel extends JPanel
 	public VisitListPanel(SystemFrame frame)
 	{
 		this.setLayout(new BorderLayout());
-		JPanel allVisitsPanel = new JPanel(new BorderLayout());
+		
+		JPanel allVisitsPanel = new JPanel();
 		String[][] data = new String[frame.getVisitList().size()][columnNames.length];
 		
 		for(int row = 0; row < frame.getVisitList().size(); row++)
@@ -51,7 +53,7 @@ public class VisitListPanel extends JPanel
 		
 		
 		JScrollPane sp = new JScrollPane(table);
-		allVisitsPanel.add(sp, BorderLayout.NORTH);
+		allVisitsPanel.add(sp);
 		
 		//Create button panel
 		JPanel buttonPanel = new JPanel();

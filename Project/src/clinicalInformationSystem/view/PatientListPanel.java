@@ -15,10 +15,12 @@ public class PatientListPanel extends JPanel
 	
 	public PatientListPanel(PatientList patientList, SystemFrame frame)
 	{
+		this.setLayout(new BorderLayout());
+		
 		this.patientList = patientList;
 		this.frame = frame;
 		
-		JPanel panel = new JPanel(new BorderLayout());
+		JPanel panel = new JPanel();
 		String[] columnNames = {"Name", "Gender", "Address"};		// TODO Add More column names if necessary
 		
 		PatientModel[] patientArray = patientList.getPatientArray();
@@ -49,7 +51,7 @@ public class PatientListPanel extends JPanel
 		table.setBounds(30, 40, this.getWidth() , this.getHeight());
 		
 		JScrollPane sp = new JScrollPane(table);
-		panel.add(sp, BorderLayout.NORTH);
+		panel.add(sp);
 		
 		//Add button Panel
 		JPanel buttonPanel 	= new JPanel();
@@ -64,9 +66,8 @@ public class PatientListPanel extends JPanel
 		edit.addActionListener(controller);
 		exit.addActionListener(controller);
 		
-		panel.add(buttonPanel, BorderLayout.SOUTH);
-		
-		this.add(panel);
+		this.add(panel, BorderLayout.NORTH);
+		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
 }

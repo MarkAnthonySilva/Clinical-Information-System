@@ -76,23 +76,25 @@ public class VisitController
 					String date = addVisitPanel.getDateText();
 					Date formattedDate = null;
 					int seqNumber = 0;
-					try
-					{
-						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-						formattedDate = standardDateFormat.parse(date);
-					} catch (ParseException e1)
-					{
-						addVisitPanel.displayErrorMessage("Invalid date format.");
-					}
 					
 					try
 					{
 						seqNumber = Integer.parseInt(addVisitPanel.getSequenceNumberText());
-						visitList.addVisit(new VisitModel(addVisitPanel.getPatient(), formattedDate, seqNumber));
-						frame.displayVisitList();
+						
 					} catch (NumberFormatException e2)
 					{
 						addVisitPanel.displayErrorMessage("Please enter a valid number.");
+					}
+					
+					try
+					{
+						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+						formattedDate = standardDateFormat.parse(date);
+						visitList.addVisit(new VisitModel(addVisitPanel.getPatient(), formattedDate, seqNumber));
+						frame.displayVisitList();
+					} catch (ParseException e1)
+					{
+						addVisitPanel.displayErrorMessage("Invalid date format.");
 					}
 				} else
 				{
