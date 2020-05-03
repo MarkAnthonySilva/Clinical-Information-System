@@ -15,6 +15,11 @@ import javax.swing.SpringLayout;
 import clinicalInformationSystem.SpringUtilities;
 import clinicalInformationSystem.model.PatientModel;
 
+/**
+ * Panel to allow user input for information about a visit to be added
+ * @author Team 9
+ *
+ */
 public class AddVisitPanel extends JPanel
 {
 	public static final String[] labelList = {"Patient Name", "Date (mm/dd/yyyy)", "Sequence Number"};

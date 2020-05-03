@@ -18,7 +18,6 @@ import clinicalInformationSystem.view.VisitPanel;
  * @author Team 9
  *
  */
-
 public class VisitController
 {
 	private SystemFrame frame;
