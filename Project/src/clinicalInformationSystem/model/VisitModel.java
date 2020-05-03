@@ -9,9 +9,9 @@ import java.util.Date;
  */
 public class VisitModel
 {
-	private int sequenceNumber;		//0-intial vist, 1-first visit, 2-second visit, etc.
 	private PatientModel patient;
 	private Date dateOfvisit;
+	private int sequenceNumber;		//0-initial visit, 1-first visit, 2-second visit, etc.
 	
 	/**
 	 * Creates a new visit with the given parameters. Sets the sequence number initially to 0.
@@ -21,7 +21,9 @@ public class VisitModel
 	 */
 	public VisitModel(PatientModel patient, Date dateOfVisit, int sequenceNumber)
 	{
-		//To be implemented
+		this.patient = patient;
+		this.dateOfvisit = dateOfVisit;
+		this.sequenceNumber = sequenceNumber;
 	}
 
 	//List of getters and setters for the parameters of Visit Model
@@ -72,6 +74,4 @@ public class VisitModel
 	{
 		this.dateOfvisit = dateOfvisit;
 	}
-	
-	
 }

@@ -16,6 +16,7 @@ public class SystemFrame extends JFrame
 	
 	//Model 
 	private PatientList patientList;
+	private VisitList visitList;
 	
 	//Panel
 	private JPanel 				currentPanel;
@@ -23,7 +24,6 @@ public class SystemFrame extends JFrame
 	private AddPatientPanel 	addPatientPanel;
 	private PatientListPanel 	patientListPanel;
 
-	 
 	/**
 	 * Create the main system frame to be shown to user
 	 */
@@ -31,7 +31,9 @@ public class SystemFrame extends JFrame
 	{
 		super("Clinical Information System");
 		currentPanel = new JPanel();
+		
 		patientList = new PatientList();
+		visitList = new VisitList();
 		
 		//Create Menus and Menu Items
 		JMenuBar menuBar = new JMenuBar();
@@ -52,30 +54,27 @@ public class SystemFrame extends JFrame
 		
 		this.setJMenuBar(menuBar);
 		
-		//Create all Panels
-		this.addPatientPanel = new AddPatientPanel(this);
-		
-		//Add Panels to Frame
+		//Add Panel to Frame
 		this.add(currentPanel);
 	}
 	
 	public void registerListeners(MenuController menuController)
 	{
 		//Register all menu items to be buttons with action listener
-		Component[] menuComponetList = patientMenu.getMenuComponents();
-		for(Component c: menuComponetList)
+		Component[] menuComponentList = patientMenu.getMenuComponents();
+		for(Component c: menuComponentList)
 		{
-			if (c instanceof AbstractButton) 
+			if (c instanceof AbstractButton)
 			{
                 AbstractButton button = (AbstractButton) c;
                 button.addActionListener(menuController);
             }
 		}
 		
-		menuComponetList = visitMenu.getMenuComponents();
-		for(Component c: menuComponetList)
+		menuComponentList = visitMenu.getMenuComponents();
+		for(Component c: menuComponentList)
 		{
-			if (c instanceof AbstractButton) 
+			if (c instanceof AbstractButton)
 			{
                 AbstractButton button = (AbstractButton) c;
                 button.addActionListener(menuController);
@@ -114,6 +113,20 @@ public class SystemFrame extends JFrame
 	}
 	
 	/**
+	 * Repaint frame to display AddVisitPanel
+	 */
+	public void displayAddVisit()
+	{
+		AddVisitPanel addVisitPanel = new AddVisitPanel(this);
+		VisitController visitController = new VisitController(this, visitList, addVisitPanel);
+		this.remove(currentPanel);
+		currentPanel = addVisitPanel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
+	}
+	
+	/**
 	 * Repaint frame to display VisitListPanel
 	 */
 	public void displayVisitList()
@@ -123,6 +136,7 @@ public class SystemFrame extends JFrame
 	
 	public void displayAddPatient()
 	{
+		this.addPatientPanel = new AddPatientPanel(this);
 		this.remove(currentPanel);
 		currentPanel = addPatientPanel;
 		this.add(currentPanel);
@@ -136,5 +150,13 @@ public class SystemFrame extends JFrame
 	public PatientList getPatientList()
 	{
 		return patientList;
+	}
+	
+	/**
+	 * @return the visitList
+	 */
+	public VisitList getVisitList()
+	{
+		return visitList;
 	}
 }

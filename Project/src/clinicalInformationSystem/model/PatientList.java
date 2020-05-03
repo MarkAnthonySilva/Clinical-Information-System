@@ -12,7 +12,7 @@ public class PatientList
 	private TreeMap<String, PatientModel> patientList;  //Key the name of the Patient, Value the PatientModel
 	
 	/**
-	 * Contructs a PatientList with an empty TreeMap
+	 * Constructs a PatientList with an empty TreeMap
 	 */
 	public PatientList()
 	{

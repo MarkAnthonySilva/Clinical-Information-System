@@ -14,7 +14,7 @@ public class VisitList
 	private TreeMap<Date, VisitModel> listOfPatients;  //Key the date of visit, Value the VisitModel
 
 	/**
-	 * Contructs a VisitList with an empty TreeMap
+	 * Constructs a VisitList with an empty TreeMap
 	 */
 	public VisitList()
 	{
@@ -23,10 +23,9 @@ public class VisitList
 	
 	/**
 	 * Add a visit to this list of visits
-	 * @param d the date of the visit
 	 * @param v the visitModel to add to this list
 	 */
-	public void addVisit(Date d, VisitModel v)
+	public void addVisit(VisitModel v)
 	{
 		//To be Implemented
 	}

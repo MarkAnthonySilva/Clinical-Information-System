@@ -24,6 +24,10 @@ public class MenuController implements ActionListener
 		{
 			frame.displayPatientList();
 		}
+		else if(command.equals("Add Visit"))
+		{
+			frame.displayAddVisit();
+		}
 		// TODO IMPLEMENT THE REST OF THE MENU METHODS LATER
 	}
 
