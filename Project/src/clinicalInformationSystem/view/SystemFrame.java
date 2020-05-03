@@ -131,7 +131,13 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayVisitList()
 	{
-		
+		VisitListPanel visitListPanel = new VisitListPanel(this);
+		VisitController visitController = new VisitController(this, visitList, visitListPanel);
+		this.remove(currentPanel);
+		currentPanel = visitListPanel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
 	}
 	
 	public void displayAddPatient()

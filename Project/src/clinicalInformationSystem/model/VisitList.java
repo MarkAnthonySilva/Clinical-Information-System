@@ -1,5 +1,5 @@
 package clinicalInformationSystem.model;
-import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -8,17 +8,14 @@ import java.util.Date;
  * @author Team 9
  *
  */
-public class VisitList
+public class VisitList extends ArrayList<VisitModel>
 {
-	//Maybe implement VisitModel with a list since there could be multiple Visits in a single day
-	private TreeMap<Date, VisitModel> listOfPatients;  //Key the date of visit, Value the VisitModel
-
 	/**
-	 * Constructs a VisitList with an empty TreeMap
+	 * Constructs a VisitList as an empty ArrayList
 	 */
 	public VisitList()
 	{
-		//To be Implemented
+		super();
 	}
 	
 	/**
@@ -27,17 +24,28 @@ public class VisitList
 	 */
 	public void addVisit(VisitModel v)
 	{
-		//To be Implemented
+		super.add(v);
 	}
 	
-	/**
-	 * Get the visit associated with the given date
-	 * @param d the date of the visit to be returned
-	 * @return the VisitModel associated with the given date
-	 */
-	public PatientModel getVisit(Date d)
+	public VisitList getVisitsByDate(Date d)
 	{
-		//To be implemented
-		return null;
+		VisitList visits = new VisitList();
+		for(VisitModel visit: this)
+		{
+			if(visit.getDateOfVisit().equals(d))
+				visits.add(visit);
+		}
+		return visits;
+	}
+	
+	public VisitList getVisitsByPatient(PatientModel patient)
+	{
+		VisitList visits = new VisitList();
+		for(VisitModel visit: this)
+		{
+			if(visit.getPatient().equals(patient))
+				visits.add(visit);
+		}
+		return visits;
 	}
 }

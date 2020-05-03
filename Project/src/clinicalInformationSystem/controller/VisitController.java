@@ -10,22 +10,39 @@ import clinicalInformationSystem.model.VisitList;
 import clinicalInformationSystem.model.VisitModel;
 import clinicalInformationSystem.view.AddVisitPanel;
 import clinicalInformationSystem.view.SystemFrame;
+import clinicalInformationSystem.view.VisitListPanel;
 import clinicalInformationSystem.view.VisitPanel;
 
 public class VisitController
 {
 	private SystemFrame frame;
+	private VisitList visitList;
 	private AddVisitPanel addVisitPanel;
+	private VisitListPanel visitListPanel;
+	
+	/**
+	 * Controller to control visit panel displaying a list of visits
+	 * @param frame
+	 * @param visit
+	 * @param visitPanel
+	 */
+	public VisitController(SystemFrame frame, VisitModel visit, VisitPanel visitPanel)
+	{
+		this.frame = frame;
+	}
 	
 	/**
 	 * Controller to control visit panel displaying a list of visits
 	 * @param frame
 	 * @param visitList
-	 * @param visitPanel
+	 * @param visitListPanel
 	 */
-	public VisitController(SystemFrame frame, VisitList visitList, VisitPanel visitPanel)
+	public VisitController(SystemFrame frame, VisitList visitList, VisitListPanel visitListPanel)
 	{
 		this.frame = frame;
+		this.visitList = visitList;
+		this.visitListPanel = visitListPanel;
+		this.visitListPanel.addVisitListListener(new VisitListListener());
 	}
 	
 	/**
@@ -37,38 +54,66 @@ public class VisitController
 	public VisitController(SystemFrame frame, VisitList visitList, AddVisitPanel addVisitPanel)
 	{
 		this.frame = frame;
+		this.visitList = visitList;
 		this.addVisitPanel = addVisitPanel;
 		this.addVisitPanel.addVisitListener(new AddVisitListener());
 	}
 	
-	private class AddVisitListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+	private class AddVisitListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
 			String command = e.getActionCommand();
 			if(command.equals("Submit"))
 			{
 				if (addVisitPanel.getPatient() != null && addVisitPanel.getDateText() != null && addVisitPanel.getSequenceNumberText() != null)
 				{
-					SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 					String date = addVisitPanel.getDateText();
+					Date formattedDate = null;
+					int seqNumber = 0;
 					try
 					{
-						Date d = standardDateFormat.parse(date);
-						frame.getVisitList().addVisit(new VisitModel(addVisitPanel.getPatient(), d, Integer.parseInt(addVisitPanel.getSequenceNumberText())));
+						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+						formattedDate = standardDateFormat.parse(date);
 					} catch (ParseException e1)
 					{
-						addVisitPanel.displayErrorMessage("Invalid date format");
+						addVisitPanel.displayErrorMessage("Invalid date format.");
+					}
+					
+					try
+					{
+						seqNumber = Integer.parseInt(addVisitPanel.getSequenceNumberText());
+						visitList.addVisit(new VisitModel(addVisitPanel.getPatient(), formattedDate, seqNumber));
+						frame.displayVisitList();
+					} catch (NumberFormatException e2)
+					{
+						addVisitPanel.displayErrorMessage("Please enter a valid number.");
 					}
 				} else
 				{
 					addVisitPanel.displayErrorMessage("Please fill in all fields.");
 				}
-					
-				
 			}
 			else if(command.equals("Exit"))
 			{
 				addVisitPanel.setVisible(false);
 			}
 		}
+	}
+	
+	private class VisitListListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			if(command.equals("Edit"))
+			{
+				
+			}
+			else if(command.equals("Exit"))
+			{
+				visitListPanel.setVisible(false);
+			}
+		}
+		
 	}
 }

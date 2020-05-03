@@ -46,7 +46,7 @@ public class VisitModel
 	/**
 	 * @return the dateOfvisit
 	 */
-	public Date getDateOfvisit()
+	public Date getDateOfVisit()
 	{
 		return dateOfvisit;
 	}
