@@ -26,10 +26,10 @@ public class VisitController
 	private VisitListPanel visitListPanel;
 	
 	/**
-	 * Controller to control visit panel displaying a list of visits
-	 * @param frame
-	 * @param visit
-	 * @param visitPanel
+	 * Create VisitController to control visit panel displaying a single visit
+	 * @param frame SystemFrame that is being worked on
+	 * @param visit VisitModel to be displayed
+	 * @param visitPanel VisitPanel for VisitModel info to be displayed on
 	 */
 	public VisitController(SystemFrame frame, VisitModel visit, VisitPanel visitPanel)
 	{
@@ -37,10 +37,10 @@ public class VisitController
 	}
 	
 	/**
-	 * Controller to control visit panel displaying a list of visits
-	 * @param frame
-	 * @param visitList
-	 * @param visitListPanel
+	 * Create VisitController to control visit panel displaying a list of visits
+	 * @param frame SystemFrame that is being worked on
+	 * @param visitList VisitList to be displayed
+	 * @param visitListPanel VisitListPanel for VisitList info to be displayed on
 	 */
 	public VisitController(SystemFrame frame, VisitList visitList, VisitListPanel visitListPanel)
 	{
@@ -52,9 +52,9 @@ public class VisitController
 	
 	/**
 	 * Controller to control an AddVisitPanel
-	 * @param frame
-	 * @param visitList
-	 * @param addVisitPanel
+	 * @param frame SystemFrame that is being worked on
+	 * @param visitList VisitList to be worked on when VisitModel is added by user
+	 * @param addVisitPanel AddVisitPanel to display form to enter details of visit
 	 */
 	public VisitController(SystemFrame frame, VisitList visitList, AddVisitPanel addVisitPanel)
 	{

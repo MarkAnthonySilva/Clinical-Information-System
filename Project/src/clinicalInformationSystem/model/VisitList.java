@@ -27,6 +27,11 @@ public class VisitList extends ArrayList<VisitModel>
 		super.add(v);
 	}
 	
+	/**
+	 * Get a VisitList Object based on passed in date
+	 * @param d Date for desired visits
+	 * @return VisitList object containing all visits matching date
+	 */
 	public VisitList getVisitsByDate(Date d)
 	{
 		VisitList visits = new VisitList();
@@ -38,6 +43,11 @@ public class VisitList extends ArrayList<VisitModel>
 		return visits;
 	}
 	
+	/**
+	 * Get a VisitList Object based on passed in PatientModel
+	 * @param patient PatientModel for desired visits
+	 * @return VisitList object containing all visits matching patient
+	 */
 	public VisitList getVisitsByPatient(PatientModel patient)
 	{
 		VisitList visits = new VisitList();

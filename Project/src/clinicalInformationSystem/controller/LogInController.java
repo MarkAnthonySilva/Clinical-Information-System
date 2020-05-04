@@ -7,12 +7,23 @@ import clinicalInformationSystem.model.AuthorizedUsers;
 import clinicalInformationSystem.view.LogInPanel;
 import clinicalInformationSystem.view.SystemFrame;
 
+/**
+ * Controller to control AuthorizedUsers model with LogInPanel
+ * @author benja
+ *
+ */
 public class LogInController
 {
 	private SystemFrame frame;
 	private AuthorizedUsers users;
 	private LogInPanel logInPanel;
 	
+	/**
+	 * Create a log in controller with the associated parameters
+	 * @param frame SystemFrame that is being worked on
+	 * @param users AuthorizedUsers list associated with the frame
+	 * @param logInPanel LogInPanel to control and manipulate
+	 */
 	public LogInController(SystemFrame frame, AuthorizedUsers users, LogInPanel logInPanel)
 	{
 		this.frame = frame;
@@ -21,6 +32,11 @@ public class LogInController
 		this.logInPanel.addLogInListener(new LogInListener());
 	}
 	
+	/**
+	 * ActionListener for LogInController
+	 * @author benja
+	 *
+	 */
 	private class LogInListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -46,6 +62,5 @@ public class LogInController
 					logInPanel.displayErrorMessage("Invalid User.");
 			}
 		}
-		
 	}
 }

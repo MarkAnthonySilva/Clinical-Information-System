@@ -13,11 +13,20 @@ import javax.swing.JTable;
 
 import clinicalInformationSystem.DataTableModel;
 
+/**
+ * Create VisitListPanel to display information for a list of visits
+ * @author benja
+ *
+ */
 public class VisitListPanel extends JPanel
 {
 	public static final String[] columnNames = {"Patient Name", "Date", "Sequence Number"};	
 	JButton exit;
 	
+	/**
+	 * Create VisitListPanel on associated SystemFrame
+	 * @param frame
+	 */
 	public VisitListPanel(SystemFrame frame)
 	{
 		this.setLayout(new BorderLayout());
@@ -62,6 +71,11 @@ public class VisitListPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Format date as "MMMM d, yyyy" with passed in date
+	 * @param d Date to be formatted
+	 * @return Formatted date as String
+	 */
 	private String formatDate(Date d)
 	{
 		SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
@@ -69,6 +83,10 @@ public class VisitListPanel extends JPanel
 		return date;
 	}
 	
+	/**
+	 * Add ActionListener on exit button
+	 * @param listener ActionListener to be added on exit button
+	 */
 	public void addVisitListListener(ActionListener listener)
 	{
 		exit.addActionListener(listener);

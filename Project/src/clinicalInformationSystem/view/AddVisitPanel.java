@@ -28,6 +28,10 @@ public class AddVisitPanel extends JPanel
 	JButton exit;
 	JComboBox<PatientModel> patientDropDown;
 	
+	/**
+	 * Create a panel with form fields to enter about information of visit to be added
+	 * @param frame SystemFrame to display panel
+	 */
 	public AddVisitPanel(SystemFrame frame)
 	{
 		this.setLayout(new BorderLayout());
@@ -68,27 +72,47 @@ public class AddVisitPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Add AvtionListener on submit and exit buttons
+	 * @param listener ActionListener to be added
+	 */
 	public void addVisitListener(ActionListener listener)
 	{
 		submit.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
 	
+	/**
+	 * Get the patient selected
+	 * @return Patient
+	 */
 	public PatientModel getPatient()
 	{
 		return (PatientModel) patientDropDown.getSelectedItem();
 	}
 	
+	/**
+	 * Get the date entered
+	 * @return Date as String
+	 */
 	public String getDateText()
 	{
 		return labelTextFields[1].getText();
 	}
 	
+	/**
+	 * Get the sequence number entered
+	 * @return Sequence number
+	 */
 	public String getSequenceNumberText()
 	{
 		return labelTextFields[2].getText();
 	}
 	
+	/**
+	 * Display error message on panel
+	 * @param errorMessage Error message to be displayed
+	 */
 	public void displayErrorMessage(String errorMessage)
 	{
 		JOptionPane.showMessageDialog(this, errorMessage);

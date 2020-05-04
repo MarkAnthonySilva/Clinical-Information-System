@@ -14,6 +14,11 @@ import javax.swing.SpringLayout;
 
 import clinicalInformationSystem.SpringUtilities;
 
+/**
+ * Panel to display fields and button for Log In JPanel (default panel upon starting system)
+ * @author benja
+ *
+ */
 public class LogInPanel extends JPanel
 {
 	SystemFrame frame;
@@ -22,7 +27,8 @@ public class LogInPanel extends JPanel
 	JTextField password;
 	
 	/**
-	 * Create a LogIn panel to be displayed
+	 * Create a log in panel to be displayed on SystemFrame
+	 * @param frame SystemFrame to display panel
 	 */
 	public LogInPanel(SystemFrame frame)
 	{
@@ -58,23 +64,36 @@ public class LogInPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Get username entered in username text field
+	 * @return Username
+	 */
 	public String getUsername()
 	{
 		return username.getText();
 	}
 	
+	/**
+	 * Get password entered in password text field
+	 * @return Password
+	 */
 	public String getPassword()
 	{
 		return password.getText();
 	}
 	
+	/**
+	 * Add ActionListener object on LogIn button
+	 * @param listener ActionListener to be added on LogIn button
+	 */
 	public void addLogInListener(ActionListener listener)
 	{
 		logIn.addActionListener(listener);
 	}
 	
 	/**
-	 * Display login error on panel
+	 * Display error message on panel
+	 * @param errorMessage Error message to be displayed
 	 */
 	public void displayErrorMessage(String errorMessage)
 	{
