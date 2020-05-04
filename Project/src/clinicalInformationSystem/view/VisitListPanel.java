@@ -48,6 +48,7 @@ public class VisitListPanel extends JPanel
 					break;
 				case 2:
 					data[row][col] = Integer.toString(frame.getVisitList().get(row).getSequenceNumber());
+					break;
 				}
 			}
 		}
