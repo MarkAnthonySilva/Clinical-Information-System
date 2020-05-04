@@ -21,18 +21,15 @@ import clinicalInformationSystem.SpringUtilities;
  */
 public class LogInPanel extends JPanel
 {
-	SystemFrame frame;
 	JButton logIn;
 	JTextField username;
 	JTextField password;
 	
 	/**
 	 * Create a log in panel to be displayed on SystemFrame
-	 * @param frame SystemFrame to display panel
 	 */
-	public LogInPanel(SystemFrame frame)
+	public LogInPanel()
 	{
-		this.frame = frame;
 		this.setLayout(new BorderLayout());
 		
 		JPanel inputPanel = new JPanel(new SpringLayout());

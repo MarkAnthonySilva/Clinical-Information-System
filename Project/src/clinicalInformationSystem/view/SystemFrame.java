@@ -96,21 +96,13 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayLogIn()
 	{
-		LogInPanel logInPanel = new LogInPanel(this);
+		LogInPanel logInPanel = new LogInPanel();
 		LogInController logInController = new LogInController(this, users, logInPanel);
 		this.remove(currentPanel);
 		currentPanel = logInPanel;
 		this.add(currentPanel);
 		this.pack();
 		this.setVisible(true);
-	}
-	
-	/**
-	 * Repaint frame to display MainMenuPanel
-	 */
-	public void displayMainMenu()
-	{
-		
 	}
 	
 	/**
