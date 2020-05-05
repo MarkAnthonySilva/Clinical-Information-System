@@ -12,7 +12,7 @@ public class SystemTester
 		SystemFrame frame = new SystemFrame();
 		
 		//Create Controllers
-		MenuController 			menuController 			= new MenuController(frame);
+		MenuController menuController = new MenuController(frame);
 		
 		frame.registerListeners(menuController);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

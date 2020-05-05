@@ -97,6 +97,11 @@ public class VisitController
 		this.addVisitPanel.addVisitListener(new AddVisitListener());
 	}
 	
+	/**
+	 * Action Listener to listen to input and actions on AddVisitPanel
+	 * @author benja
+	 *
+	 */
 	private class AddVisitListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -144,6 +149,11 @@ public class VisitController
 		}
 	}
 	
+	/**
+	 * Action Listener to listen to input and actions on VisitListPanel
+	 * @author benja
+	 *
+	 */
 	private class VisitListListener implements ActionListener, ListSelectionListener
 	{
 		public void actionPerformed(ActionEvent e) {

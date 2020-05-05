@@ -19,11 +19,11 @@ public class PatientListController implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
-		if(command.equals("Edit"))
+		if (command.equals("Edit"))
 		{	
 			//TODO Add function to edit
 		}
-		else if(command.equals("Exit"))
+		else if (command.equals("Exit"))
 		{
 			panel.setVisible(false);
 		}

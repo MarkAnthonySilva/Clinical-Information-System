@@ -42,17 +42,17 @@ public class LogInController
 		public void actionPerformed(ActionEvent e)
 		{
 			String command = e.getActionCommand();
-			if(command.equals("Log In"))
+			if (command.equals("Log In"))
 			{
 				String username = "";
 				String password = "";
-				if(logInPanel.getUsername() != "" && logInPanel.getPassword() != "")
+				if (logInPanel.getUsername() != "" && logInPanel.getPassword() != "")
 				{
 					username = logInPanel.getUsername();
 					password = logInPanel.getPassword();
 				} else
 					logInPanel.displayErrorMessage("Please fill in all fields.");
-				if(users.isAuthorized(username, password))
+				if (users.isAuthorized(username, password))
 				{
 					frame.setAuthorized(true);
 					frame.remove(logInPanel);

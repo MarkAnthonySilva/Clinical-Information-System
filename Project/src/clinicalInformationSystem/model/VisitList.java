@@ -35,9 +35,9 @@ public class VisitList extends ArrayList<VisitModel>
 	public VisitList getVisitsByDate(Date d)
 	{
 		VisitList visits = new VisitList();
-		for(VisitModel visit: this)
+		for (VisitModel visit: this)
 		{
-			if(visit.getDateOfVisit().equals(d))
+			if (visit.getDateOfVisit().equals(d))
 				visits.add(visit);
 		}
 		return visits;
@@ -51,9 +51,9 @@ public class VisitList extends ArrayList<VisitModel>
 	public VisitList getVisitsByPatient(PatientModel patient)
 	{
 		VisitList visits = new VisitList();
-		for(VisitModel visit: this)
+		for (VisitModel visit: this)
 		{
-			if(visit.getPatient().equals(patient))
+			if (visit.getPatient().equals(patient))
 				visits.add(visit);
 		}
 		return visits;

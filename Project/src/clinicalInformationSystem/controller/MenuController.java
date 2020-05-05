@@ -20,7 +20,7 @@ public class MenuController implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(frame.checkAuth())
+		if (frame.checkAuth())
 		{
 			String command = e.getActionCommand();
 			switch(command)

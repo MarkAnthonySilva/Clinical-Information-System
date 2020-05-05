@@ -256,6 +256,4 @@ public class PatientModel
 			return new PatientModel(this);
 		}
 	}
-
-	
 }

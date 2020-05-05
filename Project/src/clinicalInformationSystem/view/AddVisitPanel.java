@@ -64,7 +64,7 @@ public class AddVisitPanel extends JPanel
 		patientName.setLabelFor(patientDropDown);
 		formPanel.add(patientDropDown);
 		
-		for(int i = 1; i < labelList.length; i++)
+		for (int i = 1; i < labelList.length; i++)
 		{
 			JLabel label = new JLabel(labelList[i], JLabel.TRAILING);
 			formPanel.add(label);

@@ -19,7 +19,7 @@ public class AddPatientController implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
-		if(command.equals("Submit"))
+		if (command.equals("Submit"))
 		{	
 			HashMap<String, String> patientData = panel.getDataMap();
 			PatientModel patient = new PatientModel.Builder()
@@ -33,7 +33,7 @@ public class AddPatientController implements ActionListener
 			frame.getPatientList().addPatient(patientData.get("Name"), patient);
 			frame.displayPatientList();
 		}
-		else if(command.equals("Exit"))
+		else if (command.equals("Exit"))
 		{
 			panel.setVisible(false);
 		}

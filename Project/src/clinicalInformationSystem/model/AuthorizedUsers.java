@@ -28,7 +28,7 @@ public class AuthorizedUsers
 	public boolean addAuthorizedUser(String username, String password)
 	{
 		// Username already used = return false
-		if(users.containsKey(username))
+		if (users.containsKey(username))
 		{
 			return false;
 		}
@@ -46,10 +46,10 @@ public class AuthorizedUsers
 	public boolean isAuthorized(String username, String password)
 	{
 		// Check if username is in users database
-		if(users.containsKey(username))
+		if (users.containsKey(username))
 		{
 			// Return true if password matches corresponding password to username
-			if(users.get(username).equals(password))
+			if (users.get(username).equals(password))
 				return true;
 		}
 		// Return false if invalid user

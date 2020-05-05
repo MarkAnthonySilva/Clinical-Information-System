@@ -37,7 +37,7 @@ public class AddPatientPanel extends JPanel
 		
 		//Construct all label and text fields for the form panel
 		patientData = new HashMap<>();
-		for(int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < labelList.length; i++)
 		{
 			JLabel label = new JLabel(labelList[i], JLabel.TRAILING);
 			formPanel.add(label);
@@ -74,7 +74,7 @@ public class AddPatientPanel extends JPanel
 	public HashMap<String, String> getDataMap()
 	{
 		HashMap<String, String> patientDataString = new HashMap<>();
-		for(int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < labelList.length; i++)
 		{
 			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
 		}
