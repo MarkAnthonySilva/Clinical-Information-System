@@ -60,6 +60,9 @@ public class SystemFrame extends JFrame
 		
 		this.setJMenuBar(menuBar);
 		
+		MenuController menuController = new MenuController(this);
+		registerListeners(menuController);
+		
 		//Add Panel to Frame
 		this.add(currentPanel);
 		
