@@ -136,12 +136,27 @@ public class SystemFrame extends JFrame
 	}
 	
 	/**
+	 * Repaint frame to display Visit
+	 * @param visit VisitModel holding details for visit
+	 */
+	public void displayVisit(VisitModel visit)
+	{
+		VisitPanel visitPanel = new VisitPanel();
+		VisitController visitController = new VisitController(this, visit, visitPanel);
+		this.remove(currentPanel);
+		currentPanel = visitPanel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
+	}
+	
+	/**
 	 * Repaint frame to display VisitListPanel
 	 */
 	public void displayVisitList()
 	{
 		VisitListPanel visitListPanel = new VisitListPanel();
-		VisitController visitController = new VisitController(visitList, visitListPanel);
+		VisitController visitController = new VisitController(this, visitList, visitListPanel);
 		this.remove(currentPanel);
 		currentPanel = visitListPanel;
 		this.add(currentPanel);
@@ -149,6 +164,9 @@ public class SystemFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Repaint frame to display AddPatientPanel
+	 */
 	public void displayAddPatient()
 	{
 		this.addPatientPanel = new AddPatientPanel(this);
@@ -167,11 +185,20 @@ public class SystemFrame extends JFrame
 		return patientList;
 	}
 	
+	/**
+	 * Check if user is authorized in system
+	 * @return True = authorized, False = unauthorized
+	 */
 	public boolean checkAuth()
 	{
 		return userAuthorized;
 	}
 	
+	/**
+	 * Set authorization for system based on parameters
+	 * @param username Username for authorization
+	 * @param password Password for authorization
+	 */
 	public void setAuthorized(String username, String password)
 	{
 		userAuthorized = users.isAuthorized(username, password);

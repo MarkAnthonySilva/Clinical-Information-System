@@ -71,13 +71,7 @@ public class VisitListPanel extends JPanel
 				}
 			}
 		}
-	}
-	
-	/**
-	 * Call after setting data using setData method to display data in table on the panel
-	 */
-	public void displayData()
-	{
+		
 		JPanel allVisitsPanel = new JPanel();
 		
 		table = new JTable(data, columnNames);
@@ -105,7 +99,7 @@ public class VisitListPanel extends JPanel
 	 * @param d Date to be formatted
 	 * @return Formatted date as String
 	 */
-	private String formatDate(Date d)
+	public static String formatDate(Date d)
 	{
 		SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
 		String date = standardDateFormat.format(d);

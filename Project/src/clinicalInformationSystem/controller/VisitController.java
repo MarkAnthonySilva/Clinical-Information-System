@@ -25,33 +25,40 @@ import clinicalInformationSystem.view.VisitPanel;
  */
 public class VisitController
 {
-	private PatientList patientList;
 	private SystemFrame frame;
 	
+	private PatientList patientList;
 	private VisitModel visit;
 	private VisitList visitList;
+	
 	private AddVisitPanel addVisitPanel;
 	private VisitListPanel visitListPanel;
 	private VisitPanel visitPanel;
 	
 	/**
 	 * Create VisitController to control visit panel displaying a single visit
+	 * @param frame SystemFrame being worked on
 	 * @param visit VisitModel to be displayed
 	 * @param visitPanel VisitPanel for VisitModel info to be displayed on
 	 */
-	public VisitController(VisitModel visit, VisitPanel visitPanel)
+	public VisitController(SystemFrame frame, VisitModel visit, VisitPanel visitPanel)
 	{
+		this.frame = frame;
 		this.visit = visit;
 		this.visitPanel = visitPanel;
+		this.visitPanel.setVisitData(this.visit.getPatient().getPatientName(), this.visit.getDateOfVisit(), this.visit.getSequenceNumber());
+		this.visitPanel.addVisitListener(new VisitListener());
 	}
 	
 	/**
 	 * Create VisitController to control visit panel displaying a list of visits
+	 * @param frame SystemFrame being worked on
 	 * @param visitList VisitList to be displayed
 	 * @param visitListPanel VisitListPanel for VisitList info to be displayed on
 	 */
-	public VisitController(VisitList visitList, VisitListPanel visitListPanel)
+	public VisitController(SystemFrame frame, VisitList visitList, VisitListPanel visitListPanel)
 	{
+		this.frame = frame;
 		this.visitList = visitList;
 		this.visitListPanel = visitListPanel;
 		String[] patientNames = new String[visitList.size()];
@@ -66,7 +73,6 @@ public class VisitController
 		}
 		
 		this.visitListPanel.setData(patientNames, dateOfVisits, sequenceNumbers);
-		this.visitListPanel.displayData();
 		this.visitListPanel.addVisitListListener(new VisitListListener());
 	}
 	
@@ -95,6 +101,98 @@ public class VisitController
 		this.addVisitPanel.displayPanel();
 		
 		this.addVisitPanel.addVisitListener(new AddVisitListener());
+	}
+	
+	/**
+	 * Action Listener to listen to input and actions on VisitPanel
+	 * @author benja
+	 *
+	 */
+	private class VisitListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			String command = e.getActionCommand();
+			if (command.equals("Edit"))
+			{
+				visitPanel.setEditable(true);
+			}
+			else if (command.equals("Done"))
+			{
+				String patientName = visitPanel.getPatientName();
+				String dateText = visitPanel.getDateText();
+				String seqNumberText = visitPanel.getSeqNumberText();
+				
+				Date formattedDate;
+				int seqNumber;
+				
+				if (patientName != null && dateText != null && seqNumberText != null)
+				{
+					formattedDate = null;
+					try
+					{
+						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
+						formattedDate = standardDateFormat.parse(dateText);
+					} catch (ParseException e1)
+					{
+						visitPanel.displayErrorMessage("Invalid date format.");
+						return;
+					}
+					
+					try
+					{
+						seqNumber = Integer.parseInt(seqNumberText);
+						if (seqNumber < 0)
+							throw (new NumberFormatException());
+					} catch (NumberFormatException e2)
+					{
+						visitPanel.displayErrorMessage("Please enter a valid sequence number.");
+						return;
+					}
+					visit.setDateOfvisit(formattedDate);
+					visit.setSequenceNumber(seqNumber);
+					visitPanel.setEditable(false);
+				} else
+				{
+					visitPanel.displayErrorMessage("Please fill in all fields.");
+				}
+			}
+			else if (command.equals("Back to Visits"))
+			{
+				frame.displayVisitList();
+			}
+			else if (command.equals("Exit"))
+			{
+				visitPanel.setVisible(false);
+			}
+		}
+		
+	}
+	
+	/**
+	 * Action Listener to listen to input and actions on VisitListPanel
+	 * @author benja
+	 *
+	 */
+	private class VisitListListener implements ActionListener, ListSelectionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			String command = e.getActionCommand();
+			if (command.equals("Exit"))
+			{
+				visitListPanel.setVisible(false);
+			}
+		}
+		
+		public void valueChanged(ListSelectionEvent e)
+		{
+			if (visitList.get(visitListPanel.getSelectedRow()) != null)
+			{
+				visit = visitList.get(visitListPanel.getSelectedRow());
+				frame.displayVisit(visit);
+			}
+		}
 	}
 	
 	/**
@@ -146,26 +244,6 @@ public class VisitController
 			{
 				addVisitPanel.setVisible(false);
 			}
-		}
-	}
-	
-	/**
-	 * Action Listener to listen to input and actions on VisitListPanel
-	 * @author benja
-	 *
-	 */
-	private class VisitListListener implements ActionListener, ListSelectionListener
-	{
-		public void actionPerformed(ActionEvent e) {
-			String command = e.getActionCommand();
-			if (command.equals("Exit"))
-			{
-				visitListPanel.setVisible(false);
-			}
-		}
-		
-		public void valueChanged(ListSelectionEvent e) {
-			System.out.println("Selected row is " + visitListPanel.getSelectedRow());
 		}
 	}
 }

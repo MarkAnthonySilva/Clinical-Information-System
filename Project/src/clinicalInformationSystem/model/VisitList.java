@@ -24,7 +24,7 @@ public class VisitList extends ArrayList<VisitModel>
 	 */
 	public void addVisit(VisitModel v)
 	{
-		this.add(v);
+		super.add(v);
 	}
 	
 	/**
