@@ -26,22 +26,41 @@ public class AddVisitPanel extends JPanel
 	private JTextField[] labelTextFields;
 	JButton submit;		
 	JButton exit;
-	JComboBox<PatientModel> patientDropDown;
+	String[] patientNames;
+	JComboBox<String> patientDropDown;
 	
 	/**
 	 * Create a panel with form fields to enter about information of visit to be added
 	 * @param frame SystemFrame to display panel
 	 */
-	public AddVisitPanel(SystemFrame frame)
+	public AddVisitPanel()
 	{
 		this.setLayout(new BorderLayout());
 		
+		//Create button panel
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		submit = new JButton("Submit");		
+		exit = new JButton("Exit");
+		buttonPanel.add(submit);
+		buttonPanel.add(exit);
+		
+		this.add(buttonPanel, BorderLayout.SOUTH);
+	}
+	
+	public void setPatientNames(String[] patientNames)
+	{
+		this.patientNames = patientNames;
+	}
+	
+	public void displayPanel()
+	{
 		JPanel formPanel = new JPanel(new SpringLayout());
 		labelTextFields = new JTextField[labelList.length];
 		
 		JLabel patientName = new JLabel(labelList[0], JLabel.TRAILING);
 		formPanel.add(patientName);
-		patientDropDown = new JComboBox<PatientModel>(frame.getPatientList().getPatientArray());
+		patientDropDown = new JComboBox<String>(patientNames);
 		patientName.setLabelFor(patientDropDown);
 		formPanel.add(patientDropDown);
 		
@@ -60,16 +79,7 @@ public class AddVisitPanel extends JPanel
 				5, 5,					//Initial x and y coordinates	
 				5, 5);					//Padding between labels and textfield
 		
-		//Create button panel
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
-		submit = new JButton("Submit");		
-		exit = new JButton("Exit");
-		buttonPanel.add(submit);
-		buttonPanel.add(exit);
-		
 		this.add(formPanel, BorderLayout.NORTH);
-		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
 	/**
@@ -86,9 +96,9 @@ public class AddVisitPanel extends JPanel
 	 * Get the patient selected
 	 * @return Patient
 	 */
-	public PatientModel getPatient()
+	public String getPatient()
 	{
-		return (PatientModel) patientDropDown.getSelectedItem();
+		return (String) patientDropDown.getSelectedItem();
 	}
 	
 	/**

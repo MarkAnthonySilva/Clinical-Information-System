@@ -123,8 +123,8 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayAddVisit()
 	{
-		AddVisitPanel addVisitPanel = new AddVisitPanel(this);
-		VisitController visitController = new VisitController(this, visitList, addVisitPanel);
+		AddVisitPanel addVisitPanel = new AddVisitPanel();
+		VisitController visitController = new VisitController(this, patientList, visitList, addVisitPanel);
 		this.remove(currentPanel);
 		currentPanel = addVisitPanel;
 		this.add(currentPanel);
@@ -137,8 +137,8 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayVisitList()
 	{
-		VisitListPanel visitListPanel = new VisitListPanel(this);
-		VisitController visitController = new VisitController(this, visitList, visitListPanel);
+		VisitListPanel visitListPanel = new VisitListPanel();
+		VisitController visitController = new VisitController(visitList, visitListPanel);
 		this.remove(currentPanel);
 		currentPanel = visitListPanel;
 		this.add(currentPanel);
@@ -162,14 +162,6 @@ public class SystemFrame extends JFrame
 	public PatientList getPatientList()
 	{
 		return patientList;
-	}
-	
-	/**
-	 * @return the visitList
-	 */
-	public VisitList getVisitList()
-	{
-		return visitList;
 	}
 	
 	public boolean checkAuth()
