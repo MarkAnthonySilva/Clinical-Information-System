@@ -54,9 +54,9 @@ public class LogInController
 					logInPanel.displayErrorMessage("Please fill in all fields.");
 				if (users.isAuthorized(username, password))
 				{
-					frame.setAuthorized(true);
+					frame.setAuthorized(username, password);
 					frame.remove(logInPanel);
-					frame.setSize(600, 400);;
+					frame.setSize(600, 400);
 				}
 				else
 					logInPanel.displayErrorMessage("Invalid User.");

@@ -169,8 +169,8 @@ public class SystemFrame extends JFrame
 		return userAuthorized;
 	}
 	
-	public void setAuthorized(boolean auth)
+	public void setAuthorized(String username, String password)
 	{
-		userAuthorized = auth;
+		userAuthorized = users.isAuthorized(username, password);
 	}
 }
