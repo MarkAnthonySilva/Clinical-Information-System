@@ -142,7 +142,7 @@ public class SystemFrame extends JFrame
 	public void displayVisit(VisitModel visit)
 	{
 		VisitPanel visitPanel = new VisitPanel();
-		VisitController visitController = new VisitController(this, visit, visitPanel);
+		VisitController visitController = new VisitController(this, visit, visitList, visitPanel);
 		this.remove(currentPanel);
 		currentPanel = visitPanel;
 		this.add(currentPanel);

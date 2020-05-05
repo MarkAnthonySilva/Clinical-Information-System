@@ -41,10 +41,11 @@ public class VisitController
 	 * @param visit VisitModel to be displayed
 	 * @param visitPanel VisitPanel for VisitModel info to be displayed on
 	 */
-	public VisitController(SystemFrame frame, VisitModel visit, VisitPanel visitPanel)
+	public VisitController(SystemFrame frame, VisitModel visit, VisitList visitList, VisitPanel visitPanel)
 	{
 		this.frame = frame;
 		this.visit = visit;
+		this.visitList = visitList;
 		this.visitPanel = visitPanel;
 		this.visitPanel.setVisitData(this.visit.getPatient().getPatientName(), this.visit.getDateOfVisit(), this.visit.getSequenceNumber());
 		this.visitPanel.addVisitListener(new VisitListener());
@@ -116,6 +117,11 @@ public class VisitController
 			if (command.equals("Edit"))
 			{
 				visitPanel.setEditable(true);
+			}
+			else if (command.equals("Delete"))
+			{
+				visitList.remove(visit);
+				frame.displayVisitList();
 			}
 			else if (command.equals("Done"))
 			{

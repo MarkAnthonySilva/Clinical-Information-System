@@ -17,9 +17,11 @@ import clinicalInformationSystem.SpringUtilities;
 public class VisitPanel extends JPanel
 {
 	JPanel visitPanel;
-	JButton edit;		
+	JButton edit;
+	JButton delete;
 	JButton exit;
 	JButton backToVisits;
+	
 	String patientName;
 	Date date;
 	int seqNumber;
@@ -59,10 +61,12 @@ public class VisitPanel extends JPanel
 		//Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		edit = new JButton("Edit");		
+		edit = new JButton("Edit");
+		delete = new JButton("Delete");
 		exit = new JButton("Exit");
 		backToVisits = new JButton("Back to Visits");
 		buttonPanel.add(edit);
+		buttonPanel.add(delete);
 		buttonPanel.add(exit);
 		buttonPanel.add(backToVisits);
 		
@@ -112,6 +116,7 @@ public class VisitPanel extends JPanel
 	public void addVisitListener(ActionListener listener)
 	{
 		edit.addActionListener(listener);
+		delete.addActionListener(listener);
 		exit.addActionListener(listener);
 		backToVisits.addActionListener(listener);
 	}
