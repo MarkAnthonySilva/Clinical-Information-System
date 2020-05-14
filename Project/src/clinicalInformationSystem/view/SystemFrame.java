@@ -12,15 +12,15 @@ public class SystemFrame extends JFrame
 	AuthorizedUsers users;
 	boolean userAuthorized;
 	
-	//Menu Items
+	// Menu Items
 	private JMenu patientMenu;
 	private JMenu visitMenu;
 	
-	//Model 
+	// Model 
 	private PatientList patientList;
 	private VisitList visitList;
 	
-	//Panel
+	// Panel
 	private JPanel 				currentPanel;
 	
 	private AddPatientPanel 	addPatientPanel;
@@ -35,7 +35,6 @@ public class SystemFrame extends JFrame
 		currentPanel = new JPanel();
 		
 		users = new AuthorizedUsers();
-		users.addAuthorizedUser("admin", "admin");
 		userAuthorized = false;
 		
 		patientList = new PatientList();
@@ -91,7 +90,6 @@ public class SystemFrame extends JFrame
                 button.addActionListener(menuController);
             }
 		}
-		
 	}
 	
 	/**
@@ -106,6 +104,16 @@ public class SystemFrame extends JFrame
 		this.add(currentPanel);
 		this.pack();
 		this.setVisible(true);
+	}
+	
+	/**
+	 * Add an authorized user to use the system
+	 * @param username Username of user
+	 * @param password Password of user
+	 */
+	public void addUser(String username, String password)
+	{
+		users.addAuthorizedUser(username, password);
 	}
 	
 	/**

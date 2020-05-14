@@ -9,14 +9,14 @@ import java.util.HashMap;
  */
 public class AuthorizedUsers
 {
-	private HashMap<String, String> users;
+	private HashMap<String, Integer> users;
 	
 	/**
 	 * Create AuthorizedUsers object with an empty HashMap
 	 */
 	public AuthorizedUsers()
 	{
-		users = new HashMap<String, String>();
+		users = new HashMap<String, Integer>();
 	}
 	
 	/**
@@ -28,12 +28,12 @@ public class AuthorizedUsers
 	public boolean addAuthorizedUser(String username, String password)
 	{
 		// Username already used = return false
-		if (users.containsKey(username))
+		if (users.containsKey(username.toLowerCase()))
 		{
 			return false;
 		}
 		// User added with username and password = return true
-		users.put(username, password);
+		users.put(username.toLowerCase(), password.hashCode());
 		return true;
 	}
 	
@@ -46,10 +46,10 @@ public class AuthorizedUsers
 	public boolean isAuthorized(String username, String password)
 	{
 		// Check if username is in users database
-		if (users.containsKey(username))
+		if (users.containsKey(username.toLowerCase()))
 		{
 			// Return true if password matches corresponding password to username
-			if (users.get(username).equals(password))
+			if (users.get(username.toLowerCase()).equals(password.hashCode()))
 				return true;
 		}
 		// Return false if invalid user
@@ -67,7 +67,7 @@ public class AuthorizedUsers
 	{
 		boolean successful;
 		// True = successfully replaced; False = not replaced
-		successful = users.replace(username, oldPassword, newPassword);
+		successful = users.replace(username.toLowerCase(), oldPassword.hashCode(), newPassword.hashCode());
 		return successful;
 	}
 }

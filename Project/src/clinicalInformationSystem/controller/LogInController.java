@@ -44,22 +44,19 @@ public class LogInController
 			String command = e.getActionCommand();
 			if (command.equals("Log In"))
 			{
-				String username = "";
-				String password = "";
-				if (logInPanel.getUsername() != "" && logInPanel.getPassword() != "")
+				String username, password;
+				if ((username = logInPanel.getUsername()) != null && (password = logInPanel.getPassword()) != null)
 				{
-					username = logInPanel.getUsername();
-					password = logInPanel.getPassword();
+					if (users.isAuthorized(username, password))
+					{
+						frame.setAuthorized(username, password);
+						frame.remove(logInPanel);
+						frame.setSize(600, 400);
+					}
+					else
+						logInPanel.displayErrorMessage("Invalid User.");
 				} else
 					logInPanel.displayErrorMessage("Please fill in all fields.");
-				if (users.isAuthorized(username, password))
-				{
-					frame.setAuthorized(username, password);
-					frame.remove(logInPanel);
-					frame.setSize(600, 400);
-				}
-				else
-					logInPanel.displayErrorMessage("Invalid User.");
 			}
 		}
 	}
