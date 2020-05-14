@@ -239,7 +239,7 @@ public class VisitController
 						addVisitPanel.displayErrorMessage("Please enter a valid sequence number.");
 						return;
 					}
-					visitList.addVisit(new VisitModel(patientList.getPatient(addVisitPanel.getPatient()), formattedDate, seqNumber));
+					visitList.add(new VisitModel(patientList.getPatient(addVisitPanel.getPatient()), formattedDate, seqNumber));
 					frame.displayVisitList();
 				} else
 				{

@@ -19,15 +19,6 @@ public class VisitList extends ArrayList<VisitModel>
 	}
 	
 	/**
-	 * Add a visit to this list of visits
-	 * @param v the visitModel to add to this list
-	 */
-	public void addVisit(VisitModel v)
-	{
-		super.add(v);
-	}
-	
-	/**
 	 * Get a VisitList Object based on passed in date
 	 * @param d Date for desired visits
 	 * @return VisitList object containing all visits matching date

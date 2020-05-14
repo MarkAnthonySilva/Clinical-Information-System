@@ -12,6 +12,10 @@ import java.util.HashMap;
 public class TFIModel
 {
 	private HashMap<Integer, Integer> answers; //The key is the number of the Question, Value is the answer
+	private String[] questionBank = {
+			"What percentage of your time awake were you consciously AWARE OF your tinnitus?",
+			"How STRONG or LOUD was your tinnitus?",
+	};
 	
 	/**
 	 * Constructs a TFI Model with an empty HashMap

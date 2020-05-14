@@ -10,7 +10,7 @@ public class SystemTester
 		SystemFrame frame = new SystemFrame();
 		
 		frame.addUser("admin", "admin");
-		//frame.addUser("", "");
+		frame.addUser("", "");
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
