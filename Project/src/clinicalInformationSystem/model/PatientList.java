@@ -51,7 +51,7 @@ public class PatientList
 	
 	/**
 	 * Get a tree map representation of this patient list
-	 * @return a tree map represenation of this patient list
+	 * @return a tree map representation of this patient list
 	 */
 	public TreeMap<String, PatientModel> getMap()
 	{
