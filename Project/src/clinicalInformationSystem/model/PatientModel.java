@@ -179,6 +179,103 @@ public class PatientModel
 		return education;
 	}
 	
+	
+	/**
+	 * @param idNumber the idNumber to set
+	 */
+	public void setIdNumber(int idNumber)
+	{
+		this.idNumber = idNumber;
+	}
+
+	/**
+	 * @param sSN the sSN to set
+	 */
+	public void setsSN(int sSN)
+	{
+		this.sSN = sSN;
+	}
+
+	/**
+	 * @param insuranceNumber the insuranceNumber to set
+	 */
+	public void setInsuranceNumber(int insuranceNumber)
+	{
+		this.insuranceNumber = insuranceNumber;
+	}
+
+	/**
+	 * @param dateOfRegistration the dateOfRegistration to set
+	 */
+	public void setDateOfRegistration(Date dateOfRegistration)
+	{
+		this.dateOfRegistration = dateOfRegistration;
+	}
+
+	/**
+	 * @param dateOfBirth the dateOfBirth to set
+	 */
+	public void setDateOfBirth(Date dateOfBirth)
+	{
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	/**
+	 * @param patientName the patientName to set
+	 */
+	public void setPatientName(String patientName)
+	{
+		this.patientName = patientName;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender)
+	{
+		this.gender = gender;
+	}
+
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress(String address)
+	{
+		this.address = address;
+	}
+
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber)
+	{
+		this.phoneNumber = phoneNumber;
+	}
+
+	/**
+	 * @param occupation the occupation to set
+	 */
+	public void setOccupation(String occupation)
+	{
+		this.occupation = occupation;
+	}
+
+	/**
+	 * @param isWorking the isWorking to set
+	 */
+	public void setWorking(boolean isWorking)
+	{
+		this.isWorking = isWorking;
+	}
+
+	/**
+	 * @param education the education to set
+	 */
+	public void setEducation(String education)
+	{
+		this.education = education;
+	}
+
 	public String toString()
 	{
 		return patientName;
