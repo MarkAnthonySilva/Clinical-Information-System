@@ -1,5 +1,7 @@
 package clinicalInformationSystem.model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 /**
  * The Model for a patient undergoing Tinnitus treatment
  * Hold the basic information about the patient with the edition of getters and setters to be 
@@ -11,7 +13,6 @@ public class PatientModel
 {
 	//Basic and Essential parameters (information) about the patient
 	private int idNumber;
-	private int phoneNumber;
 	private int sSN;					//Social Security Number
 	private int insuranceNumber;
 	
@@ -21,13 +22,17 @@ public class PatientModel
 	private String patientName;
 	private String gender;
 	private String address;
+	private String phoneNumber;
 	
 	//Optional parameters
 	private String occupation;
 	private boolean isWorking;			//Can be changed to boolean
 	private String education;
 	
-	
+	/**
+	 * Creates a patient using the builder pattern
+	 * @param builder the builder to create the patient out off
+	 */
 	public PatientModel(Builder builder)
 	{
 		this.idNumber = builder.idNumber;
@@ -42,8 +47,32 @@ public class PatientModel
 		this.occupation = builder.occupation;
 		this.isWorking = builder.isWorking;
 		this.education = builder.education;
+		
 	}
 	
+	/**
+	 * Get a hashmap representation of the data of this patient
+	 * @return a hashmap representation of the data of this patient
+	 */
+	public HashMap<String, String> getMap()
+	{
+		SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
+		String dob = standardDateFormat.format(this.dateOfBirth);
+		String dor = standardDateFormat.format(this.dateOfRegistration);
+				
+		HashMap<String, String> patientData = new HashMap<>();
+		patientData.put("Name", this.patientName);
+		patientData.put("ID Number", Integer.toString(this.idNumber));
+		patientData.put("Date of Birth", dob);
+		patientData.put("Gender", this.gender);
+		patientData.put("Phone Number", this.phoneNumber);
+		patientData.put("Address", this.address);
+		patientData.put("Social Security Number", Integer.toString(this.sSN));
+		patientData.put("Insurance Number", Integer.toString(this.insuranceNumber));
+		patientData.put("Register Date", dor);
+		
+		return patientData;
+	}
 	
 	/**
 	 * Builds a Patient using the Builder Context Pattern
@@ -65,7 +94,7 @@ public class PatientModel
 	/**
 	 * @return the phoneNumber
 	 */
-	public int getPhoneNumber()
+	public String getPhoneNumber()
 	{
 		return phoneNumber;
 	}
@@ -163,7 +192,6 @@ public class PatientModel
 	public static class Builder
 	{
 		private int idNumber;
-		private int phoneNumber;
 		private int sSN;
 		private int insuranceNumber;
 		private Date dateOfRegistration;
@@ -172,6 +200,7 @@ public class PatientModel
 		private String gender;
 		private String address;
 		private String occupation;
+		private String phoneNumber;
 		private boolean isWorking;
 		private String education;
 
@@ -185,7 +214,7 @@ public class PatientModel
 			return this;
 		}
 
-		public Builder withPhoneNumber(int phoneNumber)
+		public Builder withPhoneNumber(String phoneNumber)
 		{
 			this.phoneNumber = phoneNumber;
 			return this;

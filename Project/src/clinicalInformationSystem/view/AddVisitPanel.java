@@ -31,7 +31,6 @@ public class AddVisitPanel extends JPanel
 	
 	/**
 	 * Create a panel with form fields to enter about information of visit to be added
-	 * @param frame SystemFrame to display panel
 	 */
 	public AddVisitPanel()
 	{
@@ -83,7 +82,7 @@ public class AddVisitPanel extends JPanel
 	}
 	
 	/**
-	 * Add AvtionListener on submit and exit buttons
+	 * Add ActionListener on submit and exit buttons
 	 * @param listener ActionListener to be added
 	 */
 	public void addVisitListener(ActionListener listener)
