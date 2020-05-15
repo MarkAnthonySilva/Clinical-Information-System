@@ -31,7 +31,6 @@ public class AddVisitPanel extends JPanel
 	
 	/**
 	 * Create a panel with form fields to enter about information of visit to be added
-	 * @param frame SystemFrame to display panel
 	 */
 	public AddVisitPanel()
 	{

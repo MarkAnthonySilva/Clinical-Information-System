@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class PatientList
 {
-	private TreeMap<String, PatientModel> patientList;  //Key the name of the Patient, Value the PatientModel
+	private TreeMap<String, PatientModel> patientList;		// Key = Patient Name; Value = Associated PatientModel
 	
 	/**
 	 * Constructs a PatientList with an empty TreeMap
@@ -51,7 +51,7 @@ public class PatientList
 	
 	/**
 	 * Get a tree map representation of this patient list
-	 * @return a tree map represenation of this patient list
+	 * @return a tree map representation of this patient list
 	 */
 	public TreeMap<String, PatientModel> getMap()
 	{
