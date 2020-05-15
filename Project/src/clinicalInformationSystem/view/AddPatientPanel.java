@@ -12,25 +12,30 @@ import clinicalInformationSystem.controller.*;
 public class AddPatientPanel extends JPanel
 {
 	private AddPatientController 	controller;
-	private SystemFrame				frame;
 	HashMap<String, JTextField>		patientData;	//Key Data name, Value JTextField related to Data name
 		
-	public static final String[] labelList = {"Name", 
-											"Gender", 
-											"Address", 
+	public static final String[] labelList = {"First Name", 
+											"Last Name",
 											"ID Number", 
+											"Date of Birth (mm/dd/yyyy)",
+											"Gender", 
 											"Phone Number", 
+											"Street Address", 
+											"City",
+											"State",
+											"Zip Code",
+											"Country",
 											"Social Security Number", 
-											"Insurance Number"};
+											"Insurance Number",
+											"Register Date (mm/dd/yyyy)"};
 	
-	// TODO add the rest of the parameters for labelList
+	// TODO Add Optional Parameters to labelList
+	
 	public AddPatientPanel(SystemFrame frame)
 	{	
-		this.frame = frame;
 		this.setLayout(new BorderLayout());
 		
 		//Construct Form Panel of Spring layout
-		
 		JPanel formPanel = new JPanel();
 		SpringLayout layout =  new SpringLayout();
 		formPanel.setLayout(layout);
@@ -79,5 +84,14 @@ public class AddPatientPanel extends JPanel
 			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
 		}
 		return patientDataString;
+	}
+	
+	/**
+	 * Display error message on panel
+	 * @param errorMessage Error message to be displayed
+	 */
+	public void displayErrorMessage(String errorMessage)
+	{
+		JOptionPane.showMessageDialog(this, errorMessage);
 	}
 }

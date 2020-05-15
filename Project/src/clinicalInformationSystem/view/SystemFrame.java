@@ -211,4 +211,13 @@ public class SystemFrame extends JFrame
 	{
 		userAuthorized = users.isAuthorized(username, password);
 	}
+	
+	/**
+	 * Display error message on this system frame
+	 * @param message the error message to displat
+	 */
+	public void displayErrorMessage(String message)
+	{
+		JOptionPane.showMessageDialog(this, message);
+	}
 }
