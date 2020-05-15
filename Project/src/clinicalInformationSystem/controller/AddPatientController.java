@@ -57,17 +57,22 @@ public class AddPatientController implements ActionListener
 			
 			if(isFull)
 			{
+				String id = patientData.get("ID Number").replace("-", "");
+				String ph = patientData.get("Phone Number").replace("-", "");
+				String sn = patientData.get("Social Security Number").replace("-", "");
+				String in = patientData.get("Insurance Number").replace("-", "");
+						
 				PatientModel patient = new PatientModel.Builder()
 						.withPatientName(patientData.get("First Name") + " " + patientData.get("Last Name"))
-						.withIdNumber(Integer.parseInt(patientData.get("ID Number").replace("-", "")))
+						.withIdNumber(Integer.parseInt(id))
 						.withDateOfBirth(formattedDob)
 						.withGender(patientData.get("Gender"))
-						.withPhoneNumber(Integer.parseInt(patientData.get("Phone Number").replace("-", "")))
+						.withPhoneNumber(Integer.parseInt(ph))
 						.withAddress(patientData.get("Street Address") + " " + patientData.get("City") 
 									+ " " + patientData.get("State") + " " + patientData.get("Zip Code")
 									+ " " + patientData.get("Country"))
-						.withSSN(Integer.parseInt(patientData.get("Social Security Number").replace("-", "")))
-						.withInsuranceNumber(Integer.parseInt(patientData.get("Insurance Number").replace("-", "")))
+						.withSSN(Integer.parseInt(sn))
+						.withInsuranceNumber(Integer.parseInt(in))
 						.withDateOfRegistration(formattedDor)
 						.build();
 				
