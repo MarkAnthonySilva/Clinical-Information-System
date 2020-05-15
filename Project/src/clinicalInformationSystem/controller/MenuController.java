@@ -39,5 +39,9 @@ public class MenuController implements ActionListener
 				break;
 			}
 		}
+		else
+		{
+			frame.displayErrorMessage("Log in first");
+		}
 	}
 }
