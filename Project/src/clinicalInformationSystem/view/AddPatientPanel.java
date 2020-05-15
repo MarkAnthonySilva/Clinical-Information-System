@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 
 import clinicalInformationSystem.SpringUtilities;
 import clinicalInformationSystem.controller.*;
@@ -15,7 +16,7 @@ public class AddPatientPanel extends JPanel
 	private JButton submit;
 	private JButton exit;
 	
-	HashMap<String, JTextField>		patientData;	//Key Data name, Value JTextField related to Data name
+	HashMap<String, JTextComponent>		patientData;	//Key Data name, Value JTextField related to Data name
 		
 	public static final String[] labelList = {"Name",
 											"ID Number", 
@@ -37,6 +38,9 @@ public class AddPatientPanel extends JPanel
 	{	
 		this.setLayout(new BorderLayout());
 		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		
 		//Construct Form Panel of Spring layout
 		JPanel formPanel = new JPanel();
 		SpringLayout layout =  new SpringLayout();
@@ -48,7 +52,7 @@ public class AddPatientPanel extends JPanel
 		{
 			JLabel label = new JLabel(labelList[i], JLabel.TRAILING);
 			formPanel.add(label);
-			JTextField textField = new JTextField(20);
+			JTextField textField = new JTextField(15);
 			label.setLabelFor(textField);
 			formPanel.add(textField);
 			
@@ -60,7 +64,7 @@ public class AddPatientPanel extends JPanel
 										5, 5,					//Initial x and y coordinates
 										5, 5);					//Padding between labels and textfield
 	
-		this.add(formPanel, BorderLayout.NORTH);
+		this.add(formPanel, BorderLayout.WEST);
 		
 		//Create button panel
 		JPanel buttonPanel 	= new JPanel();
@@ -72,6 +76,20 @@ public class AddPatientPanel extends JPanel
 		buttonPanel.add(exit);
 		
 		this.add(buttonPanel, BorderLayout.SOUTH);
+		
+		JTextArea textarea = new JTextArea(20, 20);
+		JLabel label = new JLabel("Notes");
+		label.setLabelFor(textarea);
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
+		panel1.setSize(textarea.getWidth() ,this.getHeight() / 2);
+		panel1.add(label, BorderLayout.NORTH);
+		panel1.add(textarea, BorderLayout.CENTER);
+		patientData.put("Notes" , textarea);
+		
+		//TODO Add scroll panes as necessary (form, textarea)
+		
+		this.add(panel1, BorderLayout.EAST);
 	}
 
 	/**
@@ -85,6 +103,8 @@ public class AddPatientPanel extends JPanel
 		{
 			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
 		}
+		
+		patientDataString.put("Notes", patientData.get("Notes").getText());
 		return patientDataString;
 	}
 	

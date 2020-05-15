@@ -64,7 +64,6 @@ public class AddPatientController implements ActionListener
 				String in = patientData.get("Insurance Number").replaceAll("-", "");
 						
 				PatientModel patient = new PatientModel.Builder()
-						//.withPatientName(patientData.get("First Name") + " " + patientData.get("Last Name"))
 						.withPatientName(patientData.get("Name"))
 						.withIdNumber(Integer.parseInt(id))
 						.withDateOfBirth(formattedDob)
@@ -78,9 +77,9 @@ public class AddPatientController implements ActionListener
 						.withDateOfRegistration(formattedDor)
 						.build();
 				
+				patient.setNotes(patientData.get("Notes"));
 				// TODO add the rest of optional parameter
 				
-			//	frame.getPatientList().addPatient(patientData.get("First Name") + patientData.get("Last Name"), patient);
 				frame.getPatientList().addPatient(patientData.get("Name"), patient);
 				frame.displayPatientList();
 			}

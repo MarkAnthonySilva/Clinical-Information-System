@@ -80,6 +80,7 @@ public class PatientController implements ActionListener
 				String sn = patientData.get("Social Security Number").replace("-", "");
 				String in = patientData.get("Insurance Number").replace("-", "");
 						
+				//Required
 				this.patient.setPatientName(patientData.get("Name"));
 				this.patient.setIdNumber(Integer.parseInt(id));
 				this.patient.setDateOfBirth(formattedDob);
@@ -89,6 +90,9 @@ public class PatientController implements ActionListener
 				this.patient.setsSN(Integer.parseInt(sn));
 				this.patient.setInsuranceNumber(Integer.parseInt(in));
 				this.patient.setDateOfRegistration(formattedDor);
+				
+				//Additional
+				this.patient.setNotes(patientData.get("Notes"));
 
 				// TODO add the rest of optional parameter
 				

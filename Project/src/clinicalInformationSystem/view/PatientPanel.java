@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 
 import clinicalInformationSystem.SpringUtilities;
 import clinicalInformationSystem.controller.AddPatientController;
@@ -22,7 +23,7 @@ public class PatientPanel extends JPanel
 	private JButton delete;
 	private JButton exit;
 	
-	HashMap<String, JTextField>		patientData;	//Key Data name, Value JTextField related to Data name
+	HashMap<String, JTextComponent>		patientData;	//Key Data name, Value JTextField related to Data name
 	
 	public static final String[] labelList = {"Name",
 											"ID Number", 
@@ -66,7 +67,7 @@ public class PatientPanel extends JPanel
 										5, 5,					//Initial x and y coordinates
 										5, 5);					//Padding between labels and textfield
 	
-		this.add(formPanel, BorderLayout.NORTH);
+		this.add(formPanel, BorderLayout.WEST);
 		
 		//Create button panel
 		JPanel buttonPanel 	= new JPanel();
@@ -79,9 +80,20 @@ public class PatientPanel extends JPanel
 		buttonPanel.add(delete);
 		buttonPanel.add(exit);
 		
-		this.setEditable(false);
-		
 		this.add(buttonPanel, BorderLayout.SOUTH);
+		
+		JTextArea textarea = new JTextArea(20, 20);
+		JLabel label = new JLabel("Notes");
+		label.setLabelFor(textarea);
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
+		panel1.setSize(textarea.getWidth() ,this.getHeight() / 2);
+		panel1.add(label, BorderLayout.NORTH);
+		panel1.add(textarea, BorderLayout.CENTER);
+		patientData.put("Notes" , textarea);
+		
+		this.setEditable(false);
+		this.add(panel1, BorderLayout.EAST);
 	}
 
 	/**
@@ -95,6 +107,8 @@ public class PatientPanel extends JPanel
 		{
 			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
 		}
+		
+		patientDataString.put("Notes", patientData.get("Notes").getText());
 		return patientDataString;
 	}
 	
@@ -104,15 +118,19 @@ public class PatientPanel extends JPanel
 	 */
 	public void setDataMap(PatientModel patient)
 	{
+		String patientString = patient.getMap().get("Notes");
+		JTextComponent textField = patientData.get("Notes");
+		textField.setText(patientString);
+		
 		for (int i = 0; i < labelList.length; i++)
 		{	
-			String patientString = patient.getMap().get(labelList[i]);
-			JTextField textField = patientData.get(labelList[i]);
+			patientString = patient.getMap().get(labelList[i]);
+			textField = patientData.get(labelList[i]);
 			textField.setText(patientString);
 			
 			if(labelList[i].equals("Address"))
 			{
-				patientData.get(labelList[i]).setColumns(patientString.length());
+				((JTextField) patientData.get(labelList[i])).setColumns(patientString.length());
 			}
 		}
 	}
@@ -128,6 +146,7 @@ public class PatientPanel extends JPanel
 		{
 			patientData.get(labelList[i]).setEditable(isEditable);
 		}
+		patientData.get("Notes").setEditable(isEditable);
 		
 		if (isEditable)
 		{

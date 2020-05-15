@@ -73,6 +73,7 @@ public class PatientModel
 		patientData.put("Social Security Number", Integer.toString(this.sSN));
 		patientData.put("Insurance Number", Integer.toString(this.insuranceNumber));
 		patientData.put("Register Date", dor);
+		patientData.put("Notes", this.notes);
 		
 		return patientData;
 	}
