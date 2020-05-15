@@ -41,7 +41,7 @@ public class PatientController implements ActionListener
 			frame.displayPatientList();
 		}
 		else if (command.equals("Submit"))
-		{	
+		{
 			HashMap<String, String> patientData = panel.getDataMap();
 			ArrayList<String> valuesList = new ArrayList<>(patientData.values());
 			boolean isFull = true;
@@ -76,6 +76,8 @@ public class PatientController implements ActionListener
 			
 			if(isFull)
 			{
+				frame.getPatientList().removePatient(patient.getPatientName());
+				
 				String id = patientData.get("ID Number").replace("-", "");
 				String sn = patientData.get("Social Security Number").replace("-", "");
 				String in = patientData.get("Insurance Number").replace("-", "");
@@ -96,6 +98,7 @@ public class PatientController implements ActionListener
 
 				// TODO add the rest of optional parameter
 				
+				frame.getPatientList().addPatient(patient.getPatientName(), patient);
 				frame.displayPatientList();
 			}
 			else

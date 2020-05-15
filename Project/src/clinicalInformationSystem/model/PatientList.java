@@ -30,6 +30,15 @@ public class PatientList
 	}
 	
 	/**
+	 * Remove a patient from this list of Patients
+	 * @param name Name of patient to be removed
+	 */
+	public void removePatient(String name)
+	{
+		patientList.remove(name);
+	}
+	
+	/**
 	 * Get the patient associated with the given name
 	 * @param name the name of the patient to be return
 	 * @return the PatientModel associated with the given name

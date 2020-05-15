@@ -4,11 +4,11 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-public class THIViewPanel extends JPanel
+public class AddTHIPanel extends JPanel
 {
 	
 	
-	public THIViewPanel()
+	public AddTHIPanel()
 	{
 		this.setLayout(new BorderLayout());
 		
