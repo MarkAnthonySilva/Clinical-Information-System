@@ -66,8 +66,8 @@ public class AddPatientPanel extends JPanel
 		//Create button panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		JButton submit 	 	= new JButton("Submit");		
-		JButton exit	 	= new JButton("Exit");
+		submit 	 	= new JButton("Submit");		
+		exit	 	= new JButton("Exit");
 		
 		buttonPanel.add(submit);
 		buttonPanel.add(exit);
