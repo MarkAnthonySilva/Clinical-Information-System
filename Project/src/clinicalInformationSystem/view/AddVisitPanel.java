@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import clinicalInformationSystem.SpringUtilities;
+import clinicalInformationSystem.THIScoreGrade;
 import clinicalInformationSystem.model.PatientModel;
 
 /**
@@ -35,7 +36,6 @@ public class AddVisitPanel extends JPanel
 	public AddVisitPanel()
 	{
 		this.setLayout(new BorderLayout());
-		
 		//Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());

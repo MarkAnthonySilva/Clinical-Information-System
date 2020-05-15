@@ -13,6 +13,8 @@ public class VisitModel
 	private Date dateOfvisit;
 	private int sequenceNumber;		//0-initial visit, 1-first visit, 2-second visit, etc.
 	
+	private THIModel THI;
+	
 	/**
 	 * Creates a new visit with the given parameters.
 	 * @param patient the patient tied to this visit
@@ -54,6 +56,15 @@ public class VisitModel
 	}
 	
 	/**
+	 * Get the THI Model associated with this visit
+	 * @return THI Model
+	 */
+	public THIModel getTHIModel()
+	{
+		return THI;
+	}
+	
+	/**
 	 * Set the patient for this visit
 	 * @param patient Patient Model of Visit
 	 */
@@ -78,5 +89,14 @@ public class VisitModel
 	public void setSequenceNumber(int sequenceNumber)
 	{
 		this.sequenceNumber = sequenceNumber;
+	}
+	
+	/**
+	 * Set the THI Model for this visit
+	 * @param THI THIModel of the visit
+	 */
+	public void setTHIModel(THIModel THI)
+	{
+		this.THI = THI;
 	}
 }
