@@ -29,6 +29,9 @@ public class PatientModel
 	private boolean isWorking;			//Can be changed to boolean
 	private String education;
 	
+	//Addtional information
+	private String notes;
+	
 	/**
 	 * Creates a patient using the builder pattern
 	 * @param builder the builder to create the patient out off
@@ -179,7 +182,22 @@ public class PatientModel
 		return education;
 	}
 	
-	
+	/**
+	 * @return the notes
+	 */
+	public String getNotes()
+	{
+		return notes;
+	}
+
+	/**
+	 * @param notes the notes to set
+	 */
+	public void setNotes(String notes)
+	{
+		this.notes = notes;
+	}
+
 	/**
 	 * @param idNumber the idNumber to set
 	 */
