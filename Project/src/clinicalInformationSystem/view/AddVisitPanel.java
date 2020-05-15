@@ -83,7 +83,7 @@ public class AddVisitPanel extends JPanel
 	}
 	
 	/**
-	 * Add AvtionListener on submit and exit buttons
+	 * Add ActionListener on submit and exit buttons
 	 * @param listener ActionListener to be added
 	 */
 	public void addVisitListener(ActionListener listener)

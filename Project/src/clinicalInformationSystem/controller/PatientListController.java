@@ -9,7 +9,7 @@ public class PatientListController implements ActionListener
 	private PatientListPanel 	panel;
 	private SystemFrame			frame;	
 	
-	public PatientListController(PatientListPanel panel, SystemFrame frame)
+	public PatientListController(SystemFrame frame, PatientListPanel panel)
 	{
 		this.panel = panel;
 		this.frame = frame;
