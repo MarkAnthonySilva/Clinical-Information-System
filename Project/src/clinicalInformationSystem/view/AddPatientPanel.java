@@ -1,6 +1,7 @@
 package clinicalInformationSystem.view;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.*;
@@ -11,7 +12,9 @@ import clinicalInformationSystem.controller.*;
 @SuppressWarnings("serial")
 public class AddPatientPanel extends JPanel
 {
-	private AddPatientController 	controller;
+	private JButton submit;
+	private JButton exit;
+	
 	HashMap<String, JTextField>		patientData;	//Key Data name, Value JTextField related to Data name
 		
 	public static final String[] labelList = {"First Name", 
@@ -31,7 +34,7 @@ public class AddPatientPanel extends JPanel
 	
 	// TODO Add Optional Parameters to labelList
 	
-	public AddPatientPanel(SystemFrame frame)
+	public AddPatientPanel()
 	{	
 		this.setLayout(new BorderLayout());
 		
@@ -69,13 +72,13 @@ public class AddPatientPanel extends JPanel
 		buttonPanel.add(submit);
 		buttonPanel.add(exit);
 		
-		controller = new AddPatientController(this, frame);
-		submit.addActionListener(controller);
-		exit.addActionListener(controller);
-		
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Get a map representation of all the inputted values to the text field
+	 * @return
+	 */
 	public HashMap<String, String> getDataMap()
 	{
 		HashMap<String, String> patientDataString = new HashMap<>();
@@ -94,4 +97,15 @@ public class AddPatientPanel extends JPanel
 	{
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
+	
+	/**
+	 * Add listeners to the buttons on this panel
+	 * @param listener the listener listing to all the actions by this panel
+	 */
+	public void addListener(ActionListener listener)
+	{
+		submit.addActionListener(listener);
+		exit.addActionListener(listener);
+	}
+	
 }

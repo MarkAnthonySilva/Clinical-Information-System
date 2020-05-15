@@ -12,10 +12,12 @@ public class AddPatientController implements ActionListener
 	private AddPatientPanel panel;
 	private SystemFrame 	frame;
 	
-	public AddPatientController(AddPatientPanel panel, SystemFrame frame)
+	public AddPatientController( SystemFrame frame, AddPatientPanel panel)
 	{
 		this.panel = panel;
 		this.frame = frame;
+		
+		panel.addListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e)

@@ -177,7 +177,8 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayAddPatient()
 	{
-		this.addPatientPanel = new AddPatientPanel(this);
+		this.addPatientPanel = new AddPatientPanel();
+		AddPatientController controller = new AddPatientController(this, addPatientPanel);
 		this.remove(currentPanel);
 		currentPanel = addPatientPanel;
 		this.add(currentPanel);
