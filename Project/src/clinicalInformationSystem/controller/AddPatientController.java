@@ -59,15 +59,15 @@ public class AddPatientController implements ActionListener
 			{
 				PatientModel patient = new PatientModel.Builder()
 						.withPatientName(patientData.get("First Name") + " " + patientData.get("Last Name"))
-						.withIdNumber(Integer.parseInt(patientData.get("ID Number")))
+						.withIdNumber(Integer.parseInt(patientData.get("ID Number").replace("-", "")))
 						.withDateOfBirth(formattedDob)
 						.withGender(patientData.get("Gender"))
-						.withPhoneNumber(Integer.parseInt(patientData.get("Phone Number")))
+						.withPhoneNumber(Integer.parseInt(patientData.get("Phone Number").replace("-", "")))
 						.withAddress(patientData.get("Street Address") + " " + patientData.get("City") 
 									+ " " + patientData.get("State") + " " + patientData.get("Zip Code")
 									+ " " + patientData.get("Country"))
-						.withSSN(Integer.parseInt(patientData.get("Social Security Number")))
-						.withInsuranceNumber(Integer.parseInt(patientData.get("Insurance Number")))
+						.withSSN(Integer.parseInt(patientData.get("Social Security Number").replace("-", "")))
+						.withInsuranceNumber(Integer.parseInt(patientData.get("Insurance Number").replace("-", "")))
 						.withDateOfRegistration(formattedDor)
 						.build();
 				
