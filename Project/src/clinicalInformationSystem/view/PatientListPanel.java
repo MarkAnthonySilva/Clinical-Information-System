@@ -21,7 +21,7 @@ public class PatientListPanel extends JPanel
 		this.frame = frame;
 		
 		JPanel panel = new JPanel();
-		String[] columnNames = {"Name", "Gender", "Address"};		// TODO Add More column names if necessary
+		String[] columnNames = {"Name", "Id Number", "Phone Number"};		// TODO Add More column names if necessary
 		
 		PatientModel[] patientArray = patientList.getPatientArray();
 		String[][] data = new String[patientArray.length][columnNames.length];
@@ -36,11 +36,11 @@ public class PatientListPanel extends JPanel
 				}
 				else if (col == 1)
 				{
-					data[row][col] = patientArray[row].getGender();
+					data[row][col] = Integer.toString(patientArray[row].getIdNumber());
 				}
 				else
 				{
-					data[row][col] = patientArray[row].getAddress();
+					data[row][col] = Integer.toString(patientArray[row].getPhoneNumber());
 				}
 			}
 		}
@@ -62,7 +62,7 @@ public class PatientListPanel extends JPanel
 		buttonPanel.add(edit);
 		buttonPanel.add(exit);
 		
-		PatientListController controller = new PatientListController(this, frame);
+		PatientListController controller = new PatientListController(frame, this);
 		edit.addActionListener(controller);
 		exit.addActionListener(controller);
 		
