@@ -1,5 +1,6 @@
 package clinicalInformationSystem;
 import javax.swing.JFrame;
+
 import clinicalInformationSystem.view.SystemFrame;
 
 public class SystemTester
