@@ -80,21 +80,18 @@ public class PatientController implements ActionListener
 				String sn = patientData.get("Social Security Number").replace("-", "");
 				String in = patientData.get("Insurance Number").replace("-", "");
 						
-				PatientModel patient = new PatientModel.Builder()
-						.withPatientName(patientData.get("Name"))
-						.withIdNumber(Integer.parseInt(id))
-						.withDateOfBirth(formattedDob)
-						.withGender(patientData.get("Gender"))
-						.withPhoneNumber(patientData.get("Phone Number"))
-						.withAddress(patientData.get("Address"))
-						.withSSN(Integer.parseInt(sn))
-						.withInsuranceNumber(Integer.parseInt(in))
-						.withDateOfRegistration(formattedDor)
-						.build();
-				
+				this.patient.setPatientName(patientData.get("Name"));
+				this.patient.setIdNumber(Integer.parseInt(id));
+				this.patient.setDateOfBirth(formattedDob);
+				this.patient.setGender(patientData.get("Gender"));
+				this.patient.setPhoneNumber(patientData.get("Phone Number"));
+				this.patient.setAddress(patientData.get("Address"));
+				this.patient.setsSN(Integer.parseInt(sn));
+				this.patient.setInsuranceNumber(Integer.parseInt(in));
+				this.patient.setDateOfRegistration(formattedDor);
+
 				// TODO add the rest of optional parameter
 				
-				frame.getPatientList().addPatient(patientData.get("Name"), patient);
 				frame.displayPatientList();
 			}
 			else
