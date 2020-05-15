@@ -39,9 +39,22 @@ public class PatientList
 		return patientList.get(name);
 	}
 	
+	/**
+	 * Get an array representation of the patientList
+	 * @return an array representation of the patientList
+	 */
 	public PatientModel[] getPatientArray()
 	{
 		Collection<PatientModel> values = patientList.values();
 		return values.toArray(new PatientModel[values.size()]);
+	}
+	
+	/**
+	 * Get a tree map representation of this patient list
+	 * @return a tree map represenation of this patient list
+	 */
+	public TreeMap<String, PatientModel> getMap()
+	{
+		return this.patientList;
 	}
 }
