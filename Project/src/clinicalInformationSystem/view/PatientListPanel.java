@@ -1,8 +1,10 @@
 package clinicalInformationSystem.view;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 
 import clinicalInformationSystem.DataTableModel;
 import clinicalInformationSystem.controller.*;
@@ -13,6 +15,13 @@ public class PatientListPanel extends JPanel
 	private PatientList patientList;
 	private SystemFrame	frame;
 	
+	private JButton exit;
+	private JTable table;
+	/**
+	 * Constructs a PatientList panel that display all the patients stored in the system
+	 * @param patientList the patient list to displau
+	 * @param frame the frame to display the patientList
+	 */
 	public PatientListPanel(PatientList patientList, SystemFrame frame)
 	{
 		this.setLayout(new BorderLayout());
@@ -40,12 +49,12 @@ public class PatientListPanel extends JPanel
 				}
 				else
 				{
-					data[row][col] = Integer.toString(patientArray[row].getPhoneNumber());
+					data[row][col] = patientArray[row].getPhoneNumber();
 				}
 			}
 		}
 		
-		JTable table = new JTable(data, columnNames);
+		this.table = new JTable(data, columnNames);
 		DataTableModel model = new DataTableModel(data, columnNames);
 		table.setModel(model);
 		table.setBounds(30, 40, this.getWidth() , this.getHeight());
@@ -56,18 +65,30 @@ public class PatientListPanel extends JPanel
 		//Add button Panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		JButton edit 	 	= new JButton("Edit");		
-		JButton exit	 	= new JButton("Exit");
+		exit = new JButton("Exit");		
 		
-		buttonPanel.add(edit);
 		buttonPanel.add(exit);
-		
-		PatientListController controller = new PatientListController(frame, this);
-		edit.addActionListener(controller);
-		exit.addActionListener(controller);
 		
 		this.add(panel, BorderLayout.NORTH);
 		this.add(buttonPanel, BorderLayout.SOUTH);
+	}
+	
+	/**
+	 * Add listener to the actions that can be done on this panel
+	 * @param listener the listener to listen to all the actions on this panel
+	 */
+	public void addListener(ActionListener listener)
+	{
+		table.getSelectionModel().addListSelectionListener((ListSelectionListener) listener);
+		exit.addActionListener(listener);
+	}
+	/**
+	 * Get the selected row in the table
+	 * @return Selected row
+	 */
+	public int getSelectedRow()
+	{
+		return table.getSelectedRow();
 	}
 	
 }

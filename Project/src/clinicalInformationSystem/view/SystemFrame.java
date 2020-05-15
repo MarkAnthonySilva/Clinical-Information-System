@@ -23,8 +23,8 @@ public class SystemFrame extends JFrame
 	// Panel
 	private JPanel 				currentPanel;
 	
-	private AddPatientPanel 	addPatientPanel;
-	private PatientListPanel 	patientListPanel;
+//	private AddPatientPanel 	addPatientPanel;
+//	private PatientListPanel 	patientListPanel;
 
 	/**
 	 * Create the main system frame to be shown to user
@@ -121,7 +121,8 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayPatientList()
 	{
-		this.patientListPanel = new PatientListPanel(patientList, this);
+		PatientListPanel patientListPanel = new PatientListPanel(patientList, this);
+		PatientListController controller = new PatientListController(this, patientList, patientListPanel);
 		this.remove(currentPanel);
 		currentPanel = patientListPanel;
 		this.add(currentPanel);
@@ -177,10 +178,24 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayAddPatient()
 	{
-		this.addPatientPanel = new AddPatientPanel();
+		AddPatientPanel addPatientPanel = new AddPatientPanel();
 		AddPatientController controller = new AddPatientController(this, addPatientPanel);
 		this.remove(currentPanel);
 		currentPanel = addPatientPanel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
+	}
+	
+	/**
+	 * Repaint the frame to display a Patients information
+	 */
+	public void diplayPatient(PatientModel patient)
+	{
+		PatientPanel patientPanel 		= new PatientPanel();
+		PatientController controller 	= new PatientController(this, patient, patientPanel);
+		this.remove(currentPanel);
+		currentPanel = patientPanel;
 		this.add(currentPanel);
 		this.pack();
 		this.setVisible(true);

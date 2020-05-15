@@ -1,29 +1,46 @@
 package clinicalInformationSystem.controller;
 
-import java.awt.event.*;
-import java.text.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
-import clinicalInformationSystem.view.*;
-import clinicalInformationSystem.model.*;
+import clinicalInformationSystem.model.PatientModel;
+import clinicalInformationSystem.view.PatientPanel;
+import clinicalInformationSystem.view.SystemFrame;
 
-public class AddPatientController implements ActionListener
+public class PatientController implements ActionListener
 {
-	private AddPatientPanel panel;
+	private PatientPanel 	panel;
 	private SystemFrame 	frame;
+	private PatientModel	patient;
 	
-	public AddPatientController( SystemFrame frame, AddPatientPanel panel)
+	public PatientController(SystemFrame frame, PatientModel patient, PatientPanel panel)
 	{
 		this.panel = panel;
 		this.frame = frame;
+		this.patient = patient;
 		
 		panel.addListener(this);
+		panel.setDataMap(patient);
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
-		if (command.equals("Submit"))
+		if (command.equals("Edit"))
+		{
+			panel.setEditable(true);
+		}
+		else if(command.contentEquals("Delete"))
+		{
+			frame.getPatientList().getMap().remove(patient.getPatientName());
+			frame.displayPatientList();
+		}
+		else if (command.equals("Submit"))
 		{	
 			HashMap<String, String> patientData = panel.getDataMap();
 			ArrayList<String> valuesList = new ArrayList<>(patientData.values());
@@ -39,14 +56,14 @@ public class AddPatientController implements ActionListener
 				}
 			}
 			
-			String dob = patientData.get("Date of Birth (mm/dd/yyyy)");		
-			String dor = patientData.get("Register Date (mm/dd/yyyy)");			
+			String dob = patientData.get("Date of Birth");		
+			String dor = patientData.get("Register Date");			
 			Date formattedDob = null;
 			Date formattedDor = null;
 			
 			try
 			{
-				SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+				SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
 				
 				formattedDob = standardDateFormat.parse(dob);
 				formattedDor = standardDateFormat.parse(dor);
@@ -59,20 +76,17 @@ public class AddPatientController implements ActionListener
 			
 			if(isFull)
 			{
-				String id = patientData.get("ID Number").replaceAll("-", "");
-				String sn = patientData.get("Social Security Number").replaceAll("-", "");
-				String in = patientData.get("Insurance Number").replaceAll("-", "");
+				String id = patientData.get("ID Number").replace("-", "");
+				String sn = patientData.get("Social Security Number").replace("-", "");
+				String in = patientData.get("Insurance Number").replace("-", "");
 						
 				PatientModel patient = new PatientModel.Builder()
-						//.withPatientName(patientData.get("First Name") + " " + patientData.get("Last Name"))
 						.withPatientName(patientData.get("Name"))
 						.withIdNumber(Integer.parseInt(id))
 						.withDateOfBirth(formattedDob)
 						.withGender(patientData.get("Gender"))
 						.withPhoneNumber(patientData.get("Phone Number"))
-						.withAddress(patientData.get("Street Address") + " " + patientData.get("City") 
-									+ " " + patientData.get("State") + " " + patientData.get("Zip Code")
-									+ " " + patientData.get("Country"))
+						.withAddress(patientData.get("Address"))
 						.withSSN(Integer.parseInt(sn))
 						.withInsuranceNumber(Integer.parseInt(in))
 						.withDateOfRegistration(formattedDor)
@@ -80,7 +94,6 @@ public class AddPatientController implements ActionListener
 				
 				// TODO add the rest of optional parameter
 				
-			//	frame.getPatientList().addPatient(patientData.get("First Name") + patientData.get("Last Name"), patient);
 				frame.getPatientList().addPatient(patientData.get("Name"), patient);
 				frame.displayPatientList();
 			}
@@ -91,7 +104,7 @@ public class AddPatientController implements ActionListener
 		}
 		else if (command.equals("Exit"))
 		{
-			panel.setVisible(false);
+			frame.displayPatientList();
 		}
 	}
 	

@@ -2,38 +2,44 @@ package clinicalInformationSystem.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.swing.*;
 
 import clinicalInformationSystem.SpringUtilities;
-import clinicalInformationSystem.controller.*;
+import clinicalInformationSystem.controller.AddPatientController;
+import clinicalInformationSystem.model.PatientModel;
 
-@SuppressWarnings("serial")
-public class AddPatientPanel extends JPanel
+/**
+ * A Class that creates a panel that displays the information of a Patient
+ * @author marksilvajr
+ *
+ */
+public class PatientPanel extends JPanel
 {
-	private JButton submit;
+	private JButton edit;
+	private JButton delete;
 	private JButton exit;
 	
 	HashMap<String, JTextField>		patientData;	//Key Data name, Value JTextField related to Data name
-		
+	
 	public static final String[] labelList = {"Name",
 											"ID Number", 
-											"Date of Birth (mm/dd/yyyy)",
+											"Date of Birth",
 											"Gender", 
 											"Phone Number", 
-											"Street Address", 
-											"City",
-											"State",
-											"Zip Code",
-											"Country",
+											"Address", 
 											"Social Security Number", 
 											"Insurance Number",
-											"Register Date (mm/dd/yyyy)"};
+											"Register Date"};
 	
 	// TODO Add Optional Parameters to labelList
 	
-	public AddPatientPanel()
+	/**
+	 * Constructor of a patient panel that display information of a patient
+	 */
+	public PatientPanel()
 	{	
 		this.setLayout(new BorderLayout());
 		
@@ -65,27 +71,72 @@ public class AddPatientPanel extends JPanel
 		//Create button panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		submit 	 	= new JButton("Submit");		
+		edit 	 	= new JButton("Edit");	
+		delete		= new JButton("Delete");
 		exit	 	= new JButton("Exit");
 		
-		buttonPanel.add(submit);
+		buttonPanel.add(edit);
+		buttonPanel.add(delete);
 		buttonPanel.add(exit);
+		
+		this.setEditable(false);
 		
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 
 	/**
-	 * Get a map representation of all the inputted values to the text field
-	 * @return
+	 * Get a map representation of all the inputed values of the text field
+	 * @return a map representation of all the inputed values of the text field
 	 */
 	public HashMap<String, String> getDataMap()
 	{
-		HashMap<String, String> patientDataString = new HashMap<>();
+		HashMap<String,String>	patientDataString = new HashMap<>();
 		for (int i = 0; i < labelList.length; i++)
 		{
 			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
 		}
 		return patientDataString;
+	}
+	
+	/**
+	 * Set the data map of this panel to the information within this patient
+	 * @param patient the patient that will establish the information within this map
+	 */
+	public void setDataMap(PatientModel patient)
+	{
+		for (int i = 0; i < labelList.length; i++)
+		{	
+			String patientString = patient.getMap().get(labelList[i]);
+			JTextField textField = patientData.get(labelList[i]);
+			textField.setText(patientString);
+			
+			if(labelList[i].equals("Address"))
+			{
+				patientData.get(labelList[i]).setColumns(patientString.length());
+			}
+		}
+	}
+	
+	/**
+	 * Set the text fields to be either be editable or non-editable depending on the parameter
+	 * @param isEditable the parameter that determines if the text field are editable. True means that the
+	 * text fields are editable. Otherwise, the text fields are not editable
+	 */
+	public void setEditable(boolean isEditable)
+	{
+		for(int i = 0; i < labelList.length; i++)
+		{
+			patientData.get(labelList[i]).setEditable(isEditable);
+		}
+		
+		if (isEditable)
+		{
+			edit.setText("Submit");
+		}
+		else
+		{
+			edit.setText("Edit");
+		}
 	}
 	
 	/**
@@ -103,7 +154,8 @@ public class AddPatientPanel extends JPanel
 	 */
 	public void addListener(ActionListener listener)
 	{
-		submit.addActionListener(listener);
+		edit.addActionListener(listener);
+		delete.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
 	
