@@ -22,6 +22,7 @@ public class PatientPanel extends JPanel
 	private JButton edit;
 	private JButton delete;
 	private JButton exit;
+	private JButton visits;
 	
 	HashMap<String, JTextComponent>		patientData;	//Key Data name, Value JTextField related to Data name
 	
@@ -74,10 +75,12 @@ public class PatientPanel extends JPanel
 		buttonPanel.setLayout(new FlowLayout());
 		edit 	 	= new JButton("Edit");	
 		delete		= new JButton("Delete");
+		visits 		= new JButton("Visits");
 		exit	 	= new JButton("Exit");
 		
 		buttonPanel.add(edit);
 		buttonPanel.add(delete);
+		buttonPanel.add(visits);
 		buttonPanel.add(exit);
 		
 		this.add(buttonPanel, BorderLayout.SOUTH);
@@ -175,6 +178,7 @@ public class PatientPanel extends JPanel
 	{
 		edit.addActionListener(listener);
 		delete.addActionListener(listener);
+		visits.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
 	

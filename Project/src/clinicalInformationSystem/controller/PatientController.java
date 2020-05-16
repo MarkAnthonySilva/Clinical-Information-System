@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import clinicalInformationSystem.model.PatientModel;
+import clinicalInformationSystem.model.VisitList;
 import clinicalInformationSystem.view.PatientPanel;
 import clinicalInformationSystem.view.SystemFrame;
 
@@ -17,12 +18,14 @@ public class PatientController implements ActionListener
 	private PatientPanel 	panel;
 	private SystemFrame 	frame;
 	private PatientModel	patient;
+	private VisitList		visitList;
 	
 	public PatientController(SystemFrame frame, PatientModel patient, PatientPanel panel)
 	{
 		this.panel = panel;
 		this.frame = frame;
 		this.patient = patient;
+		this.visitList = frame.getVisitList();
 		
 		panel.addListener(this);
 		panel.setDataMap(patient);
@@ -104,6 +107,17 @@ public class PatientController implements ActionListener
 			else
 			{
 				panel.displayErrorMessage("Not all fields have been filled");
+			}
+		}
+		else if (command.equals("Visits"))
+		{
+			if(this.visitList.getVisitsByPatient(patient).size() != 0)
+			{
+				frame.displayVisitList(visitList);
+			}
+			else
+			{
+				panel.displayErrorMessage("This patient does not have visits yet");
 			}
 		}
 		else if (command.equals("Exit"))

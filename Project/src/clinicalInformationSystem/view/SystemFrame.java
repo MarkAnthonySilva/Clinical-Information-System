@@ -118,7 +118,7 @@ public class SystemFrame extends JFrame
 	 */
 	public void displayPatientList()
 	{
-		PatientListPanel patientListPanel = new PatientListPanel(patientList, this);
+		PatientListPanel patientListPanel = new PatientListPanel(this);
 		PatientListController controller = new PatientListController(this, patientList, patientListPanel);
 		this.remove(currentPanel);
 		currentPanel = patientListPanel;
@@ -168,9 +168,24 @@ public class SystemFrame extends JFrame
 	}
 	
 	/**
-	 * Repaint frame to display VisitListPanel
+	 * Repaint frame to display VisitListPanel called by the menu bar. 
 	 */
 	public void displayVisitList()
+	{
+		VisitListPanel visitListPanel = new VisitListPanel();
+		VisitController visitController = new VisitController(this, visitList, visitListPanel);
+		this.remove(currentPanel);
+		currentPanel = visitListPanel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
+	}
+	
+	/**
+	 * Repaint frame to display VisitListPanel for a certain patient. Called within a Patient panel
+	 * @param visitList display this specific visiList
+	 */
+	public void displayVisitList(VisitList visitList)
 	{
 		VisitListPanel visitListPanel = new VisitListPanel();
 		VisitController visitController = new VisitController(this, visitList, visitListPanel);
@@ -215,6 +230,14 @@ public class SystemFrame extends JFrame
 	public PatientList getPatientList()
 	{
 		return patientList;
+	}
+	
+	/**
+	 * @return the visitList
+	 */
+	public VisitList getVisitList()
+	{
+		return visitList;
 	}
 	
 	/**

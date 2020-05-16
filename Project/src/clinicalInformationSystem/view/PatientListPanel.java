@@ -12,7 +12,6 @@ import clinicalInformationSystem.model.*;
 
 public class PatientListPanel extends JPanel
 {
-	private PatientList patientList;
 	private SystemFrame	frame;
 	
 	private JButton exit;
@@ -22,11 +21,11 @@ public class PatientListPanel extends JPanel
 	 * @param patientList the patient list to displau
 	 * @param frame the frame to display the patientList
 	 */
-	public PatientListPanel(PatientList patientList, SystemFrame frame)
+	public PatientListPanel(SystemFrame frame)
 	{
 		this.setLayout(new BorderLayout());
 		
-		this.patientList = patientList;
+		PatientList patientList = frame.getPatientList();
 		this.frame = frame;
 		
 		JPanel panel = new JPanel();

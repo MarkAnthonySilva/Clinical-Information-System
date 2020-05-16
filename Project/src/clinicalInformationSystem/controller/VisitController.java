@@ -66,15 +66,26 @@ public class VisitController
 		String[] patientNames = new String[visitList.size()];
 		Date[] dateOfVisits = new Date[visitList.size()];
 		int[] sequenceNumbers = new int[visitList.size()];
+		int[] THIScores = new int[visitList.size()];
+		int[] TFIScores = new int[visitList.size()];
 		
 		for(int i = 0; i < visitList.size(); i++)
 		{
-			patientNames[i] = visitList.get(i).getPatient().getPatientName();
-			dateOfVisits[i] = visitList.get(i).getDateOfVisit();
-			sequenceNumbers[i] = visitList.get(i).getSequenceNumber();
+			patientNames[i] 		= visitList.get(i).getPatient().getPatientName();
+			dateOfVisits[i] 		= visitList.get(i).getDateOfVisit();
+			sequenceNumbers[i] 		= visitList.get(i).getSequenceNumber();
+			THIScores[i] 			= visitList.get(i).getTHIModel().calculateSeverity();
+			TFIScores[i] 			= 0;	//TODO Implement way to calculate TFI Scores
 		}
 		
+		if(visitList == frame.getVisitList())
+		{
 		this.visitListPanel.setData(patientNames, dateOfVisits, sequenceNumbers);
+		}
+		{
+		this.visitListPanel.setData(dateOfVisits, THIScores, TFIScores, sequenceNumbers);
+		}
+		
 		this.visitListPanel.addVisitListListener(new VisitListListener());
 	}
 	
