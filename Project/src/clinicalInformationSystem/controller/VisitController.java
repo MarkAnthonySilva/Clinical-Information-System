@@ -48,7 +48,7 @@ public class VisitController
 		this.visit = visit;
 		this.visitList = visitList;
 		this.visitPanel = visitPanel;
-		this.visitPanel.setVisitData(this.visit.getPatient().getPatientName(), this.visit.getDateOfVisit(), this.visit.getSequenceNumber());
+		this.visitPanel.setVisitData(this.visit.getPatient().getPatientName(), this.visit.getDateOfVisit(), this.visit.getSequenceNumber(), this.visit.getTHIModel().calculateSeverity(), -1);
 		this.visitPanel.addVisitListener(new VisitListener());
 	}
 	
