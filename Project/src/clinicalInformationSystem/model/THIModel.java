@@ -18,12 +18,11 @@ public class THIModel
 	private HashMap<Integer, Integer> answers;
 	
 	//click through faster for testing purposes
-	
+	/*
 	public static final String[] THIQuestionBank = {
 			"Because of your tinnitus, is it difficult for you to concentrate?"};
+	*/
 	
-	
-	/*
 	public static final String[] THIQuestionBank = {
 			"Because of your tinnitus, is it difficult for you to concentrate?",
 			"Does the loudness of your tinnitus make it difficult for you to hear people?",
@@ -51,7 +50,6 @@ public class THIModel
 			"Does your tinnitus get worse when you are under stress?",
 			"Does your tinnitus make you feel insecure?"
 	};
-	*/
 	
 	/**
 	 * Constructs a THI Model with an empty HashMap for answers
