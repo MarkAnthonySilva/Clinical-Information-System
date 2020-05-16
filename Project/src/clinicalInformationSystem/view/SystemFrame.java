@@ -23,9 +23,6 @@ public class SystemFrame extends JFrame
 	// Panel
 	private JPanel 				currentPanel;
 	
-//	private AddPatientPanel 	addPatientPanel;
-//	private PatientListPanel 	patientListPanel;
-
 	/**
 	 * Create the main system frame to be shown to user
 	 */
