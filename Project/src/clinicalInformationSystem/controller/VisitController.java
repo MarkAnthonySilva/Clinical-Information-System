@@ -48,7 +48,7 @@ public class VisitController
 		this.visit = visit;
 		this.visitList = visitList;
 		this.visitPanel = visitPanel;
-		this.visitPanel.setVisitData(this.visit.getPatient().getPatientName(), this.visit.getDateOfVisit(), this.visit.getSequenceNumber(), this.visit.getTHIModel().calculateSeverity(), -1);
+		this.visitPanel.setVisitData(this.visit.getPatient().getPatientName(), this.visit.getDateOfVisit(), this.visit.getSequenceNumber(), this.visit.getTHIModel().calculateSeverity(), this.visit.getTFIModel().calculateSeverity());
 		this.visitPanel.addVisitListener(new VisitListener());
 	}
 	
@@ -75,7 +75,7 @@ public class VisitController
 			dateOfVisits[i] 		= this.visitList.get(i).getDateOfVisit();
 			sequenceNumbers[i] 		= this.visitList.get(i).getSequenceNumber();
 			THIScores[i] 			= this.visitList.get(i).getTHIModel().calculateSeverity();
-			TFIScores[i] 			= 0;	//TODO Implement way to calculate TFI Scores
+			TFIScores[i] 			= this.visitList.get(i).getTFIModel().calculateSeverity();
 		}
 		
 		if(visitList == frame.getVisitList())
@@ -137,7 +137,7 @@ public class VisitController
 			}
 			else if (command.equals("View TFI"))
 			{
-				
+				frame.TFI(visit);
 			}
 			else if (command.equals("Delete"))
 			{

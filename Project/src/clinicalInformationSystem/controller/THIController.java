@@ -46,8 +46,7 @@ public class THIController
 						THI.answerQuestion(i, panel.getAnswer(i));
 					}
 					visit.setTHIModel(THI);
-					frame.displayVisit(visit);
-					//frame.addTFI(visit);
+					frame.TFI(visit);
 				} else
 				{
 					panel.displayErrorMessage("Please answer all questions.");
