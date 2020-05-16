@@ -113,7 +113,7 @@ public class PatientController implements ActionListener
 		{
 			if(this.visitList.getVisitsByPatient(patient).size() != 0)
 			{
-				frame.displayVisitList(visitList);
+				frame.displayVisitList(visitList.getVisitsByPatient(patient));
 			}
 			else
 			{
