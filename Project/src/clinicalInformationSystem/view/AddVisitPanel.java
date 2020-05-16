@@ -25,10 +25,10 @@ public class AddVisitPanel extends JPanel
 {
 	public static final String[] labelList = {"Patient Name", "Date (mm/dd/yyyy)", "Sequence Number"};
 	private JTextField[] labelTextFields;
-	JButton submit;		
-	JButton exit;
-	String[] patientNames;
-	JComboBox<String> patientDropDown;
+	private JButton addTHIAndTFI;
+	private JButton exit;
+	private String[] patientNames;
+	private JComboBox<String> patientDropDown;
 	
 	/**
 	 * Create a panel with form fields to enter about information of visit to be added
@@ -39,9 +39,9 @@ public class AddVisitPanel extends JPanel
 		//Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		submit = new JButton("Submit");		
+		addTHIAndTFI = new JButton("Add THI/TFI");
 		exit = new JButton("Exit");
-		buttonPanel.add(submit);
+		buttonPanel.add(addTHIAndTFI);
 		buttonPanel.add(exit);
 		
 		this.add(buttonPanel, BorderLayout.SOUTH);
@@ -87,7 +87,7 @@ public class AddVisitPanel extends JPanel
 	 */
 	public void addVisitListener(ActionListener listener)
 	{
-		submit.addActionListener(listener);
+		addTHIAndTFI.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
 	

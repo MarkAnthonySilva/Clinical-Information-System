@@ -144,6 +144,17 @@ public class SystemFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	public void THI(VisitModel visit)
+	{
+		THIPanel panel = new THIPanel();
+		THIController thiController = new THIController(this, visit, panel);
+		this.remove(currentPanel);
+		currentPanel = panel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
+	}
+	
 	/**
 	 * Repaint frame to display Visit
 	 * @param visit VisitModel holding details for visit

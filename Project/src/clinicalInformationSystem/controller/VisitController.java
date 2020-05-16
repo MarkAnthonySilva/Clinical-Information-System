@@ -119,6 +119,14 @@ public class VisitController
 			{
 				visitPanel.setEditable(true);
 			}
+			else if (command.equals("View THI"))
+			{
+				frame.THI(visit);
+			}
+			else if (command.equals("View TFI"))
+			{
+				
+			}
 			else if (command.equals("Delete"))
 			{
 				visitList.remove(visit);
@@ -173,7 +181,6 @@ public class VisitController
 				visitPanel.setVisible(false);
 			}
 		}
-		
 	}
 	
 	/**
@@ -212,7 +219,7 @@ public class VisitController
 		public void actionPerformed(ActionEvent e)
 		{
 			String command = e.getActionCommand();
-			if (command.equals("Submit"))
+			if (command.equals("Add THI/TFI"))
 			{
 				if (addVisitPanel.getPatient() != null && addVisitPanel.getDateText() != null && addVisitPanel.getSequenceNumberText() != null)
 				{
@@ -240,8 +247,9 @@ public class VisitController
 						addVisitPanel.displayErrorMessage("Please enter a valid sequence number.");
 						return;
 					}
-					visitList.add(new VisitModel(patientList.getPatient(addVisitPanel.getPatient()), formattedDate, seqNumber));
-					frame.displayVisitList();
+					VisitModel visitToAdd = new VisitModel(patientList.getPatient(addVisitPanel.getPatient()), formattedDate, seqNumber);
+					visitList.add(visitToAdd);
+					frame.THI(visitToAdd);
 				} else
 				{
 					addVisitPanel.displayErrorMessage("Please fill in all fields.");

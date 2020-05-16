@@ -16,19 +16,21 @@ import clinicalInformationSystem.SpringUtilities;
 
 public class VisitPanel extends JPanel
 {
-	JPanel visitPanel;
-	JButton edit;
-	JButton delete;
-	JButton exit;
-	JButton backToVisits;
+	private JPanel visitPanel;
+	private JButton edit;
+	private JButton viewTHI;
+	private JButton viewTFI;
+	private JButton delete;
+	private JButton exit;
+	private JButton backToVisits;
 	
-	String patientName;
-	Date date;
-	int seqNumber;
+	private String patientName;
+	private Date date;
+	private int seqNumber;
 	
-	JTextField patientNameTextField;
-	JTextField dateTextField;
-	JTextField seqNumberTextField;
+	private JTextField patientNameTextField;
+	private JTextField dateTextField;
+	private JTextField seqNumberTextField;
 	
 	public VisitPanel()
 	{
@@ -60,15 +62,26 @@ public class VisitPanel extends JPanel
 		
 		//Create button panel
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
+		buttonPanel.setLayout(new BorderLayout());
+		JPanel buttonPanelRow1 = new JPanel();
+		JPanel buttonPanelRow2 = new JPanel();
+		buttonPanelRow1.setLayout(new FlowLayout());
+		buttonPanelRow2.setLayout(new FlowLayout());
 		edit = new JButton("Edit");
+		viewTHI = new JButton("View THI");
+		viewTFI = new JButton("View TFI");
 		delete = new JButton("Delete");
 		exit = new JButton("Exit");
 		backToVisits = new JButton("Back to Visits");
-		buttonPanel.add(edit);
-		buttonPanel.add(delete);
-		buttonPanel.add(exit);
-		buttonPanel.add(backToVisits);
+		buttonPanelRow1.add(edit);
+		buttonPanelRow1.add(viewTHI);
+		buttonPanelRow1.add(viewTFI);
+		buttonPanelRow2.add(delete);
+		buttonPanelRow2.add(exit);
+		buttonPanelRow2.add(backToVisits);
+		
+		buttonPanel.add(buttonPanelRow1, BorderLayout.NORTH);
+		buttonPanel.add(buttonPanelRow2, BorderLayout.SOUTH);
 		
 		setEditable(false);
 		
@@ -116,6 +129,8 @@ public class VisitPanel extends JPanel
 	public void addVisitListener(ActionListener listener)
 	{
 		edit.addActionListener(listener);
+		viewTHI.addActionListener(listener);
+		viewTFI.addActionListener(listener);
 		delete.addActionListener(listener);
 		exit.addActionListener(listener);
 		backToVisits.addActionListener(listener);

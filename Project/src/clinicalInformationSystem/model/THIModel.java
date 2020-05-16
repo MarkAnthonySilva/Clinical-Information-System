@@ -15,9 +15,7 @@ public class THIModel
 	private static final int SOMETIMES_SCORE = 2;
 	private static final int NO_SCORE = 0;
 	
-	private int THIScore;
-	
-	private HashMap<Integer, Integer> answers;			// Key = question number; Value = answer
+	private HashMap<Integer, Integer> answers;
 	
 	public static final String[] THIQuestionBank = {
 			"Because of your tinnitus, is it difficult for you to concentrate?",
@@ -58,19 +56,54 @@ public class THIModel
 	/**
 	 * Answer the question corresponding to the question number with the given response
 	 * @param question the question to answer (1 - 25)
-	 * @param response the answer to the question (0, 2, 4)
+	 * @param response the answer to the question (Yes, Sometimes, No)
 	 * @return True = question answered; False = question not answered
 	 */
-	public boolean answerQuestion(int questionNumber, int response)
+	public boolean answerQuestion(int questionNumber, String response)
 	{
 		if (questionNumber > THIQuestionBank.length || questionNumber < 1)
 			return false;
-		else if (response == YES_SCORE || response == SOMETIMES_SCORE || response == NO_SCORE)
+		switch(response.toLowerCase())
 		{
-			answers.put(questionNumber, response);
+		case "yes":
+			answers.put(questionNumber, YES_SCORE);
+			return true;
+		case "sometimes":
+			answers.put(questionNumber, SOMETIMES_SCORE);
+			return true;
+		case "no":
+			answers.put(questionNumber, NO_SCORE);
 			return true;
 		}
 		return false;
+	}
+	
+	public String getAnswer(int questionNumber)
+	{
+		switch(answers.get(questionNumber))
+		{
+		case YES_SCORE:
+			return "Yes";
+		case SOMETIMES_SCORE:
+			return "Sometimes";
+		case NO_SCORE:
+			return "No";
+		}
+		return null;
+	}
+	
+	public String[] getAllAnswers()
+	{
+		if (allQuestionsAnswered())
+		{
+			String[] allAnswers = new String[THIQuestionBank.length];
+			for (int i = 1; i <= THIQuestionBank.length; i++)
+			{
+				allAnswers[i - 1] = getAnswer(i);
+			}
+			return allAnswers;
+		}
+		return null;
 	}
 	
 	/**
@@ -95,11 +128,10 @@ public class THIModel
 	{
 		if(allQuestionsAnswered())
 		{
-			int tempScore = 0;
+			int THIScore = 0;
 			for (int i = 1; i <= THIQuestionBank.length; i++) {
-				tempScore += answers.get(i);
+				THIScore += answers.get(i);
 			}
-			THIScore = tempScore;
 			return THIScore;
 		}
 		return -1;

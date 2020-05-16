@@ -41,7 +41,7 @@ public class MenuController implements ActionListener
 		}
 		else
 		{
-			frame.displayErrorMessage("Log in first");
+			frame.displayErrorMessage("Log In First.");
 		}
 	}
 }
