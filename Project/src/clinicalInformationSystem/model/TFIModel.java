@@ -105,7 +105,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 1; i <= 25; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
