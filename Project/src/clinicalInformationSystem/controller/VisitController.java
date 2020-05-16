@@ -71,10 +71,10 @@ public class VisitController
 		
 		for(int i = 0; i < visitList.size(); i++)
 		{
-			patientNames[i] 		= visitList.get(i).getPatient().getPatientName();
-			dateOfVisits[i] 		= visitList.get(i).getDateOfVisit();
-			sequenceNumbers[i] 		= visitList.get(i).getSequenceNumber();
-			THIScores[i] 			= visitList.get(i).getTHIModel().calculateSeverity();
+			patientNames[i] 		= this.visitList.get(i).getPatient().getPatientName();
+			dateOfVisits[i] 		= this.visitList.get(i).getDateOfVisit();
+			sequenceNumbers[i] 		= this.visitList.get(i).getSequenceNumber();
+			THIScores[i] 			= this.visitList.get(i).getTHIModel().calculateSeverity();
 			TFIScores[i] 			= 0;	//TODO Implement way to calculate TFI Scores
 		}
 		
@@ -82,6 +82,7 @@ public class VisitController
 		{
 		this.visitListPanel.setData(patientNames, dateOfVisits, sequenceNumbers);
 		}
+		else
 		{
 		this.visitListPanel.setData(dateOfVisits, THIScores, TFIScores, sequenceNumbers);
 		}

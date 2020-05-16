@@ -85,13 +85,7 @@ public class VisitListPanel extends JPanel
 		
 		this.add(allVisitsPanel, BorderLayout.NORTH);
 	}
-	
-	/**
-	 * Set data of visits to be displayed in panel
-	 * @param patientNames Patient name for each visit
-	 * @param dateOfVisits Date of each visit
-	 * @param sequenceNumbers Sequence number of each visit
-	 */
+
 	public void setData(Date[] dateOfVisits, int[] THIScores, int[] TFIScores, int[] sequenceNumbers)
 	{
 		data = new String[dateOfVisits.length][columnNames1.length];
