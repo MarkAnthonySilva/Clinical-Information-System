@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import clinicalInformationSystem.SpringUtilities;
+import clinicalInformationSystem.THIScoreGrade;
 
 public class VisitPanel extends JPanel
 {
@@ -27,10 +28,14 @@ public class VisitPanel extends JPanel
 	private String patientName;
 	private Date date;
 	private int seqNumber;
+	private int THIScore;
+	private int TFIScore;
 	
 	private JTextField patientNameTextField;
 	private JTextField dateTextField;
 	private JTextField seqNumberTextField;
+	private JTextField THIScoreTextField;
+	private JTextField TFIScoreTextField;
 	
 	public VisitPanel()
 	{
@@ -55,8 +60,20 @@ public class VisitPanel extends JPanel
 		seqNumberLabel.setLabelFor(seqNumberTextField);
 		visitPanel.add(seqNumberTextField);
 		
+		JLabel THIScoreLabel = new JLabel("THI Score", JLabel.TRAILING);
+		visitPanel.add(THIScoreLabel);
+		THIScoreTextField = new JTextField(10);
+		THIScoreLabel.setLabelFor(THIScoreTextField);
+		visitPanel.add(THIScoreTextField);
+		
+		JLabel TFIScoreLabel = new JLabel("TFI Score", JLabel.TRAILING);
+		visitPanel.add(TFIScoreLabel);
+		TFIScoreTextField = new JTextField(10);
+		TFIScoreLabel.setLabelFor(TFIScoreTextField);
+		visitPanel.add(TFIScoreTextField);
+		
 		SpringUtilities.makeCompactGrid(visitPanel, 
-				3, 2, 	//# of rows, # of columns
+				5, 2, 					//# of rows, # of columns
 				5, 5,					//Initial x and y coordinates	
 				5, 5);					//Padding between labels and textfield
 		
@@ -89,15 +106,19 @@ public class VisitPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
-	public void setVisitData(String patientName, Date date, int seqNumber)
+	public void setVisitData(String patientName, Date date, int seqNumber, int THIScore, int TFIScore)
 	{
 		this.patientName = patientName;
 		this.date = date;
 		this.seqNumber = seqNumber;
+		this.THIScore = THIScore;
+		this.TFIScore = TFIScore;
 		
 		patientNameTextField.setText(this.patientName);
 		dateTextField.setText(VisitListPanel.formatDate(this.date));
 		seqNumberTextField.setText(Integer.toString(this.seqNumber));
+		THIScoreTextField.setText(String.format("%d (%s)", this.THIScore, THIScoreGrade.getGrade(this.THIScore).getDescription()));
+		TFIScoreTextField.setText(Integer.toString(this.TFIScore));
 	}
 	
 	public String getPatientName()
@@ -118,6 +139,9 @@ public class VisitPanel extends JPanel
 	public void setEditable(boolean isEditable)
 	{
 		patientNameTextField.setEditable(false);
+		THIScoreTextField.setEditable(false);
+		TFIScoreTextField.setEditable(false);
+		
 		dateTextField.setEditable(isEditable);
 		seqNumberTextField.setEditable(isEditable);
 		if (isEditable)

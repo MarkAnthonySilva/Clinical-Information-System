@@ -22,7 +22,8 @@ import clinicalInformationSystem.DataTableModel;
  */
 public class VisitListPanel extends JPanel
 {
-	public static final String[] columnNames = {"Patient Name", "Date", "Sequence Number"};	
+	public static final String[] columnNames 	= {"Patient Name", "Date", "Sequence Number"};	
+	public static final String[] columnNames1 	= {"Date", "THI Score", "TFI Score", "Sequence Number"};
 	JTable table;
 	JButton exit;
 	String[][] data;
@@ -76,6 +77,45 @@ public class VisitListPanel extends JPanel
 		
 		table = new JTable(data, columnNames);
 		DataTableModel model = new DataTableModel(data, columnNames);
+		table.setModel(model);
+		table.setBounds(30, 40, this.getWidth() , this.getHeight());
+		
+		JScrollPane sp = new JScrollPane(table);
+		allVisitsPanel.add(sp);
+		
+		this.add(allVisitsPanel, BorderLayout.NORTH);
+	}
+
+	public void setData(Date[] dateOfVisits, int[] THIScores, int[] TFIScores, int[] sequenceNumbers)
+	{
+		data = new String[dateOfVisits.length][columnNames1.length];
+		
+		for (int row = 0; row < dateOfVisits.length; row++)
+		{
+			for (int col = 0; col < columnNames1.length; col++)
+			{
+				switch(col)
+				{
+				case 0:
+					data[row][col] = formatDate(dateOfVisits[row]);
+					break;
+				case 1:
+					data[row][col] = Integer.toString(THIScores[row]);
+					break;
+				case 2:
+					data[row][col] = Integer.toString(TFIScores[row]);
+					break;
+				case 3:
+					data[row][col] = Integer.toString(sequenceNumbers[row]);
+					break;
+				}
+			}
+		}
+		
+		JPanel allVisitsPanel = new JPanel();
+		
+		table = new JTable(data, columnNames1);
+		DataTableModel model = new DataTableModel(data, columnNames1);
 		table.setModel(model);
 		table.setBounds(30, 40, this.getWidth() , this.getHeight());
 		

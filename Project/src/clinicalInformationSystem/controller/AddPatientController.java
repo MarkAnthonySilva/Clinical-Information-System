@@ -12,7 +12,7 @@ public class AddPatientController implements ActionListener
 	private AddPatientPanel panel;
 	private SystemFrame 	frame;
 	
-	public AddPatientController( SystemFrame frame, AddPatientPanel panel)
+	public AddPatientController(SystemFrame frame, AddPatientPanel panel)
 	{
 		this.panel = panel;
 		this.frame = frame;
@@ -30,7 +30,7 @@ public class AddPatientController implements ActionListener
 			boolean isFull = true;
 			
 			//Checks if all the patientData has been filled
-			for(String s: valuesList)
+			for(String s: patientData.keySet())
 			{
 				if(s.contentEquals(""))
 				{
