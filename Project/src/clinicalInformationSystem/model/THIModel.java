@@ -15,63 +15,7 @@ public class THIModel
 	private static final int SOMETIMES_SCORE = 2;
 	private static final int NO_SCORE = 0;
 	
-	private int THIScore;
-	
-	public enum THIScoreGrade{
-		GRADE_1("Grade 1: Slight or no handicap", 0, 16),
-		GRADE_2("Grade 2: Mild handicap", 18, 36),
-		GRADE_3("Grade 3: Moderate handicap", 38, 56),
-		GRADE_4("Grade 4: Severe handicap", 58, 76),
-		GRADE_5("Grade 5: Catastrophic handicap", 78, 100);
-		
-		THIScoreGrade(String description, int minScore, int maxScore)
-		{
-			this.description = description;
-			this.minScore = minScore;
-			this.maxScore = maxScore;
-		}
-		
-		public static final THIScoreGrade getGrade(int score)
-		{
-			if (score > THIScoreGrade.GRADE_5.getMaxScore() || score < THIScoreGrade.GRADE_1.getMinScore())
-				return null;
-			else if ((score % 2) != 0)
-				return null;
-			else if (score >= THIScoreGrade.GRADE_5.getMinScore())
-				return THIScoreGrade.GRADE_5;
-			else if (score >= THIScoreGrade.GRADE_4.getMinScore())
-				return THIScoreGrade.GRADE_4;
-			else if (score >= THIScoreGrade.GRADE_3.getMinScore())
-				return THIScoreGrade.GRADE_3;
-			else if (score >= THIScoreGrade.GRADE_2.getMinScore())
-				return THIScoreGrade.GRADE_2;
-			else if (score >= THIScoreGrade.GRADE_1.getMinScore())
-				return THIScoreGrade.GRADE_1;
-			else
-				return null;
-		}
-		
-		public String getDescription()
-		{
-			return description;
-		}
-		
-		public int getMinScore()
-		{
-			return minScore;
-		}
-		
-		public int getMaxScore()
-		{
-			return maxScore;
-		}
-		
-		private String description;
-		private int minScore;
-		private int maxScore;
-	}
-	
-	private HashMap<Integer, Integer> answers;			// Key = question number; Value = answer
+	private HashMap<Integer, Integer> answers;
 	
 	public static final String[] THIQuestionBank = {
 			"Because of your tinnitus, is it difficult for you to concentrate?",
@@ -112,19 +56,54 @@ public class THIModel
 	/**
 	 * Answer the question corresponding to the question number with the given response
 	 * @param question the question to answer (1 - 25)
-	 * @param response the answer to the question (0, 2, 4)
+	 * @param response the answer to the question (Yes, Sometimes, No)
 	 * @return True = question answered; False = question not answered
 	 */
-	public boolean answerQuestion(int questionNumber, int response)
+	public boolean answerQuestion(int questionNumber, String response)
 	{
 		if (questionNumber > THIQuestionBank.length || questionNumber < 1)
 			return false;
-		else if (response == YES_SCORE || response == SOMETIMES_SCORE || response == NO_SCORE)
+		switch(response.toLowerCase())
 		{
-			answers.put(questionNumber, response);
+		case "yes":
+			answers.put(questionNumber, YES_SCORE);
+			return true;
+		case "sometimes":
+			answers.put(questionNumber, SOMETIMES_SCORE);
+			return true;
+		case "no":
+			answers.put(questionNumber, NO_SCORE);
 			return true;
 		}
 		return false;
+	}
+	
+	public String getAnswer(int questionNumber)
+	{
+		switch(answers.get(questionNumber))
+		{
+		case YES_SCORE:
+			return "Yes";
+		case SOMETIMES_SCORE:
+			return "Sometimes";
+		case NO_SCORE:
+			return "No";
+		}
+		return null;
+	}
+	
+	public String[] getAllAnswers()
+	{
+		if (allQuestionsAnswered())
+		{
+			String[] allAnswers = new String[THIQuestionBank.length];
+			for (int i = 1; i <= THIQuestionBank.length; i++)
+			{
+				allAnswers[i - 1] = getAnswer(i);
+			}
+			return allAnswers;
+		}
+		return null;
 	}
 	
 	/**
@@ -149,11 +128,10 @@ public class THIModel
 	{
 		if(allQuestionsAnswered())
 		{
-			int tempScore = 0;
+			int THIScore = 0;
 			for (int i = 1; i <= THIQuestionBank.length; i++) {
-				tempScore += answers.get(i);
+				THIScore += answers.get(i);
 			}
-			THIScore = tempScore;
 			return THIScore;
 		}
 		return -1;
