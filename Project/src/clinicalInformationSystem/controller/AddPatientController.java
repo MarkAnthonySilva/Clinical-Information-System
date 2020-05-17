@@ -45,7 +45,6 @@ public class AddPatientController implements ActionListener
 				String dor = patientData.get("Register Date (mm/dd/yyyy)");			
 				Date formattedDob = null;
 				Date formattedDor = null;
-				System.out.println("FULL");
 				try
 				{
 					SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
