@@ -2,10 +2,13 @@ package clinicalInformationSystem.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import javax.swing.text.NumberFormatter;
 
 import clinicalInformationSystem.SpringUtilities;
 import clinicalInformationSystem.controller.*;
@@ -78,6 +81,7 @@ public class AddPatientPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
 		JTextArea textarea = new JTextArea(20, 20);
+		textarea.setLineWrap(true);
 		JLabel label = new JLabel("Notes");
 		label.setLabelFor(textarea);
 		JPanel panel1 = new JPanel();
@@ -104,7 +108,7 @@ public class AddPatientPanel extends JPanel
 			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
 		}
 		
-		patientDataString.put("Notes", patientData.get("Notes").getText());
+		patientDataString.put("Notes", patientData.get("Notes").getText().trim());
 		return patientDataString;
 	}
 	

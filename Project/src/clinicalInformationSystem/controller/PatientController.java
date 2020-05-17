@@ -44,69 +44,81 @@ public class PatientController implements ActionListener
 			frame.displayPatientList();
 		}
 		else if (command.equals("Submit"))
-		{
+		{	
 			HashMap<String, String> patientData = panel.getDataMap();
 			ArrayList<String> valuesList = new ArrayList<>(patientData.values());
 			boolean isFull = true;
 			
 			//Checks if all the patientData has been filled
-			for(String s: valuesList)
+			for (String s: patientData.keySet())
 			{
-				if(s.contentEquals(""))
+				if (patientData.get(s).equals(""))
 				{
 					isFull = false;
 					break;
 				}
 			}
 			
-			String dob = patientData.get("Date of Birth");		
-			String dor = patientData.get("Register Date");			
-			Date formattedDob = null;
-			Date formattedDor = null;
-			
-			try
+			if (isFull)
 			{
-				SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
+				String dob = patientData.get("Date of Birth (mm/dd/yyyy)");		
+				String dor = patientData.get("Register Date (mm/dd/yyyy)");			
+				Date formattedDob = null;
+				Date formattedDor = null;
+				System.out.println("FULL");
+				try
+				{
+					SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
+					
+					formattedDob = standardDateFormat.parse(dob);
+					formattedDor = standardDateFormat.parse(dor);
+				}
+				catch (ParseException e1)
+				{
+					panel.displayErrorMessage("Invalid Date Format");
+					return;
+				}
 				
-				formattedDob = standardDateFormat.parse(dob);
-				formattedDor = standardDateFormat.parse(dor);
-			}
-			catch (ParseException e1)
-			{
-				panel.displayErrorMessage("Invalid Date Format");
-				return;
-			}
-			
-			if(isFull)
-			{
-				frame.getPatientList().removePatient(patient.getPatientName());
+				String id = patientData.get("ID Number").replaceAll("-", "");
+				String sn = patientData.get("Social Security Number").replaceAll("-", "");
+				String in = patientData.get("Insurance Number").replaceAll("-", "");
+				int parsedID, parsedSN, parsedIN;
 				
-				String id = patientData.get("ID Number").replace("-", "");
-				String sn = patientData.get("Social Security Number").replace("-", "");
-				String in = patientData.get("Insurance Number").replace("-", "");
-						
-				//Required
-				this.patient.setPatientName(patientData.get("Name"));
-				this.patient.setIdNumber(Integer.parseInt(id));
-				this.patient.setDateOfBirth(formattedDob);
-				this.patient.setGender(patientData.get("Gender"));
-				this.patient.setPhoneNumber(patientData.get("Phone Number"));
-				this.patient.setAddress(patientData.get("Address"));
-				this.patient.setsSN(Integer.parseInt(sn));
-				this.patient.setInsuranceNumber(Integer.parseInt(in));
-				this.patient.setDateOfRegistration(formattedDor);
+				try
+				{
+					parsedID = Integer.parseInt(id);
+					parsedSN = Integer.parseInt(sn);
+					parsedIN = Integer.parseInt(in);
+				}
+				catch (NumberFormatException e2)
+				{
+					panel.displayErrorMessage("Please enter a valid number");
+					return;
+				}
 				
-				//Additional
-				this.patient.setNotes(patientData.get("Notes"));
-
+				PatientModel patient = new PatientModel.Builder()
+						.withPatientName(patientData.get("Name"))
+						.withIdNumber(parsedID)
+						.withDateOfBirth(formattedDob)
+						.withGender(patientData.get("Gender"))
+						.withPhoneNumber(patientData.get("Phone Number"))
+						.withAddress(patientData.get("Street Address") + " " + patientData.get("City") 
+									+ " " + patientData.get("State") + " " + patientData.get("Zip Code")
+									+ " " + patientData.get("Country"))
+						.withSSN(parsedSN)
+						.withInsuranceNumber(parsedIN)
+						.withDateOfRegistration(formattedDor)
+						.build();
+				
+				patient.setNotes(patientData.get("Notes"));
 				// TODO add the rest of optional parameter
 				
-				frame.getPatientList().addPatient(patient.getPatientName(), patient);
+				frame.getPatientList().addPatient(patientData.get("Name"), patient);
 				frame.displayPatientList();
 			}
 			else
 			{
-				panel.displayErrorMessage("Not all fields have been filled");
+				panel.displayErrorMessage("Not all required fields have been filled");
 			}
 		}
 		else if (command.equals("Visits"))
