@@ -6,6 +6,8 @@ import clinicalInformationSystem.controller.*;
 import clinicalInformationSystem.model.*;
 
 import java.awt.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class SystemFrame extends JFrame
 {
@@ -35,6 +37,28 @@ public class SystemFrame extends JFrame
 		userAuthorized = false;
 		
 		patientList = new PatientList();
+		
+		//add a test patient
+		try {
+			SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+			PatientModel patient = new PatientModel.Builder()
+					.withPatientName("Test patient")
+					.withIdNumber(12345)
+					.withDateOfBirth(standardDateFormat.parse("01/01/1990"))
+					.withGender("male")
+					.withPhoneNumber("4081234567")
+					.withAddress("111 St San Jose CA 95129 USA")
+					.withSSN(123456789)
+					.withInsuranceNumber(222222)
+					.withDateOfRegistration(standardDateFormat.parse("01/01/2020"))
+					.build();
+			patientList.addPatient("Test patient", patient);
+		}
+		catch (ParseException e1)
+		{
+		}
+		//end of add a test patient
+		
 		visitList = new VisitList();
 		
 		//Create Menus and Menu Items
@@ -145,6 +169,17 @@ public class SystemFrame extends JFrame
 	{
 		THIPanel panel = new THIPanel();
 		THIController thiController = new THIController(this, visit, panel);
+		this.remove(currentPanel);
+		currentPanel = panel;
+		this.add(currentPanel);
+		this.pack();
+		this.setVisible(true);
+	}
+	
+	public void TFI(VisitModel visit)
+	{
+		TFIPanel panel = new TFIPanel();
+		TFIController tfiController = new TFIController(this, visit, panel);
 		this.remove(currentPanel);
 		currentPanel = panel;
 		this.add(currentPanel);

@@ -14,6 +14,7 @@ public class VisitModel
 	private int sequenceNumber;		//0-initial visit, 1-first visit, 2-second visit, etc.
 	
 	private THIModel THI;
+	private TFIModel TFI;
 	
 	/**
 	 * Creates a new visit with the given parameters.
@@ -65,6 +66,15 @@ public class VisitModel
 	}
 	
 	/**
+	 * Get the TFI Model associated with this visit
+	 * @return TFI Model
+	 */
+	public TFIModel getTFIModel()
+	{
+		return TFI;
+	}
+	
+	/**
 	 * Set the patient for this visit
 	 * @param patient Patient Model of Visit
 	 */
@@ -98,5 +108,14 @@ public class VisitModel
 	public void setTHIModel(THIModel THI)
 	{
 		this.THI = THI;
+	}
+	
+	/**
+	 * Set the TFI Model for this visit
+	 * @param TFI TFIModel of the visit
+	 */
+	public void setTFIModel(TFIModel TFI)
+	{
+		this.TFI = TFI;
 	}
 }
