@@ -8,10 +8,24 @@ import java.util.*;
 
 public class TFIPanel extends JPanel{
 	
+	private final int SPACES = 340;  //ghetto formatting tool for scorePanel so that its text fields don't fill out the entire box 
+	
 	private JButton done;
 	private String[] questionBank;
 	private JLabel[] questionLabels;
 	private JTextField[] textGroup;
+	private JTextField[] scoreGroup;
+	
+	public static final String[] labelList = {"I: INTRUSIVE (unpleasantness, intrusiveness, persistence) #1-#3",
+											  "SC: SENSE OF CONTROL (reduced sense of control) #4-#6", 
+											  "C: COGNITIVE (cognitive interference) #7-#9",
+											  "SL: SLEEP (sleep disturbance) #10-#12", 
+											  "A: AUDITORY (auditory difficulties attributed to tinnitus) #13-#15", 
+											  "R: RELAXATION (interference with relaxation) #16-#18", 
+											  "Q: QUALITY OF LIFE (QOL) (quality of life reduced) #19-#22", 
+											  "E: EMOTIONAL (emotional distress) #23-#25",
+											  "Overall Score"};
+	
 	
 	public TFIPanel()
 	{
@@ -21,6 +35,38 @@ public class TFIPanel extends JPanel{
 		buttonPanel.setLayout(new FlowLayout());
 		done = new JButton("Done");		
 		buttonPanel.add(done);
+		
+		
+		//Construct score Panel of Spring layout
+		JPanel scorePanel = new JPanel();
+		SpringLayout layout =  new SpringLayout();
+		scorePanel.setLayout(layout);
+				
+		//Construct all label and text fields for the score panel
+		scoreGroup = new JTextField[labelList.length];
+		for (int i = 0; i < labelList.length; i++)
+		{
+			JLabel label = new JLabel(labelList[i], JLabel.LEFT);
+			scorePanel.add(label);
+			scoreGroup[i] = new JTextField(5);
+			scoreGroup[i].setEditable(false);
+			label.setLabelFor(scoreGroup[i]);
+			scorePanel.add(scoreGroup[i]);
+			
+			String space = ""; int numberOfSpaces = SPACES;
+			for(int j = 0; j < numberOfSpaces; j++)
+				space += " ";
+			JLabel blank = new JLabel(space);
+			scorePanel.add(blank);
+		}
+				
+			SpringUtilities.makeCompactGrid(scorePanel, 
+											labelList.length, 3, 	//# of rows, # of columns
+											5, 5,					//Initial x and y coordinates
+											5, 5);					//Padding between labels and textfield
+			
+		this.add(scorePanel, BorderLayout.CENTER);
+		
 		
 		this.add(buttonPanel, BorderLayout.SOUTH);	
 	}
@@ -48,41 +94,14 @@ public class TFIPanel extends JPanel{
 		
 		this.add(formPanel, BorderLayout.NORTH);
 		
-		
-		/*
-		//Construct all label and text fields for the form panel
-		JLabel title = new JLabel("For each question, enter a number between one 1 and 10");
-		this.add(title, BorderLayout.NORTH);
-		tfiData = new HashMap<>();
-		for (int i = 0; i < labelList.length; i++)
-		{
-			JLabel label = new JLabel(labelList[i], JLabel.LEFT);
-			formPanel.add(label);
-			JTextField textField = new JTextField(5);
-			label.setLabelFor(textField);
-			formPanel.add(textField);
-			
-			tfiData.put(labelList[i], textField);
-		}
-		
-		SpringUtilities.makeCompactGrid(formPanel, 
-										labelList.length, 2, 	//# of rows, # of columns
-										5, 5,					//Initial x and y coordinates
-										5, 5);					//Padding between labels and textfield
+	}
 	
-		this.add(formPanel, BorderLayout.CENTER);
-		
-		//Create button panel
-		JPanel buttonPanel 	= new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
-		submit	 	= new JButton("Submit");	
-		exit	 	= new JButton("Exit");
-		
-		buttonPanel.add(submit);
-		buttonPanel.add(exit);
-		
-		this.add(buttonPanel, BorderLayout.SOUTH);
-		*/
+	public void setScores(int[] scores)
+	{
+		for(int i = 0; i < labelList.length; i++)
+		{
+			scoreGroup[i].setText(String.format("%d", scores[i]));
+		}
 	}
 	
 	/**
@@ -97,7 +116,7 @@ public class TFIPanel extends JPanel{
 		{
 			if(answers[i] != -1)
 				textGroup[i].setText(String.format("%d", answers[i]));
-			textGroup[i].setEnabled(false);
+			textGroup[i].setEditable(false);
 		}
 	}
 	

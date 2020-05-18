@@ -3,7 +3,6 @@ import javax.swing.JFrame;
 
 import clinicalInformationSystem.view.SystemFrame;
 
-//testt
 public class SystemTester
 {
 	

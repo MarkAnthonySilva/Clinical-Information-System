@@ -13,6 +13,14 @@ public class TFIModel
 {
 	private HashMap<Integer, Integer> answers; //The key is the number of the Question, Value is the answer
 	
+	//click through faster for testing purposes
+	/*
+	public static final String[] TFIQuestionBank = {
+			"Over the past week, what percentage of your time awake were you consciously AWARE OF your tinnitus? (0 = 0% aware, 10 = 100% aware)"};
+	*/
+	
+	
+	
 	public static final String[] TFIQuestionBank = {
 			"Over the past week, what percentage of your time awake were you consciously AWARE OF your tinnitus? (0 = 0% aware, 10 = 100% aware)",
 			"Over the past week, how STRONG or LOUD was your tinnitus? (0 = not at all strong or loud, 10 = extremely strong or loud)",
@@ -40,6 +48,7 @@ public class TFIModel
 			"Over the past week, how BOTHERED or UPSET have you been because of your tinnitus? (0 = not at all bothered or upset, 10 = extremely bothered or upset)",
 			"Over the past week, how DEPRESSED were you because of your tinnitus? (0 = not at all depressed, 10 = extremely depressed)",
 	};
+	
 	
 	/**
 	 * Constructs a TFI Model with an empty HashMap
@@ -103,7 +112,7 @@ public class TFIModel
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 1; i <= 25; i++)
+		for(int i = 1; i <= TFIQuestionBank.length; i++)
 		{
 			if(answers.get(i) == -1)
 				omissions++;
@@ -132,7 +141,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 1; i <= 3; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -157,7 +166,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 4; i <= 6; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -182,7 +191,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 7; i <= 9; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -207,7 +216,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 10; i <= 12; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -232,7 +241,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 13; i <= 15; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -257,7 +266,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 16; i <= 18; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -282,7 +291,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 19; i <= 22; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -307,7 +316,7 @@ public class TFIModel
 		double sum = 0;
 		for(int i = 23; i <= 25; i++)
 		{
-			if(answers.get(i) == null)
+			if(answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
@@ -319,5 +328,35 @@ public class TFIModel
 			return (int)EScore;
 		}
 		return -1;
+	}
+	
+	/**
+	 * Calculate all the subscale scores and the overall score in this order
+	 * I: INTRUSIVE (unpleasantness, intrusiveness, persistence)
+	 * SC: SENSE OF CONTROL (reduced sense of control)
+	 * C: COGNITIVE (cognitive interference)
+	 * SL: SLEEP (sleep disturbance)
+     * A: AUDITORY (auditory difficulties attributed to tinnitus) 
+	 * R: RELAXATION (interference with relaxation)
+	 * Q: QUALITY OF LIFE (QOL) (quality of life reduced) 
+	 * E: EMOTIONAL (emotional distress)
+	 * Overall Score 
+	 * @return
+	 */
+	public int[] calculateAll()
+	{
+		int[] scores = new int[9];
+		
+		scores[0] = calculateI();
+		scores[1] = calculateSC();
+		scores[2] = calculateC();
+		scores[3] = calculateSL();
+		scores[4] = calculateA();
+		scores[5] = calculateR();
+		scores[6] = calculateQ();
+		scores[7] = calculateE();
+		scores[8] = calculateSeverity();
+		
+		return scores;
 	}
 }

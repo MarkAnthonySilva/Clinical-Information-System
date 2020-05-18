@@ -51,6 +51,7 @@ public class THIModel
 			"Does your tinnitus make you feel insecure?"
 	};
 	
+	
 	/**
 	 * Constructs a THI Model with an empty HashMap for answers
 	 */
