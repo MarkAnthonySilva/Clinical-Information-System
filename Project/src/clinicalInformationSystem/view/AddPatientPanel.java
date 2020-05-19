@@ -37,6 +37,9 @@ public class AddPatientPanel extends JPanel
 	
 	// TODO Add Optional Parameters to labelList
 	
+	/**
+	 * Constructs an AddPatientPanel that allows the input of 
+	 */
 	public AddPatientPanel()
 	{	
 		this.setLayout(new BorderLayout());
