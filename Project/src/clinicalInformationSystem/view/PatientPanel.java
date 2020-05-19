@@ -86,6 +86,7 @@ public class PatientPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
 		JTextArea textarea = new JTextArea(20, 20);
+		textarea.setLineWrap(true);
 		JLabel label = new JLabel("Notes");
 		label.setLabelFor(textarea);
 		JPanel panel1 = new JPanel();
