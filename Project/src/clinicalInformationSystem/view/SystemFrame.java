@@ -89,6 +89,10 @@ public class SystemFrame extends JFrame
 		displayLogIn();
 	}
 	
+	/**
+	 * Register the menucontroller for this frame
+	 * @param menuController the controller that listens for the actions of the menu
+	 */
 	public void registerListeners(MenuController menuController)
 	{
 		//Register all menu items to be buttons with action listener
@@ -165,6 +169,10 @@ public class SystemFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Display this THI panel for the given visit
+	 * @param visit the visit to display the THI panel for
+	 */
 	public void THI(VisitModel visit)
 	{
 		THIPanel panel = new THIPanel();
@@ -176,6 +184,10 @@ public class SystemFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Display this TFI panel for the given visit
+	 * @param visit the visit to display the TFI panel for
+	 */
 	public void TFI(VisitModel visit)
 	{
 		TFIPanel panel = new TFIPanel();
