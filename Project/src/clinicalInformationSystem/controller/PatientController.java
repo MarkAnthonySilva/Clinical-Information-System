@@ -77,27 +77,49 @@ public class PatientController implements ActionListener
 			
 			if (isFull)
 			{
-				String dob = patientData.get("Date of Birth (mm/dd/yyyy)");		
-				String dor = patientData.get("Register Date (mm/dd/yyyy)");			
+				String dob = patientData.get("Date of Birth (mm/dd/yyyy)*");
+				String dor = patientData.get("Register Date (mm/dd/yyyy)*");
 				Date formattedDob = null;
 				Date formattedDor = null;
-				System.out.println("FULL");
+				SimpleDateFormat standardDateFormat1 = new SimpleDateFormat("MMMM d, yyyy");
+				SimpleDateFormat standardDateFormat2 = new SimpleDateFormat("MM/dd/yyyy");
 				try
 				{
-					SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
-					
-					formattedDob = standardDateFormat.parse(dob);
-					formattedDor = standardDateFormat.parse(dor);
+					formattedDob = standardDateFormat1.parse(dob);
 				}
 				catch (ParseException e1)
 				{
-					panel.displayErrorMessage("Invalid Date Format");
-					return;
+					try
+					{
+						formattedDob = standardDateFormat2.parse(dob);
+					}
+					catch (ParseException e2)
+					{
+						panel.displayErrorMessage("Invalid Date of Birth Format");
+						return;
+					}
 				}
 				
-				String id = patientData.get("ID Number").replaceAll("-", "");
-				String sn = patientData.get("Social Security Number").replaceAll("-", "");
-				String in = patientData.get("Insurance Number").replaceAll("-", "");
+				try
+				{
+					formattedDor = standardDateFormat1.parse(dor);
+				}
+				catch (ParseException e3)
+				{
+					try
+					{
+						formattedDor = standardDateFormat2.parse(dor);
+					}
+					catch (ParseException e4)
+					{
+						panel.displayErrorMessage("Invalid Date of Registration Format");
+						return;
+					}
+				}
+				
+				String id = patientData.get("ID Number*").replaceAll("-", "");
+				String sn = patientData.get("Social Security Number*").replaceAll("-", "");
+				String in = patientData.get("Insurance Number*").replaceAll("-", "");
 				int parsedID, parsedSN, parsedIN;
 				
 				try

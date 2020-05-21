@@ -50,7 +50,6 @@ public class PatientModel
 		this.occupation = builder.occupation;
 		this.isWorking = builder.isWorking;
 		this.education = builder.education;
-		
 	}
 	
 	/**
@@ -66,13 +65,13 @@ public class PatientModel
 		HashMap<String, String> patientData = new HashMap<>();
 		patientData.put("Name*", this.patientName);
 		patientData.put("ID Number*", Integer.toString(this.idNumber));
-		patientData.put("Date of Birth*", dob);
+		patientData.put("Date of Birth (mm/dd/yyyy)*", dob);
 		patientData.put("Gender*", this.gender);
 		patientData.put("Phone Number*", this.phoneNumber);
 		patientData.put("Address*", this.address);
 		patientData.put("Social Security Number*", Integer.toString(this.sSN));
 		patientData.put("Insurance Number*", Integer.toString(this.insuranceNumber));
-		patientData.put("Register Date*", dor);
+		patientData.put("Register Date (mm/dd/yyyy)*", dor);
 		patientData.put("Occupation", this.occupation);
 		patientData.put("Work Status", this.isWorking);
 		patientData.put("Educational Degree", this.education);
