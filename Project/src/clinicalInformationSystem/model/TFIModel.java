@@ -11,15 +11,13 @@ import java.util.HashMap;
  */
 public class TFIModel
 {
-	private HashMap<Integer, Integer> answers; //The key is the number of the Question, Value is the answer
+	private HashMap<Integer, Integer> answers;			// The key is the number of the Question, Value is the answer
 	
-	//click through faster for testing purposes
+	// Click through faster for testing purposes
 	/*
 	public static final String[] TFIQuestionBank = {
 			"Over the past week, what percentage of your time awake were you consciously AWARE OF your tinnitus? (0 = 0% aware, 10 = 100% aware)"};
 	*/
-	
-	
 	
 	public static final String[] TFIQuestionBank = {
 			"Over the past week, what percentage of your time awake were you consciously AWARE OF your tinnitus? (0 = 0% aware, 10 = 100% aware)",
@@ -49,7 +47,6 @@ public class TFIModel
 			"Over the past week, how DEPRESSED were you because of your tinnitus? (0 = not at all depressed, 10 = extremely depressed)",
 	};
 	
-	
 	/**
 	 * Constructs a TFI Model with an empty HashMap
 	 */
@@ -72,13 +69,22 @@ public class TFIModel
 		return true;
 	}
 	
+	/**
+	 * Get the answer corresponding to the question number
+	 * @param questionNumber Question number for answer
+	 * @return int value of answer
+	 */
 	public int getAnswer(int questionNumber)
 	{
-		if(answers.get(questionNumber) == null)
+		if (answers.get(questionNumber) == null)
 			return -1;
 		return answers.get(questionNumber);
 	}
 	
+	/**
+	 * Get all question answers in int array
+	 * @return int array containing all answers for TFI Model starting at index 1 = question 1
+	 */
 	public int[] getAllAnswers()
 	{
 		int[] allAnswers = new int[TFIQuestionBank.length];
@@ -104,7 +110,7 @@ public class TFIModel
 	
 	/**
 	 * Calculates the severity of the handicap of the Tinnitus depending on the answers to the
-	 * questionnaire. Requires that less than 7 of the questions have been ommited from the 25 questions.
+	 * questionnaire. Requires that less than 7 of the questions have been omitted from the 25 questions.
 	 * In other words, at least 19 questions (76%) must be answered.
 	 * @return the overall TFI score from the questionnaire 
 	 */
@@ -112,15 +118,15 @@ public class TFIModel
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 1; i <= TFIQuestionBank.length; i++)
+		for (int i = 1; i <= TFIQuestionBank.length; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions < 7)
+		if (omissions < 7)
 		{
 			double IScore = sum / (25 - omissions) * 10;
 			return (int)IScore;
@@ -128,26 +134,25 @@ public class TFIModel
 		return -1;
 	}
 	
-	//Subscale scores calculations
+	// Sub scale scores calculations
 	
 	/**
-	 * Calculate the subscale score for INTRUSIVE using the questions #1, 2, 3.
-	 * @return the subscale score for INTRUSIVE. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for INTRUSIVE using the questions #1, 2, 3.
+	 * @return the sub scale score for INTRUSIVE. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateI()
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 1; i <= 3; i++)
+		for (int i = 1; i <= 3; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions <= 1)
+		if (omissions <= 1)
 		{
 			double IScore = sum / (3 - omissions) * 10;
 			return (int)IScore;
@@ -156,23 +161,22 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for SENSE OF CONTROL using the questions #4, 5, 6.
-	 * @return the subscale score for SENSE OF CONTROL. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for SENSE OF CONTROL using the questions #4, 5, 6.
+	 * @return the sub scale score for SENSE OF CONTROL. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateSC()
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 4; i <= 6; i++)
+		for (int i = 4; i <= 6; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions <= 1)
+		if (omissions <= 1)
 		{
 			double SCScore = sum / (3 - omissions) * 10;
 			return (int)SCScore;
@@ -181,23 +185,22 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for COGNITIVE using the questions #7, 8, 9.
-	 * @return the subscale score for COGNITIVE. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for COGNITIVE using the questions #7, 8, 9.
+	 * @return the sub scale score for COGNITIVE. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateC()
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 7; i <= 9; i++)
+		for (int i = 7; i <= 9; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions <= 1)
+		if (omissions <= 1)
 		{
 			double CScore = sum / (3 - omissions) * 10;
 			return (int)CScore;
@@ -206,23 +209,22 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for SLEEP using the questions #10, 11, 12.
-	 * @return the subscale score for SLEEP. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for SLEEP using the questions #10, 11, 12.
+	 * @return the sub scale score for SLEEP. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateSL()
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 10; i <= 12; i++)
+		for (int i = 10; i <= 12; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions <= 1)
+		if (omissions <= 1)
 		{
 			double SLScore = sum / (3 - omissions) * 10;
 			return (int)SLScore;
@@ -231,23 +233,22 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for AUDITORY using the questions #13, 14, 15.
-	 * @return the subscale score for AUDITORY. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for AUDITORY using the questions #13, 14, 15.
+	 * @return the sub scale score for AUDITORY. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateA()
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 13; i <= 15; i++)
+		for (int i = 13; i <= 15; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions <= 1)
+		if (omissions <= 1)
 		{
 			double AScore = sum / (3 - omissions) * 10;
 			return (int)AScore;
@@ -256,23 +257,22 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for RELAXIATION using the questions #16, 17, 18.
-	 * @return the subscale score for RELAXIATION. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for RELAXIATION using the questions #16, 17, 18.
+	 * @return the sub scale score for RELAXIATION. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateR()
 	{
 		int omissions = 0;
 		double sum = 0;
-		for(int i = 16; i <= 18; i++)
+		for (int i = 16; i <= 18; i++)
 		{
-			if(answers.get(i) == -1)
+			if (answers.get(i) == -1)
 				omissions++;
 			else
 				sum += answers.get(i);
 		}
 		
-		if(omissions <= 1)
+		if (omissions <= 1)
 		{
 			double RScore = sum / (3 - omissions) * 10;
 			return (int)RScore;
@@ -281,9 +281,8 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for QUALITY OF LIFE using the questions #19, 20, 21, 22.
-	 * @return the subscale score for QUALITY OF LIFE. Only one question can be ommitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for QUALITY OF LIFE using the questions #19, 20, 21, 22.
+	 * @return the sub scale score for QUALITY OF LIFE. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateQ()
 	{
@@ -306,9 +305,8 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate the subscale score for EMOTIONAL using the questions #23, 24, 25
-	 * @return the subscale score for EMOTIONAL. Only one question can be omitted
-	 * to calculate the subscale score.
+	 * Calculate the sub scale score for EMOTIONAL using the questions #23, 24, 25
+	 * @return the sub scale score for EMOTIONAL. Only one question can be omitted to calculate the sub scale score.
 	 */
 	public int calculateE()
 	{
@@ -331,7 +329,7 @@ public class TFIModel
 	}
 	
 	/**
-	 * Calculate all the subscale scores and the overall score in this order
+	 * Calculate all the sub scale scores and the overall score in this order:
 	 * I: INTRUSIVE (unpleasantness, intrusiveness, persistence)
 	 * SC: SENSE OF CONTROL (reduced sense of control)
 	 * C: COGNITIVE (cognitive interference)
@@ -341,7 +339,7 @@ public class TFIModel
 	 * Q: QUALITY OF LIFE (QOL) (quality of life reduced) 
 	 * E: EMOTIONAL (emotional distress)
 	 * Overall Score 
-	 * @return
+	 * @return int array for all subscores
 	 */
 	public int[] calculateAll()
 	{

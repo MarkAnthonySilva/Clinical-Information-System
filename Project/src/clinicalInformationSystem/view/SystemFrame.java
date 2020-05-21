@@ -9,6 +9,11 @@ import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Main JFrame to use for clinical information system
+ * @author benja
+ *
+ */
 public class SystemFrame extends JFrame
 {
 	AuthorizedUsers users;
@@ -38,7 +43,7 @@ public class SystemFrame extends JFrame
 		
 		patientList = new PatientList();
 		
-		//add a test patient
+		// Add a test patient
 		try {
 			SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 			PatientModel patient = new PatientModel.Builder()
@@ -56,12 +61,13 @@ public class SystemFrame extends JFrame
 		}
 		catch (ParseException e1)
 		{
+			
 		}
-		//end of add a test patient
+		// End of add a test patient
 		
 		visitList = new VisitList();
 		
-		//Create Menus and Menu Items
+		// Create Menus and Menu Items
 		JMenuBar menuBar = new JMenuBar();
 		
 		patientMenu = new JMenu("Patient");
@@ -83,21 +89,21 @@ public class SystemFrame extends JFrame
 		MenuController menuController = new MenuController(this);
 		registerListeners(menuController);
 		
-		//Add Panel to Frame
+		// Add Panel to Frame
 		this.add(currentPanel);
 		
 		displayLogIn();
 	}
 	
 	/**
-	 * Register the menucontroller for this frame
+	 * Register the MenuController for this frame
 	 * @param menuController the controller that listens for the actions of the menu
 	 */
 	public void registerListeners(MenuController menuController)
 	{
-		//Register all menu items to be buttons with action listener
+		// Register all menu items to be buttons with action listener
 		Component[] menuComponentList = patientMenu.getMenuComponents();
-		for(Component c: menuComponentList)
+		for (Component c: menuComponentList)
 		{
 			if (c instanceof AbstractButton)
 			{
@@ -107,7 +113,7 @@ public class SystemFrame extends JFrame
 		}
 		
 		menuComponentList = visitMenu.getMenuComponents();
-		for(Component c: menuComponentList)
+		for (Component c: menuComponentList)
 		{
 			if (c instanceof AbstractButton)
 			{
@@ -259,6 +265,7 @@ public class SystemFrame extends JFrame
 	
 	/**
 	 * Repaint the frame to display a Patients information
+	 * @param patient PatientModel to display information for
 	 */
 	public void diplayPatient(PatientModel patient)
 	{
@@ -272,6 +279,7 @@ public class SystemFrame extends JFrame
 	}
 
 	/**
+	 * Get PatientList used in SystemFrame
 	 * @return the patientList
 	 */
 	public PatientList getPatientList()
@@ -280,6 +288,7 @@ public class SystemFrame extends JFrame
 	}
 	
 	/**
+	 * Get VisitList used in SystemFrame
 	 * @return the visitList
 	 */
 	public VisitList getVisitList()

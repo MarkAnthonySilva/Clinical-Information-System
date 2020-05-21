@@ -16,6 +16,11 @@ import javax.swing.SpringLayout;
 
 import clinicalInformationSystem.SpringUtilities;
 
+/**
+ * JPanel to display form for inputting THI answers
+ * @author benja
+ *
+ */
 public class THIPanel extends JPanel
 {
 	private JButton done;
@@ -24,10 +29,13 @@ public class THIPanel extends JPanel
 	private JLabel[] questionLabels;
 	private ButtonGroup[] buttonGroups;
 	
+	/**
+	 * Constructor of THIPanel that displays complete TFI form to fill out
+	 */
 	public THIPanel()
 	{
 		this.setLayout(new BorderLayout());
-		//Create button panel
+		// Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		done = new JButton("Done");		
@@ -36,6 +44,10 @@ public class THIPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Set questions for THI form
+	 * @param questions Questions used to evaluate THI Score
+	 */
 	public void setQuestions(String[] questions)
 	{
 		this.questionBank = questions;
@@ -65,9 +77,9 @@ public class THIPanel extends JPanel
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-				questionBank.length, 4, 	//# of rows, # of columns
-				5, 5,						//Initial x and y coordinates	
-				5, 5);						//Padding between labels and textfield
+				questionBank.length, 4, 	// # of rows, # of columns
+				5, 5,						// Initial x and y coordinates	
+				5, 5);						// Padding between labels and textfield
 		
 		this.add(formPanel, BorderLayout.NORTH);
 	}

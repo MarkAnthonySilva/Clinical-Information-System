@@ -51,7 +51,7 @@ public class PatientController implements ActionListener
 		{
 			panel.setEditable(true);
 		}
-		else if(command.contentEquals("Delete"))
+		else if (command.contentEquals("Delete"))
 		{
 			frame.getPatientList().getMap().remove(patient.getPatientName());
 			frame.displayPatientList();
@@ -61,11 +61,11 @@ public class PatientController implements ActionListener
 			HashMap<String, String> patientData = panel.getDataMap();
 			boolean isFull = true;
 			
-			//Checks if all the patientData has been filled
+			// Checks if all the patientData has been filled
 			for (String s: patientData.keySet())
 			{
-				//Ignore Optional Parameters
-				if(!s.equals("Occupation") && !s.equals("Work Status") && !s.equals("Educational Degree") && !s.equals("Notes"))
+				// Ignore Optional Parameters
+				if (!s.equals("Occupation") && !s.equals("Work Status") && !s.equals("Educational Degree") && !s.equals("Notes"))
 				{
 					if (patientData.get(s).equals(""))
 					{
@@ -95,7 +95,7 @@ public class PatientController implements ActionListener
 					}
 					catch (ParseException e2)
 					{
-						panel.displayErrorMessage("Invalid Date of Birth Format");
+						panel.displayErrorMessage("Invalid Date of Birth Format.");
 						return;
 					}
 				}
@@ -112,7 +112,7 @@ public class PatientController implements ActionListener
 					}
 					catch (ParseException e4)
 					{
-						panel.displayErrorMessage("Invalid Date of Registration Format");
+						panel.displayErrorMessage("Invalid Date of Registration Format.");
 						return;
 					}
 				}
@@ -130,7 +130,7 @@ public class PatientController implements ActionListener
 				}
 				catch (NumberFormatException e2)
 				{
-					panel.displayErrorMessage("Please enter a valid number");
+					panel.displayErrorMessage("Please enter a valid number.");
 					return;
 				}
 				
@@ -146,7 +146,7 @@ public class PatientController implements ActionListener
 						.withDateOfRegistration(formattedDor)
 						.build();
 				
-				//Optional parameters
+				// Optional parameters
 				patient.setOccupation(patientData.get("Occupation"));
 				patient.setWorking(patientData.get("Work Staus"));
 				patient.setEducation(patientData.get("EducationDegree"));
@@ -157,18 +157,18 @@ public class PatientController implements ActionListener
 			}
 			else
 			{
-				panel.displayErrorMessage("Not all required fields have been filled");
+				panel.displayErrorMessage("Not all required fields have been filled.");
 			}
 		}
 		else if (command.equals("Visits"))
 		{
-			if(this.visitList.getVisitsByPatient(patient).size() != 0)
+			if (this.visitList.getVisitsByPatient(patient).size() != 0)
 			{
 				frame.displayVisitList(visitList.getVisitsByPatient(patient));
 			}
 			else
 			{
-				panel.displayErrorMessage("This patient does not have visits yet");
+				panel.displayErrorMessage("This patient does not have visits yet.");
 			}
 		}
 		else if (command.equals("Exit"))
@@ -176,6 +176,4 @@ public class PatientController implements ActionListener
 			frame.displayPatientList();
 		}
 	}
-	
-	
 }

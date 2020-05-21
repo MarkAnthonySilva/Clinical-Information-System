@@ -2,14 +2,12 @@ package clinicalInformationSystem.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 
 import clinicalInformationSystem.SpringUtilities;
-import clinicalInformationSystem.controller.AddPatientController;
 import clinicalInformationSystem.model.PatientModel;
 
 /**
@@ -39,7 +37,6 @@ public class PatientPanel extends JPanel
 			"Work Status",
 			"Educational Degree"
 	};
-
 	
 	/**
 	 * Constructor of a patient panel that display information of a patient
@@ -48,12 +45,12 @@ public class PatientPanel extends JPanel
 	{	
 		this.setLayout(new BorderLayout());
 		
-		//Construct Form Panel of Spring layout
+		// Construct Form Panel of Spring layout
 		JPanel formPanel = new JPanel();
 		SpringLayout layout =  new SpringLayout();
 		formPanel.setLayout(layout);
 		
-		//Construct all label and text fields for the form panel
+		// Construct all label and text fields for the form panel
 		patientData = new HashMap<>();
 		for (int i = 0; i < LABEL_LIST.length; i++)
 		{
@@ -67,13 +64,13 @@ public class PatientPanel extends JPanel
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-										LABEL_LIST.length, 2, 	//# of rows, # of columns
-										5, 5,					//Initial x and y coordinates
-										5, 5);					//Padding between labels and textfield
+										LABEL_LIST.length, 2, 	// # of rows, # of columns
+										5, 5,					// Initial x and y coordinates
+										5, 5);					// Padding between labels and textfield
 	
 		this.add(formPanel, BorderLayout.WEST);
 		
-		//Create button panel
+		// Create button panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		edit 	 	= new JButton("Edit");	
@@ -185,5 +182,4 @@ public class PatientPanel extends JPanel
 		visits.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
-	
 }

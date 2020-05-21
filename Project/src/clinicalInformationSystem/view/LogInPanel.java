@@ -47,9 +47,9 @@ public class LogInPanel extends JPanel
 		inputPanel.add(password);
 		
 		SpringUtilities.makeCompactGrid(inputPanel, 
-				2, 2, 					//# of rows, # of columns
-				5, 5,					//Initial x and y coordinates	
-				5, 5);					//Padding between labels and textfield
+				2, 2, 					// # of rows, # of columns
+				5, 5,					// Initial x and y coordinates	
+				5, 5);					// Padding between labels and textfield
 		
 		// Create button panel
 		JPanel buttonPanel = new JPanel();

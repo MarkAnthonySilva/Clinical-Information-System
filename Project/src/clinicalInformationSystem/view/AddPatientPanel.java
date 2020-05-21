@@ -9,7 +9,14 @@ import javax.swing.text.JTextComponent;
 
 import clinicalInformationSystem.SpringUtilities;
 
+
+
 @SuppressWarnings("serial")
+/**
+ * JPanel to display form to fill out patient information
+ * @author benja
+ *
+ */
 public class AddPatientPanel extends JPanel
 {
 	private JButton submit;
@@ -34,8 +41,9 @@ public class AddPatientPanel extends JPanel
 											"Work Status",
 											"Educational Degree"
 											};
+	
 	/**
-	 * Constructs an AddPatientPanel that allows the input of 
+	 * Constructs an AddPatientPanel that allows the input of all information
 	 */
 	public AddPatientPanel()
 	{	
@@ -44,12 +52,12 @@ public class AddPatientPanel extends JPanel
 		JLabel s = new JLabel("* means that is a required parameter");
 		this.add(s, BorderLayout.NORTH);
 		
-		//Construct Form Panel of Spring layout
+		// Construct Form Panel of Spring layout
 		JPanel formPanel = new JPanel();
 		SpringLayout layout =  new SpringLayout();
 		formPanel.setLayout(layout);
 		
-		//Construct all label and text fields for the form panel
+		// Construct all label and text fields for the form panel
 		patientData = new HashMap<>();
 		for (int i = 0; i < LABEL_LIST.length; i++)
 		{
@@ -63,13 +71,13 @@ public class AddPatientPanel extends JPanel
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-										LABEL_LIST.length, 2, 	//# of rows, # of columns
-										5, 5,					//Initial x and y coordinates
-										5, 5);					//Padding between labels and textfield
+										LABEL_LIST.length, 2, 	// # of rows, # of columns
+										5, 5,					// Initial x and y coordinates
+										5, 5);					// Padding between labels and textfield
 	
 		this.add(formPanel, BorderLayout.WEST);
 		
-		//Create button panel
+		// Create button panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		submit 	 	= new JButton("Submit");		
@@ -97,8 +105,8 @@ public class AddPatientPanel extends JPanel
 	}
 
 	/**
-	 * Get a map representation of all the inputted values to the text field
-	 * @return
+	 * Get a map representation of all the entered values to the text field
+	 * @return HashMap storing all entered data
 	 */
 	public HashMap<String, String> getDataMap()
 	{
@@ -130,5 +138,4 @@ public class AddPatientPanel extends JPanel
 		submit.addActionListener(listener);
 		exit.addActionListener(listener);
 	}
-	
 }

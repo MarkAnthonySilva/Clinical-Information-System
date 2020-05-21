@@ -17,7 +17,7 @@ public class THIModel
 	
 	private HashMap<Integer, Integer> answers;
 	
-	//click through faster for testing purposes
+	// Click through faster for testing purposes
 	/*
 	public static final String[] THIQuestionBank = {
 			"Because of your tinnitus, is it difficult for you to concentrate?"};
@@ -50,7 +50,6 @@ public class THIModel
 			"Does your tinnitus get worse when you are under stress?",
 			"Does your tinnitus make you feel insecure?"
 	};
-	
 	
 	/**
 	 * Constructs a THI Model with an empty HashMap for answers
@@ -85,6 +84,11 @@ public class THIModel
 		return false;
 	}
 	
+	/**
+	 * Get the answer corresponding to the question number
+	 * @param questionNumber Question number for answer
+	 * @return String value of answer ("Yes", "Sometimes", or "No")
+	 */
 	public String getAnswer(int questionNumber)
 	{
 		switch(answers.get(questionNumber))
@@ -99,6 +103,10 @@ public class THIModel
 		return null;
 	}
 	
+	/**
+	 * Get all question answers in String array
+	 * @return String array containing all answers for TFI Model starting at index 1 = question 1
+	 */
 	public String[] getAllAnswers()
 	{
 		if (allQuestionsAnswered())

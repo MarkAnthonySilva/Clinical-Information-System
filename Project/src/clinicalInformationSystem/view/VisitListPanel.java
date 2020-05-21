@@ -35,7 +35,7 @@ public class VisitListPanel extends JPanel
 	{
 		this.setLayout(new BorderLayout());
 		
-		//Create button panel
+		// Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		exit = new JButton("Exit");
@@ -85,7 +85,14 @@ public class VisitListPanel extends JPanel
 		
 		this.add(allVisitsPanel, BorderLayout.NORTH);
 	}
-
+	
+	/**
+	 * Set data to be shown on panel
+	 * @param dateOfVisits All dates for each visit
+	 * @param THIScores All THIScores for each visit
+	 * @param TFIScores All TFIScores for each visit
+	 * @param sequenceNumbers All sequence numbers for each visit
+	 */
 	public void setData(Date[] dateOfVisits, int[] THIScores, int[] TFIScores, int[] sequenceNumbers)
 	{
 		data = new String[dateOfVisits.length][columnNames1.length];
