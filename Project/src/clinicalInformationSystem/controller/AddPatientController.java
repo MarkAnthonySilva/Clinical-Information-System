@@ -7,11 +7,21 @@ import java.util.*;
 import clinicalInformationSystem.view.*;
 import clinicalInformationSystem.model.*;
 
+/**
+ * Controller for the add patient panel listening for its actions
+ * @author masil
+ *
+ */
 public class AddPatientController implements ActionListener
 {
 	private AddPatientPanel panel;
 	private SystemFrame 	frame;
 	
+	/**
+	 * Constructor of a Controller for the AddPatientPanel
+	 * @param frame the frame the panel is placed in
+	 * @param panel the panel the controller is listening too
+	 */
 	public AddPatientController(SystemFrame frame, AddPatientPanel panel)
 	{
 		this.panel = panel;
@@ -20,13 +30,15 @@ public class AddPatientController implements ActionListener
 		panel.addListener(this);
 	}
 
+	/**
+	 * Performs different actions depending on the input in the add patient panel
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
 		if (command.equals("Submit"))
 		{	
 			HashMap<String, String> patientData = panel.getDataMap();
-			ArrayList<String> valuesList = new ArrayList<>(patientData.values());
 			boolean isFull = true;
 			
 			//Checks if all the patientData has been filled
