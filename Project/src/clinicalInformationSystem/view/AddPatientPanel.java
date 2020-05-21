@@ -2,16 +2,12 @@ package clinicalInformationSystem.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 import java.util.HashMap;
-import java.util.Locale;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
-import javax.swing.text.NumberFormatter;
 
 import clinicalInformationSystem.SpringUtilities;
-import clinicalInformationSystem.controller.*;
 
 @SuppressWarnings("serial")
 public class AddPatientPanel extends JPanel
