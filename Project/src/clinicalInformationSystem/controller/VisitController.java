@@ -40,6 +40,7 @@ public class VisitController
 	 * Create VisitController to control visit panel displaying a single visit
 	 * @param frame SystemFrame being worked on
 	 * @param visit VisitModel to be displayed
+	 * @param visitList Complete VisitList containing all visits on current instance of SystemFrame
 	 * @param visitPanel VisitPanel for VisitModel info to be displayed on
 	 */
 	public VisitController(SystemFrame frame, VisitModel visit, VisitList visitList, VisitPanel visitPanel)
@@ -93,6 +94,7 @@ public class VisitController
 	/**
 	 * Controller to control an AddVisitPanel
 	 * @param frame SystemFrame being worked on
+	 * @param patientList PatientList with all patients on current instance of SystemFrame
 	 * @param visitList VisitList to be worked on when VisitModel is added by user
 	 * @param addVisitPanel AddVisitPanel to display form to enter details of visit
 	 */
@@ -160,7 +162,8 @@ public class VisitController
 					{
 						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
 						formattedDate = standardDateFormat.parse(dateText);
-					} catch (ParseException e1)
+					}
+					catch (ParseException e1)
 					{
 						visitPanel.displayErrorMessage("Invalid date format.");
 						return;
@@ -171,7 +174,8 @@ public class VisitController
 						seqNumber = Integer.parseInt(seqNumberText);
 						if (seqNumber < 0)
 							throw (new NumberFormatException());
-					} catch (NumberFormatException e2)
+					}
+					catch (NumberFormatException e2)
 					{
 						visitPanel.displayErrorMessage("Please enter a valid sequence number.");
 						return;
@@ -179,7 +183,8 @@ public class VisitController
 					visit.setDateOfvisit(formattedDate);
 					visit.setSequenceNumber(seqNumber);
 					visitPanel.setEditable(false);
-				} else
+				}
+				else
 				{
 					visitPanel.displayErrorMessage("Please fill in all fields.");
 				}
@@ -243,7 +248,8 @@ public class VisitController
 					{
 						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 						formattedDate = standardDateFormat.parse(date);
-					} catch (ParseException e1)
+					}
+					catch (ParseException e1)
 					{
 						addVisitPanel.displayErrorMessage("Invalid date format.");
 						return;
@@ -254,7 +260,8 @@ public class VisitController
 						seqNumber = Integer.parseInt(addVisitPanel.getSequenceNumberText());
 						if (seqNumber < 0)
 							throw (new NumberFormatException());
-					} catch (NumberFormatException e2)
+					}
+					catch (NumberFormatException e2)
 					{
 						addVisitPanel.displayErrorMessage("Please enter a valid sequence number.");
 						return;
@@ -262,7 +269,8 @@ public class VisitController
 					VisitModel visitToAdd = new VisitModel(patientList.getPatient(addVisitPanel.getPatient()), formattedDate, seqNumber);
 					visitList.add(visitToAdd);
 					frame.THI(visitToAdd);
-				} else
+				}
+				else
 				{
 					addVisitPanel.displayErrorMessage("Please fill in all fields.");
 				}

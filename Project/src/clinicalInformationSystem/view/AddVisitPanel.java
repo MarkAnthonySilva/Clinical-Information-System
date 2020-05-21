@@ -47,11 +47,18 @@ public class AddVisitPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Set patient names to be displayed in drop down menu
+	 * @param patientNames All patient names to be displayed
+	 */
 	public void setPatientNames(String[] patientNames)
 	{
 		this.patientNames = patientNames;
 	}
 	
+	/**
+	 * Add all elements in JPanel (call after patient names are set)
+	 */
 	public void displayPanel()
 	{
 		JPanel formPanel = new JPanel(new SpringLayout());
@@ -74,9 +81,9 @@ public class AddVisitPanel extends JPanel
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-				labelList.length, 2, 	//# of rows, # of columns
-				5, 5,					//Initial x and y coordinates	
-				5, 5);					//Padding between labels and textfield
+				labelList.length, 2, 	// # of rows, # of columns
+				5, 5,					// Initial x and y coordinates	
+				5, 5);					// Padding between labels and textfield
 		
 		this.add(formPanel, BorderLayout.NORTH);
 	}

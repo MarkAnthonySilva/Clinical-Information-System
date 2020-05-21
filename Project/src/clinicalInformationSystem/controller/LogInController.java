@@ -54,7 +54,7 @@ public class LogInController
 						frame.setSize(600, 400);
 					}
 					else
-						logInPanel.displayErrorMessage("Invalid User.");
+						logInPanel.displayErrorMessage("Invalid User.\nHint: Default is \"admin\" for username and password.");
 				} else
 					logInPanel.displayErrorMessage("Please fill in all fields.");
 			}

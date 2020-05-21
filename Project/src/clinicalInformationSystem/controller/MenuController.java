@@ -13,17 +13,24 @@ public class MenuController implements ActionListener
 {
 	private SystemFrame frame;
 	
+	/**
+	 * Constructor to attach the MenuController to a SystemFrame
+	 * @param frame SystemFrame to add MenuController on
+	 */
 	public MenuController(SystemFrame frame)
 	{
 		this.frame = frame;
 	}
 	
+	/**
+	 * Listens to actions performed on the menu
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if (frame.checkAuth())
 		{
 			String command = e.getActionCommand();
-			switch(command)
+			switch (command)
 			{
 			case "Add Patient":
 				frame.displayAddPatient();

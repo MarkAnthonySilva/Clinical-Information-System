@@ -10,14 +10,20 @@ import clinicalInformationSystem.DataTableModel;
 import clinicalInformationSystem.controller.*;
 import clinicalInformationSystem.model.*;
 
+/**
+ * JPanel to display a PatientList
+ * @author benja
+ *
+ */
 public class PatientListPanel extends JPanel
 {
 	private SystemFrame	frame;
 	
 	private JButton exit;
 	private JTable table;
+	
 	/**
-	 * Constructs a PatientList panel that display all the patients stored in the system
+	 * Constructs a PatientList panel that displays all the patients stored in the system
 	 * @param patientList the patient list to displau
 	 * @param frame the frame to display the patientList
 	 */
@@ -61,7 +67,7 @@ public class PatientListPanel extends JPanel
 		JScrollPane sp = new JScrollPane(table);
 		panel.add(sp);
 		
-		//Add button Panel
+		// Add button Panel
 		JPanel buttonPanel 	= new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		exit = new JButton("Exit");		
@@ -81,6 +87,7 @@ public class PatientListPanel extends JPanel
 		table.getSelectionModel().addListSelectionListener((ListSelectionListener) listener);
 		exit.addActionListener(listener);
 	}
+	
 	/**
 	 * Get the selected row in the table
 	 * @return Selected row

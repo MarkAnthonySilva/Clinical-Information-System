@@ -15,6 +15,11 @@ import javax.swing.SpringLayout;
 import clinicalInformationSystem.SpringUtilities;
 import clinicalInformationSystem.THIScoreGrade;
 
+/**
+ * Create VisitPanel to display information for a specific visit
+ * @author benja
+ *
+ */
 public class VisitPanel extends JPanel
 {
 	private JPanel visitPanel;
@@ -37,6 +42,9 @@ public class VisitPanel extends JPanel
 	private JTextField THIScoreTextField;
 	private JTextField TFIScoreTextField;
 	
+	/**
+	 * Create VisitPanel
+	 */
 	public VisitPanel()
 	{
 		this.setLayout(new BorderLayout());
@@ -73,11 +81,11 @@ public class VisitPanel extends JPanel
 		visitPanel.add(TFIScoreTextField);
 		
 		SpringUtilities.makeCompactGrid(visitPanel, 
-				5, 2, 					//# of rows, # of columns
-				5, 5,					//Initial x and y coordinates	
-				5, 5);					//Padding between labels and textfield
+				5, 2, 					// # of rows, # of columns
+				5, 5,					// Initial x and y coordinates	
+				5, 5);					// Padding between labels and textfield
 		
-		//Create button panel
+		// Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BorderLayout());
 		JPanel buttonPanelRow1 = new JPanel();
@@ -106,6 +114,14 @@ public class VisitPanel extends JPanel
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Set data for visit to be displayed in the panel
+	 * @param patientName Name of patient corresponding to visit
+	 * @param date Date of visit
+	 * @param seqNumber Sequence number of visit
+	 * @param THIScore THIScore of visit
+	 * @param TFIScore TFIScore of visit
+	 */
 	public void setVisitData(String patientName, Date date, int seqNumber, int THIScore, int TFIScore)
 	{
 		this.patientName = patientName;
@@ -121,21 +137,37 @@ public class VisitPanel extends JPanel
 		TFIScoreTextField.setText(Integer.toString(this.TFIScore));
 	}
 	
+	/**
+	 * Get patient name filled in text box
+	 * @return Patient name
+	 */
 	public String getPatientName()
 	{
 		return patientNameTextField.getText();
 	}
 	
+	/**
+	 * Get date filled in text box
+	 * @return Date
+	 */
 	public String getDateText()
 	{
 		return dateTextField.getText();
 	}
 	
+	/**
+	 * Get sequence number filled in text box
+	 * @return Sequence number
+	 */
 	public String getSeqNumberText()
 	{
 		return seqNumberTextField.getText();
 	}
 	
+	/**
+	 * Set if panel is editable
+	 * @param isEditable True = fields can be edited, False = fields uneditable
+	 */
 	public void setEditable(boolean isEditable)
 	{
 		patientNameTextField.setEditable(false);
@@ -150,6 +182,10 @@ public class VisitPanel extends JPanel
 			edit.setText("Edit");
 	}
 	
+	/**
+	 * Add ActionListener on all buttons
+	 * @param listener ActionListener to be added on all buttons
+	 */
 	public void addVisitListener(ActionListener listener)
 	{
 		edit.addActionListener(listener);

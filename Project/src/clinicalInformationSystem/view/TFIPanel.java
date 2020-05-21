@@ -6,9 +6,14 @@ import javax.swing.*;
 import clinicalInformationSystem.SpringUtilities;
 import java.util.*;
 
+/**
+ * JPanel to display form for inputting TFI answers
+ * @author benja
+ *
+ */
 public class TFIPanel extends JPanel{
 	
-	private final int SPACES = 340;  //ghetto formatting tool for scorePanel so that its text fields don't fill out the entire box 
+	private final int SPACES = 340;
 	
 	private JButton done;
 	private String[] questionBank;
@@ -26,23 +31,25 @@ public class TFIPanel extends JPanel{
 											  "E: EMOTIONAL (emotional distress) #23-#25",
 											  "Overall Score"};
 	
-	
+	/**
+	 * Constructor of TFIPanel that displays complete TFI form to fill out
+	 */
 	public TFIPanel()
 	{
 		this.setLayout(new BorderLayout());
-		//Create button panel
+		// Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		done = new JButton("Done");		
 		buttonPanel.add(done);
 		
 		
-		//Construct score Panel of Spring layout
+		// Construct score Panel of Spring layout
 		JPanel scorePanel = new JPanel();
 		SpringLayout layout =  new SpringLayout();
 		scorePanel.setLayout(layout);
 				
-		//Construct all label and text fields for the score panel
+		// Construct all labels and text fields for the score panel
 		scoreGroup = new JTextField[labelList.length];
 		for (int i = 0; i < labelList.length; i++)
 		{
@@ -61,16 +68,18 @@ public class TFIPanel extends JPanel{
 		}
 				
 			SpringUtilities.makeCompactGrid(scorePanel, 
-											labelList.length, 3, 	//# of rows, # of columns
-											5, 5,					//Initial x and y coordinates
-											5, 5);					//Padding between labels and textfield
+											labelList.length, 3, 	// # of rows, # of columns
+											5, 5,					// Initial x and y coordinates
+											5, 5);					// Padding between labels and textfield
 			
 		this.add(scorePanel, BorderLayout.CENTER);
-		
-		
 		this.add(buttonPanel, BorderLayout.SOUTH);	
 	}
 	
+	/**
+	 * Set questions for TFI form
+	 * @param questions Questions used to evaluate TFI Score
+	 */
 	public void setQuestions(String[] questions)
 	{
 		this.questionBank = questions;
@@ -88,14 +97,17 @@ public class TFIPanel extends JPanel{
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-				questionBank.length, 2, 	//# of rows, # of columns
-				5, 5,						//Initial x and y coordinates	
-				5, 5);						//Padding between labels and textfield
+				questionBank.length, 2, 	// # of rows, # of columns
+				5, 5,						// Initial x and y coordinates	
+				5, 5);						// Padding between labels and textfield
 		
 		this.add(formPanel, BorderLayout.NORTH);
-		
 	}
 	
+	/**
+	 * Set scores for each question
+	 * @param scores Scores for each question
+	 */
 	public void setScores(int[] scores)
 	{
 		for(int i = 0; i < labelList.length; i++)
@@ -164,6 +176,4 @@ public class TFIPanel extends JPanel{
 	{
 		done.addActionListener(listener);
 	}
-	
-	
 }

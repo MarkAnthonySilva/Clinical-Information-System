@@ -14,6 +14,12 @@ public class THIController
 	private VisitModel visit;
 	private THIPanel panel;
 	
+	/**
+	 * Constructs a THIController using SystemFrame, VisitModel, and THIPanel to either display a panel to add THI score or display THI score
+	 * @param frame Frame to display the panel for THI score
+	 * @param visit Visit to add the THI score to or view THI score
+	 * @param panel Panel containing the THI form
+	 */
 	public THIController(SystemFrame frame, VisitModel visit, THIPanel panel)
 	{
 		this.frame = frame;
@@ -31,6 +37,11 @@ public class THIController
 		}
 	}
 	
+	/**
+	 * Listens to input on the THI form when adding a THI score to visit
+	 * @author benja
+	 *
+	 */
 	private class AddTHIListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -55,6 +66,11 @@ public class THIController
 		}
 	}
 	
+	/**
+	 * Listens to input on the THI form when viewing a THI score (not adding)
+	 * @author benja
+	 *
+	 */
 	private class THIListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

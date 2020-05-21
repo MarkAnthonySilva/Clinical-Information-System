@@ -7,6 +7,11 @@ import javax.swing.event.ListSelectionListener;
 import clinicalInformationSystem.view.*;
 import clinicalInformationSystem.model.*;
 
+/**
+ * Controller for the PatientList
+ * @author benja
+ *
+ */
 public class PatientListController implements ActionListener, ListSelectionListener
 {
 	private PatientListPanel 	panel;
@@ -28,7 +33,9 @@ public class PatientListController implements ActionListener, ListSelectionListe
 		panel.addListener(this);
 	}
 	
-	@Override
+	/**
+	 * Listens for actions being performed on the patient list
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
@@ -38,6 +45,9 @@ public class PatientListController implements ActionListener, ListSelectionListe
 		}
 	}
 	
+	/**
+	 * Called when a row is selected in the patient list table
+	 */
 	public void valueChanged(ListSelectionEvent e)
 	{
 		if (patientList.getPatientArray()[panel.getSelectedRow()] != null)
@@ -46,5 +56,4 @@ public class PatientListController implements ActionListener, ListSelectionListe
 			frame.diplayPatient(patient);
 		}
 	}
-	
 }

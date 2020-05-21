@@ -41,11 +41,11 @@ public class AddPatientController implements ActionListener
 			HashMap<String, String> patientData = panel.getDataMap();
 			boolean isFull = true;
 			
-			//Checks if all the patientData has been filled
+			// Checks if all the patientData has been filled
 			for (String s: patientData.keySet())
 			{
-				//Ignore Optional Parameters
-				if(!s.equals("Occupation") && !s.equals("Work Status") && !s.equals("Educational Degree") && !s.equals("Notes"))
+				// Ignore Optional Parameters
+				if (!s.equals("Occupation") && !s.equals("Work Status") && !s.equals("Educational Degree") && !s.equals("Notes"))
 				{
 					if (patientData.get(s).equals(""))
 					{
@@ -57,20 +57,28 @@ public class AddPatientController implements ActionListener
 			
 			if (isFull)
 			{
-				String dob = patientData.get("Date of Birth (mm/dd/yyyy)*");		
-				String dor = patientData.get("Register Date (mm/dd/yyyy)*");			
+				String dob = patientData.get("Date of Birth (mm/dd/yyyy)*");
+				String dor = patientData.get("Register Date (mm/dd/yyyy)*");
 				Date formattedDob = null;
 				Date formattedDor = null;
+				SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 				try
 				{
-					SimpleDateFormat standardDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-					
 					formattedDob = standardDateFormat.parse(dob);
-					formattedDor = standardDateFormat.parse(dor);
 				}
 				catch (ParseException e1)
 				{
-					panel.displayErrorMessage("Invalid Date Format");
+					panel.displayErrorMessage("Invalid Date of Birth Format.");
+					return;
+				}
+				
+				try
+				{
+					formattedDor = standardDateFormat.parse(dor);
+				}
+				catch (ParseException e2)
+				{
+					panel.displayErrorMessage("Invalid Date of Registration Format.");
 					return;
 				}
 				
@@ -105,7 +113,7 @@ public class AddPatientController implements ActionListener
 						.withDateOfRegistration(formattedDor)
 						.build();
 				
-				//Optional parameters
+				// Optional parameters
 				patient.setOccupation(patientData.get("Occupation"));
 				patient.setWorking(patientData.get("Work Status"));
 				patient.setEducation(patientData.get("Educational Degree"));
@@ -116,7 +124,7 @@ public class AddPatientController implements ActionListener
 			}
 			else
 			{
-				panel.displayErrorMessage("Not all required fields have been filled");
+				panel.displayErrorMessage("Not all required fields have been filled.");
 			}
 		}
 		else if (command.equals("Exit"))
@@ -124,6 +132,4 @@ public class AddPatientController implements ActionListener
 			panel.setVisible(false);
 		}
 	}
-	
-	
 }
