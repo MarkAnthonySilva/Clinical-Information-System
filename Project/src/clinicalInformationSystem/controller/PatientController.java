@@ -148,8 +148,8 @@ public class PatientController implements ActionListener
 				
 				//Optional parameters
 				patient.setOccupation(patientData.get("Occupation"));
-				patient.setWorking(patientData.get("Work Staus"));
-				patient.setEducation(patientData.get("EducationDegree"));
+				patient.setWorking(patientData.get("Work Status"));
+				patient.setEducation(patientData.get("Educational Degree"));
 				patient.setNotes(patientData.get("Notes"));
 				
 				frame.getPatientList().addPatient(patientData.get("Name*"), patient);
