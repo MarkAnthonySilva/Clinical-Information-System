@@ -1,10 +1,10 @@
 package clinicalInformationSystem.controller;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -13,6 +13,10 @@ import clinicalInformationSystem.model.VisitList;
 import clinicalInformationSystem.view.PatientPanel;
 import clinicalInformationSystem.view.SystemFrame;
 
+/**
+ * Controller for the patient panel
+ *
+ */
 public class PatientController implements ActionListener
 {
 	private PatientPanel 	panel;
@@ -20,6 +24,12 @@ public class PatientController implements ActionListener
 	private PatientModel	patient;
 	private VisitList		visitList;
 	
+	/**
+	 * Constructor for the patient panel
+	 * @param frame the frame where the patient panel is displayed
+	 * @param patient the patient that is wanted to be displayed
+	 * @param panel the patient panel being controlled by this classed
+	 */
 	public PatientController(SystemFrame frame, PatientModel patient, PatientPanel panel)
 	{
 		this.panel = panel;
@@ -31,6 +41,9 @@ public class PatientController implements ActionListener
 		panel.setDataMap(patient);
 	}
 
+	/**
+	 * Listens to the inputs in the Patient Panel
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		String command = e.getActionCommand();
@@ -46,7 +59,6 @@ public class PatientController implements ActionListener
 		else if (command.equals("Submit"))
 		{	
 			HashMap<String, String> patientData = panel.getDataMap();
-			ArrayList<String> valuesList = new ArrayList<>(patientData.values());
 			boolean isFull = true;
 			
 			//Checks if all the patientData has been filled
