@@ -44,17 +44,21 @@ public class AddPatientController implements ActionListener
 			//Checks if all the patientData has been filled
 			for (String s: patientData.keySet())
 			{
-				if (patientData.get(s).equals(""))
+				//Ignore Optional Parameters
+				if(!s.equals("Occupation") && !s.equals("Work Status") && !s.equals("Educational Degree") && !s.equals("Notes"))
 				{
-					isFull = false;
-					break;
+					if (patientData.get(s).equals(""))
+					{
+						isFull = false;
+						break;
+					}
 				}
 			}
 			
 			if (isFull)
 			{
-				String dob = patientData.get("Date of Birth (mm/dd/yyyy)");		
-				String dor = patientData.get("Register Date (mm/dd/yyyy)");			
+				String dob = patientData.get("Date of Birth (mm/dd/yyyy)*");		
+				String dor = patientData.get("Register Date (mm/dd/yyyy)*");			
 				Date formattedDob = null;
 				Date formattedDor = null;
 				try
@@ -70,9 +74,9 @@ public class AddPatientController implements ActionListener
 					return;
 				}
 				
-				String id = patientData.get("ID Number").replaceAll("-", "");
-				String sn = patientData.get("Social Security Number").replaceAll("-", "");
-				String in = patientData.get("Insurance Number").replaceAll("-", "");
+				String id = patientData.get("ID Number*").replaceAll("-", "");
+				String sn = patientData.get("Social Security Number*").replaceAll("-", "");
+				String in = patientData.get("Insurance Number*").replaceAll("-", "");
 				int parsedID, parsedSN, parsedIN;
 				
 				try
@@ -88,23 +92,26 @@ public class AddPatientController implements ActionListener
 				}
 				
 				PatientModel patient = new PatientModel.Builder()
-						.withPatientName(patientData.get("Name"))
+						.withPatientName(patientData.get("Name*"))
 						.withIdNumber(parsedID)
 						.withDateOfBirth(formattedDob)
-						.withGender(patientData.get("Gender"))
-						.withPhoneNumber(patientData.get("Phone Number"))
-						.withAddress(patientData.get("Street Address") + " " + patientData.get("City") 
-									+ " " + patientData.get("State") + " " + patientData.get("Zip Code")
-									+ " " + patientData.get("Country"))
+						.withGender(patientData.get("Gender*"))
+						.withPhoneNumber(patientData.get("Phone Number*"))
+						.withAddress(patientData.get("Street Address*") + " " + patientData.get("City*") 
+									+ " " + patientData.get("State*") + " " + patientData.get("Zip Code*")
+									+ " " + patientData.get("Country*"))
 						.withSSN(parsedSN)
 						.withInsuranceNumber(parsedIN)
 						.withDateOfRegistration(formattedDor)
 						.build();
 				
+				//Optional parameters
+				patient.setOccupation(patientData.get("Occupation"));
+				patient.setWorking(patientData.get("Work Staus"));
+				patient.setEducation(patientData.get("EducationDegree"));
 				patient.setNotes(patientData.get("Notes"));
-				// TODO add the rest of optional parameter
 				
-				frame.getPatientList().addPatient(patientData.get("Name"), patient);
+				frame.getPatientList().addPatient(patientData.get("Name*"), patient);
 				frame.displayPatientList();
 			}
 			else

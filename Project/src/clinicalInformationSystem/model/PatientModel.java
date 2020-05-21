@@ -26,12 +26,12 @@ public class PatientModel
 	
 	//Optional parameters
 	private String occupation;
-	private boolean isWorking;			//Can be changed to boolean
+	private String isWorking;			//Can be changed to boolean
 	private String education;
 	
 	//Addtional information
 	private String notes;
-	
+		
 	/**
 	 * Creates a patient using the builder pattern
 	 * @param builder the builder to create the patient out off
@@ -64,15 +64,18 @@ public class PatientModel
 		String dor = standardDateFormat.format(this.dateOfRegistration);
 				
 		HashMap<String, String> patientData = new HashMap<>();
-		patientData.put("Name", this.patientName);
-		patientData.put("ID Number", Integer.toString(this.idNumber));
-		patientData.put("Date of Birth", dob);
-		patientData.put("Gender", this.gender);
-		patientData.put("Phone Number", this.phoneNumber);
-		patientData.put("Address", this.address);
-		patientData.put("Social Security Number", Integer.toString(this.sSN));
-		patientData.put("Insurance Number", Integer.toString(this.insuranceNumber));
-		patientData.put("Register Date", dor);
+		patientData.put("Name*", this.patientName);
+		patientData.put("ID Number*", Integer.toString(this.idNumber));
+		patientData.put("Date of Birth*", dob);
+		patientData.put("Gender*", this.gender);
+		patientData.put("Phone Number*", this.phoneNumber);
+		patientData.put("Address*", this.address);
+		patientData.put("Social Security Number*", Integer.toString(this.sSN));
+		patientData.put("Insurance Number*", Integer.toString(this.insuranceNumber));
+		patientData.put("Register Date*", dor);
+		patientData.put("Occupation", this.occupation);
+		patientData.put("Work Status", this.isWorking);
+		patientData.put("Educational Degree", this.education);
 		patientData.put("Notes", this.notes);
 		
 		return patientData;
@@ -170,7 +173,7 @@ public class PatientModel
 	/**
 	 * @return the isWorking
 	 */
-	public boolean isWorking()
+	public String isWorking()
 	{
 		return isWorking;
 	}
@@ -282,7 +285,7 @@ public class PatientModel
 	/**
 	 * @param isWorking the isWorking to set
 	 */
-	public void setWorking(boolean isWorking)
+	public void setWorking(String isWorking)
 	{
 		this.isWorking = isWorking;
 	}
@@ -317,7 +320,7 @@ public class PatientModel
 		private String address;
 		private String occupation;
 		private String phoneNumber;
-		private boolean isWorking;
+		private String isWorking;
 		private String education;
 
 		public Builder()
@@ -384,7 +387,7 @@ public class PatientModel
 			return this;
 		}
 
-		public Builder withIsWorking(boolean isWorking)
+		public Builder withIsWorking(String isWorking)
 		{
 			this.isWorking = isWorking;
 			return this;

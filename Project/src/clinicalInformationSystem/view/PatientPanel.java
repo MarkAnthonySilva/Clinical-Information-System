@@ -25,18 +25,25 @@ public class PatientPanel extends JPanel
 	private JButton visits;
 	
 	HashMap<String, JTextComponent>		patientData;	//Key Data name, Value JTextField related to Data name
-	
-	public static final String[] labelList = {"Name",
-											"ID Number", 
-											"Date of Birth",
-											"Gender", 
-											"Phone Number", 
-											"Address", 
-											"Social Security Number", 
-											"Insurance Number",
-											"Register Date"};
-	
-	// TODO Add Optional Parameters to labelList
+
+	public static final String[] LABEL_LIST =  {"Name*",
+			"ID Number*", 
+			"Date of Birth (mm/dd/yyyy)*",
+			"Gender*", 
+			"Phone Number*", 
+			"Street Address*", 
+			"City*",
+			"State*",
+			"Zip Code*",
+			"Country*",
+			"Social Security Number*", 
+			"Insurance Number*",
+			"Register Date (mm/dd/yyyy)*",
+			"Occupation",
+			"Work Status",
+			"Educational Degree"
+	};
+
 	
 	/**
 	 * Constructor of a patient panel that display information of a patient
@@ -52,19 +59,19 @@ public class PatientPanel extends JPanel
 		
 		//Construct all label and text fields for the form panel
 		patientData = new HashMap<>();
-		for (int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < LABEL_LIST.length; i++)
 		{
-			JLabel label = new JLabel(labelList[i], JLabel.TRAILING);
+			JLabel label = new JLabel(LABEL_LIST[i], JLabel.TRAILING);
 			formPanel.add(label);
 			JTextField textField = new JTextField(20);
 			label.setLabelFor(textField);
 			formPanel.add(textField);
 			
-			patientData.put(labelList[i], textField);
+			patientData.put(LABEL_LIST[i], textField);
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-										labelList.length, 2, 	//# of rows, # of columns
+										LABEL_LIST.length, 2, 	//# of rows, # of columns
 										5, 5,					//Initial x and y coordinates
 										5, 5);					//Padding between labels and textfield
 	
@@ -107,9 +114,9 @@ public class PatientPanel extends JPanel
 	public HashMap<String, String> getDataMap()
 	{
 		HashMap<String,String>	patientDataString = new HashMap<>();
-		for (int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < LABEL_LIST.length; i++)
 		{
-			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
+			patientDataString.put(LABEL_LIST[i], patientData.get(LABEL_LIST[i]).getText());
 		}
 		
 		patientDataString.put("Notes", patientData.get("Notes").getText());
@@ -126,15 +133,15 @@ public class PatientPanel extends JPanel
 		JTextComponent textField = patientData.get("Notes");
 		textField.setText(patientString);
 		
-		for (int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < LABEL_LIST.length; i++)
 		{	
-			patientString = patient.getMap().get(labelList[i]);
-			textField = patientData.get(labelList[i]);
+			patientString = patient.getMap().get(LABEL_LIST[i]);
+			textField = patientData.get(LABEL_LIST[i]);
 			textField.setText(patientString);
 			
-			if(labelList[i].equals("Address"))
+			if(LABEL_LIST[i].equals("Address"))
 			{
-				((JTextField) patientData.get(labelList[i])).setColumns(patientString.length());
+				((JTextField) patientData.get(LABEL_LIST[i])).setColumns(patientString.length());
 			}
 		}
 	}
@@ -146,9 +153,9 @@ public class PatientPanel extends JPanel
 	 */
 	public void setEditable(boolean isEditable)
 	{
-		for(int i = 0; i < labelList.length; i++)
+		for(int i = 0; i < LABEL_LIST.length; i++)
 		{
-			patientData.get(labelList[i]).setEditable(isEditable);
+			patientData.get(LABEL_LIST[i]).setEditable(isEditable);
 		}
 		patientData.get("Notes").setEditable(isEditable);
 		

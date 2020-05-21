@@ -17,22 +17,23 @@ public class AddPatientPanel extends JPanel
 	
 	HashMap<String, JTextComponent>		patientData;	//Key Data name, Value JTextField related to Data name
 		
-	public static final String[] labelList = {"Name",
-											"ID Number", 
-											"Date of Birth (mm/dd/yyyy)",
-											"Gender", 
-											"Phone Number", 
-											"Street Address", 
-											"City",
-											"State",
-											"Zip Code",
-											"Country",
-											"Social Security Number", 
-											"Insurance Number",
-											"Register Date (mm/dd/yyyy)"};
-	
-	// TODO Add Optional Parameters to labelList
-	
+	public static final String[] LABEL_LIST = {"Name*",
+											"ID Number*", 
+											"Date of Birth (mm/dd/yyyy)*",
+											"Gender*", 
+											"Phone Number*", 
+											"Street Address*", 
+											"City*",
+											"State*",
+											"Zip Code*",
+											"Country*",
+											"Social Security Number*", 
+											"Insurance Number*",
+											"Register Date (mm/dd/yyyy)*",
+											"Occupation",
+											"Work Status",
+											"Educational Degree"
+											};
 	/**
 	 * Constructs an AddPatientPanel that allows the input of 
 	 */
@@ -40,8 +41,8 @@ public class AddPatientPanel extends JPanel
 	{	
 		this.setLayout(new BorderLayout());
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
+		JLabel s = new JLabel("* means that is a required parameter");
+		this.add(s, BorderLayout.NORTH);
 		
 		//Construct Form Panel of Spring layout
 		JPanel formPanel = new JPanel();
@@ -50,19 +51,19 @@ public class AddPatientPanel extends JPanel
 		
 		//Construct all label and text fields for the form panel
 		patientData = new HashMap<>();
-		for (int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < LABEL_LIST.length; i++)
 		{
-			JLabel label = new JLabel(labelList[i], JLabel.TRAILING);
+			JLabel label = new JLabel(LABEL_LIST[i], JLabel.TRAILING);
 			formPanel.add(label);
 			JTextField textField = new JTextField(15);
 			label.setLabelFor(textField);
 			formPanel.add(textField);
 			
-			patientData.put(labelList[i], textField);
+			patientData.put(LABEL_LIST[i], textField);
 		}
 		
 		SpringUtilities.makeCompactGrid(formPanel, 
-										labelList.length, 2, 	//# of rows, # of columns
+										LABEL_LIST.length, 2, 	//# of rows, # of columns
 										5, 5,					//Initial x and y coordinates
 										5, 5);					//Padding between labels and textfield
 	
@@ -102,9 +103,9 @@ public class AddPatientPanel extends JPanel
 	public HashMap<String, String> getDataMap()
 	{
 		HashMap<String, String> patientDataString = new HashMap<>();
-		for (int i = 0; i < labelList.length; i++)
+		for (int i = 0; i < LABEL_LIST.length; i++)
 		{
-			patientDataString.put(labelList[i], patientData.get(labelList[i]).getText());
+			patientDataString.put(LABEL_LIST[i], patientData.get(LABEL_LIST[i]).getText());
 		}
 		
 		patientDataString.put("Notes", patientData.get("Notes").getText().trim());
