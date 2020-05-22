@@ -158,15 +158,23 @@ public class VisitController
 				if (patientName != null && dateText != null && seqNumberText != null)
 				{
 					formattedDate = null;
+					SimpleDateFormat standardDateFormat1 = new SimpleDateFormat("MMMM d, yyyy");
+					SimpleDateFormat standardDateFormat2 = new SimpleDateFormat("MM/dd/yyyy");
 					try
 					{
-						SimpleDateFormat standardDateFormat = new SimpleDateFormat("MMMM d, yyyy");
-						formattedDate = standardDateFormat.parse(dateText);
+						formattedDate = standardDateFormat1.parse(dateText);
 					}
 					catch (ParseException e1)
 					{
-						visitPanel.displayErrorMessage("Invalid date format.");
-						return;
+						try
+						{
+							formattedDate = standardDateFormat2.parse(dateText);
+						}
+						catch (ParseException e2)
+						{
+							visitPanel.displayErrorMessage("Invalid date format.");
+							return;
+						}
 					}
 					
 					try
@@ -175,7 +183,7 @@ public class VisitController
 						if (seqNumber < 0)
 							throw (new NumberFormatException());
 					}
-					catch (NumberFormatException e2)
+					catch (NumberFormatException e3)
 					{
 						visitPanel.displayErrorMessage("Please enter a valid sequence number.");
 						return;
