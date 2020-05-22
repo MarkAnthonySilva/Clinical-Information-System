@@ -10,13 +10,12 @@ import javax.swing.text.JTextComponent;
 import clinicalInformationSystem.SpringUtilities;
 
 
-
-@SuppressWarnings("serial")
 /**
  * JPanel to display form to fill out patient information
  * @author benja
  *
  */
+@SuppressWarnings("serial")
 public class AddPatientPanel extends JPanel
 {
 	private JButton submit;

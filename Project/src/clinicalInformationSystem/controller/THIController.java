@@ -8,6 +8,11 @@ import clinicalInformationSystem.model.VisitModel;
 import clinicalInformationSystem.view.THIPanel;
 import clinicalInformationSystem.view.SystemFrame;
 
+/**
+ * Controller for adding THI to a visit
+ * @author benja
+ *
+ */
 public class THIController
 {
 	private SystemFrame frame;
