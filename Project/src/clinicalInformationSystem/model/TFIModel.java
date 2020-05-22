@@ -57,7 +57,7 @@ public class TFIModel
 	
 	/**
 	 * Answer the question corresponding to the question number with the given response
-	 * @param question the question to answer (1 - 25)
+	 * @param questionNumber the question to answer (1 - 25)
 	 * @param response the answer to the question (0 - 10)
 	 * @return True = question answered; False = question not answered
 	 */

@@ -22,7 +22,7 @@ public class PatientListController implements ActionListener, ListSelectionListe
 	 * Constructs a patientList controller that listen to the actions made at the patientListPanel
 	 * @param frame the frame where the panel is
 	 * @param patientList the list that is being displayed at the panel
-	 * @param panel
+	 * @param panel Panel to display patient list on
 	 */
 	public PatientListController(SystemFrame frame, PatientList patientList, PatientListPanel panel)
 	{

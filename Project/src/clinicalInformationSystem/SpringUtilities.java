@@ -53,6 +53,7 @@ public class SpringUtilities {
     /**
      * A debugging utility that prints to stdout the component's
      * minimum, preferred, and maximum sizes.
+     * @param c component
      */
     public static void printSizes(Component c) {
         System.out.println("minimumSize = " + c.getMinimumSize());
@@ -67,6 +68,7 @@ public class SpringUtilities {
      * preferred width and height of the components.
      * The parent is made just big enough to fit them all.
      *
+     * @param parent parent
      * @param rows number of rows
      * @param cols number of columns
      * @param initialX x location to start the grid at
@@ -170,6 +172,7 @@ public class SpringUtilities {
      * height is similarly determined for each row.
      * The parent is made just big enough to fit them all.
      *
+     * @param parent parent
      * @param rows number of rows
      * @param cols number of columns
      * @param initialX x location to start the grid at

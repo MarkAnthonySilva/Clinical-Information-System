@@ -24,7 +24,6 @@ public class PatientListPanel extends JPanel
 	
 	/**
 	 * Constructs a PatientList panel that displays all the patients stored in the system
-	 * @param patientList the patient list to displau
 	 * @param frame the frame to display the patientList
 	 */
 	public PatientListPanel(SystemFrame frame)
